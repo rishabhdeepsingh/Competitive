@@ -1,6 +1,19 @@
 package FastIO;
 
 public class Utilities {
+    public static int Gcd(int a, int b) {
+        if (a == 0)
+            return b;
+        else
+            return Gcd(b % a, a);
+    }
+    public static long Gcd(long a, long b) {
+        if (a == 0)
+            return b;
+        else
+            return Gcd(b % a, a);
+    }
+
     public static String repeat(int count, String with) {
         return new String(new char[count]).replace("\0", with);
     }
@@ -35,9 +48,6 @@ public class Utilities {
         return polygonArea(_X, _Y, 3);
     }
 
-    public static long modInverse(long a, long m) {
-        return power(a, m - 2, m);
-    }
 
     public static boolean onLine(Point[] shape, Point p) {
         for (int i = 0; i < shape.length; i++) {
@@ -52,20 +62,14 @@ public class Utilities {
         return false;
     }
 
-    public static long gcd(long a, long b) {
-        if (a == 0)
-            return b;
-        return gcd(b % a, a);
-    }
 
-    public static long power(long x, long y, long m) {
-        if (y == 0)
-            return 1;
-        long p = power(x, y / 2, m) % m;
-        p = (p * p) % m;
-        if (y % 2 == 0)
-            return p;
-        else
-            return (x * p) % m;
+
+    public static boolean isPrime(int num) {
+        if (num < 2) return false;
+        if (num == 2) return true;
+        if (num % 2 == 0) return false;
+        for (int i = 3; i * i <= num; i += 2)
+            if (num % i == 0) return false;
+        return true;
     }
 }
