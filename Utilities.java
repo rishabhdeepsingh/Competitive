@@ -1,18 +1,9 @@
 package FastIO;
 
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Utilities {
-    public static int Gcd(int a, int b) {
-        if (a == 0)
-            return b;
-        else
-            return Gcd(b % a, a);
-    }
-    public static long Gcd(long a, long b) {
-        if (a == 0)
-            return b;
-        else
-            return Gcd(b % a, a);
-    }
 
     public static String repeat(int count, String with) {
         return new String(new char[count]).replace("\0", with);
@@ -42,12 +33,61 @@ public class Utilities {
         return Math.abs(area / 2.0);
     }
 
+    void shuffleArray(int[] ar) {
+        Random rnd = ThreadLocalRandom.current();
+        for (int i = ar.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            int a = ar[index];
+            ar[index] = ar[i];
+            ar[i] = a;
+        }
+    }
+
+    int min(int... a) {
+        int min = a[0];
+        for (int i : a) min = Math.min(min, i);
+        return min;
+    }
+
+    int max(int... a) {
+        int max = a[0];
+        for (int i : a) max = Math.max(max, i);
+        return max;
+    }
+
+    int gcd(int... a) {
+        int gcd = a[0];
+        for (int i : a) gcd = gcd(gcd, i);
+        return gcd;
+    }
+
+    long min(long... a) {
+        long min = a[0];
+        for (long i : a) min = Math.min(min, i);
+        return min;
+    }
+
+    long max(long... a) {
+        long max = a[0];
+        for (long i : a) max = Math.max(max, i);
+        return max;
+    }
+
+    long gcd(long... a) {
+        long gcd = a[0];
+        for (long i : a) gcd = gcd(gcd, i);
+        return gcd;
+    }
+
     public static double polygonArea(java.awt.Point a, java.awt.Point b, java.awt.Point c) {
         double[] _X = {a.x, b.x, c.x};
         double[] _Y = {a.y, b.y, c.y};
         return polygonArea(_X, _Y, 3);
     }
 
+    public static long modInverse(long a, long m) {
+        return power(a, m - 2, m);
+    }
 
     public static boolean onLine(Point[] shape, Point p) {
         for (int i = 0; i < shape.length; i++) {
@@ -62,7 +102,37 @@ public class Utilities {
         return false;
     }
 
+    public static long lcm(long a, long b) {
+        return a * b / gcd(a, b);
+    }
 
+    public static long gcd(long a, long b) {
+        if (a == 0)
+            return b;
+        return gcd(b % a, a);
+    }
+
+    public static int gcd(int a, int b) {
+        if (a == 0)
+            return b;
+        return gcd(b % a, a);
+    }
+
+    public static long mul(long x, long y, long mod) {
+        return (x % mod) * (y % mod) % mod;
+    }
+
+    public static long power(long a, long k, long m) {
+        long res = 1;
+        while (k > 0) {
+            if ((k & 1) != 0) {
+                res = mul(res, a, m);
+            }
+            a = mul(a, a, m);
+            k >>= 1;
+        }
+        return res;
+    }
 
     public static boolean isPrime(int num) {
         if (num < 2) return false;

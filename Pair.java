@@ -1,11 +1,11 @@
 package FastIO;
 
-public class Pair<L, R> implements Comparable<Pair<L, R>> {
+public class Pair implements Comparable<Pair> {
 
-    public L x;
-    public R y;
+    public int x;
+    public int y;
 
-    public Pair(L x, R y) {
+    public Pair(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -16,20 +16,15 @@ public class Pair<L, R> implements Comparable<Pair<L, R>> {
     }
 
     @Override
-    public int hashCode() {
-        return x.hashCode() ^ y.hashCode();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (!(o instanceof Pair)) return false;
         Pair pairo = (Pair) o;
-        return this.x.equals(pairo.x) &&
-                this.y.equals(pairo.y);
+        return this.x == pairo.x &&
+                this.y == pairo.y;
     }
 
     @Override
-    public int compareTo(Pair<L, R> o) {
-        return 0;
+    public int compareTo(Pair p) {
+        return Integer.compare(p.x, this.x);
     }
 }

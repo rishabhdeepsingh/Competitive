@@ -3,8 +3,10 @@ package FastIO;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class InputReader {
     private boolean finished = false;
@@ -239,6 +241,15 @@ public class InputReader {
         return array;
     }
 
+    public List<Integer> nextIntList(int n) {
+        int[] ints = nextIntArray(n);
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add(ints[i]);
+        }
+        return list;
+    }
+
     public int[] nextSortedIntArray(int n) {
         int array[] = nextIntArray(n);
         Arrays.sort(array);
@@ -258,6 +269,15 @@ public class InputReader {
         return array;
     }
 
+    public List<Long> nextLongList(int n) {
+        long[] longs = nextLongArray(n);
+        List<Long> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add(longs[i]);
+        }
+        return list;
+    }
+
     public long[] nextSumLongArray(int n) {
         long[] array = new long[n];
         array[0] = nextInt();
@@ -269,5 +289,37 @@ public class InputReader {
         long array[] = nextLongArray(n);
         Arrays.sort(array);
         return array;
+    }
+
+    public int[][] nextIntMatrix(int n, int m) {
+        int[][] arr = new int[n][m];
+        for (int i = 0; i < n; i++) {
+            arr[i] = nextIntArray(m);
+        }
+        return arr;
+    }
+
+    public long[][] nextLongMatrix(int n, int m) {
+        long[][] arr = new long[n][m];
+        for (int i = 0; i < n; i++) {
+            arr[i] = nextLongArray(m);
+        }
+        return arr;
+    }
+
+    public int[][] nextIntMatrix(int n) {
+        int[][] arr = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = nextIntArray(n);
+        }
+        return arr;
+    }
+
+    public long[][] nextLongMatrix(int n) {
+        long[][] arr = new long[n][n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = nextLongArray(n);
+        }
+        return arr;
     }
 }

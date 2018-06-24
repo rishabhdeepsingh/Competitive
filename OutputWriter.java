@@ -85,6 +85,22 @@ public class OutputWriter {
         writer.println(i);
     }
 
+    public void print(int count, String s) {
+        writer.print(Utilities.repeat(count, s));
+    }
+
+    public void println(int count, String s) {
+        writer.println(Utilities.repeat(count, s));
+    }
+
+    public void print(int count, Character s) {
+        writer.print(Utilities.repeat(count, s.toString()));
+    }
+
+    public void println(int count, Character s) {
+        writer.println(Utilities.repeat(count, s.toString()));
+    }
+
     public void println(char[] array) {
         writer.println(array);
     }

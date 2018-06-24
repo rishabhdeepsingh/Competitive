@@ -1,10 +1,10 @@
 package FastIO;
 
-public class Point implements Comparable<Point> {
-    public int x;    // x-coordinate
-    public int y;    // y-coordinate
+public class Point {
+    public long x;    // x-coordinate
+    public long y;    // y-coordinate
 
-    public Point(int x, int y) {
+    public Point(long x, long y) {
         this.x = x;
         this.y = y;
     }
@@ -16,13 +16,7 @@ public class Point implements Comparable<Point> {
     public boolean equals(Point obj) {
         return this.x == obj.x && this.y == obj.y;
     }
+    //To sort them according to the Co-ordinate System
+    //Comparator.comparingLong(a -> Math.abs(a[0]) + Math.abs(a[1]))
 
-    @Override
-    public int compareTo(Point o) {
-        int c = Integer.compare(this.x, o.x);
-        if (c != 0) {
-            return c;
-        }
-        return Integer.compare(this.y, o.y);
-    }
 }
