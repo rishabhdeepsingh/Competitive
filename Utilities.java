@@ -13,6 +13,18 @@ public class Utilities {
         return str.equals(new StringBuilder(str).reverse().toString());
     }
 
+    public static int[] sieveOfEratosthenes(int MAX) {
+        int[] prime = new int[MAX];
+        for (int i = 1; i < MAX; ++i)
+            prime[i] = i;
+        for (int i = 2; i * i < MAX; ++i) {
+            if (prime[i] == i)
+                for (int j = i * i; j < MAX; j += i)
+                    prime[j] = i;
+        }
+        return prime;
+    }
+
     public static long polygonArea(long[][] shape, int n) {
         long area = 0;
         int j = n - 1;
@@ -21,6 +33,18 @@ public class Utilities {
             j = i;
         }
         return area / 2;
+    }
+
+    public static long nCrModP(int n, int r, long p) {
+        if (r == 0)
+            return 1;
+        long[] fac = new long[n + 1];
+        fac[0] = 1;
+        for (int i = 1; i <= n; i++)
+            fac[i] = (fac[i - 1] * i) % p;
+
+        return (fac[n] * modInverse(fac[r], p) % p *
+                modInverse(fac[n - r], p) % p) % p;
     }
 
     public static double polygonArea(double X[], double Y[], int n) {
@@ -109,6 +133,8 @@ public class Utilities {
     public static long gcd(long a, long b) {
         if (a == 0)
             return b;
+        if (b == 0)
+            return a;
         return gcd(b % a, a);
     }
 
@@ -131,7 +157,7 @@ public class Utilities {
             a = mul(a, a, m);
             k >>= 1;
         }
-        return res;
+        return res % m;
     }
 
     public static boolean isPrime(int num) {

@@ -10,6 +10,7 @@ public class Pair implements Comparable<Pair> {
         this.y = y;
     }
 
+
     @Override
     public String toString() {
         return (x + " " + y);
@@ -22,9 +23,17 @@ public class Pair implements Comparable<Pair> {
         return this.x == pairo.x &&
                 this.y == pairo.y;
     }
+//Arrays.sort(pairArray,new Comparator<Pair>()
+//
+//    {
+//        @Override
+//        public int compare (Pair p1, Pair p2){
+//        return p1.getL().compareTo(p2.getL());
+//    }
+//    });
 
     @Override
     public int compareTo(Pair p) {
-        return Integer.compare(p.x, this.x);
+        return Integer.compare(this.x, p.x);
     }
 }

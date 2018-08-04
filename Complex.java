@@ -1,20 +1,39 @@
 package FastIO;
 
 public class Complex {
-    public double x, y;
+    public double real;
+
+    public double getImag() {
+        return imag;
+    }
+
+    public void setImag(double imag) {
+        this.imag = imag;
+    }
+
+    public double imag;
+
+    public Complex() {
+        this.real = 0;
+        this.imag = 0;
+    }
 
     public Complex(double real, double imaginary) {
-        x = real;
-        y = imaginary;
+        this.real = real;
+        imag = imaginary;
     }
 
     public Complex(double real) {
-        x = real;
-        y = 0;
+        this.real = real;
+        imag = 0;
+    }
+
+    public Complex scale(double o) {
+        return new Complex(this.real * o, this.imag * o);
     }
 
     public double arg() {
-        return Math.atan2(y, x);
+        return Math.atan2(imag, real);
     }
 
     public Complex fromPolar(double r, double theta) {
@@ -22,7 +41,7 @@ public class Complex {
     }
 
     public double absSquared() {
-        return x * x + y * y;
+        return real * real + imag * imag;
     }
 
     public double abs() {
@@ -30,32 +49,36 @@ public class Complex {
     }
 
     public Complex conj() {
-        return new Complex(x, -y);
+        return new Complex(real, -imag);
     }
 
     public Complex add(Complex z) {
-        return new Complex(x + z.x, y + z.y);
+        return new Complex(real + z.real, imag + z.imag);
     }
 
     public Complex multiply(Complex w) {
-        return new Complex(x * w.x - y * w.y, x * w.y + y * w.x);
+        return new Complex(real * w.real - imag * w.imag, real * w.imag + imag * w.real);
     }
 
     public double mod() {
-        if (x != 0 || y != 0) {
-            return Math.sqrt(x * x + y * y);
+        if (real != 0 || imag != 0) {
+            return Math.sqrt(real * real + imag * imag);
         } else {
             return 0d;
         }
     }
 
+    public Complex sub(Complex o) {
+        return new Complex(this.real - o.real, this.imag - o.imag);
+    }
+
     public Complex div(Complex w) {
         double den = Math.pow(w.mod(), 2);
-        return new Complex((x * w.x + y * w.y) / den, (y * w.x - x * w.y) / den);
+        return new Complex((real * w.real + imag * w.imag) / den, (imag * w.real - real * w.imag) / den);
     }
 
     public Complex exp() {
-        return new Complex(Math.exp(x) * Math.cos(y), Math.exp(x) * Math.sin(y));
+        return new Complex(Math.exp(real) * Math.cos(imag), Math.exp(real) * Math.sin(imag));
     }
 
     public Complex log() {
@@ -73,11 +96,11 @@ public class Complex {
     }
 
     public Complex cosh() {
-        return new Complex(cosh(x) * Math.cos(y), sinh(x) * Math.sin(y));
+        return new Complex(cosh(real) * Math.cos(imag), sinh(real) * Math.sin(imag));
     }
 
     public Complex cos() {
-        return new Complex(cosh(y) * Math.cos(x), -sinh(y) * Math.sin(x));
+        return new Complex(cosh(imag) * Math.cos(real), -sinh(imag) * Math.sin(real));
     }
 
     private double sinh(double theta) {
@@ -85,11 +108,11 @@ public class Complex {
     }
 
     public Complex sinh() {
-        return new Complex(sinh(x) * Math.cos(y), cosh(x) * Math.sin(y));
+        return new Complex(sinh(real) * Math.cos(imag), cosh(real) * Math.sin(imag));
     }
 
     public Complex sin() {
-        return new Complex(cosh(y) * Math.sin(x), sinh(y) * Math.cos(x));
+        return new Complex(cosh(imag) * Math.sin(real), sinh(imag) * Math.cos(real));
     }
 
     public Complex tan() {
@@ -97,26 +120,29 @@ public class Complex {
     }
 
     public Complex inv() {
-        double abs_squared = absSquared();
-        return new Complex(x / abs_squared, -y / abs_squared);
+        double absSquared = absSquared();
+        return new Complex(real / absSquared, -imag / absSquared);
+    }
+
+    public Complex divide(Complex o) {
+        return this.multiply(o.inv());
     }
 
     @Override
     public String toString() {
-        if (x != 0 && y > 0) {
-            return x + " + " + y + "i";
+        if (real != 0 && imag > 0) {
+            return real + " + " + imag + "i";
         }
-        if (x != 0 && y < 0) {
-            return x + " - " + (-y) + "i";
+        if (real != 0 && imag < 0) {
+            return real + " - " + (-imag) + "i";
         }
-        if (y == 0) {
-            return String.valueOf(x);
+        if (imag == 0) {
+            return String.valueOf(real);
         }
-        if (x == 0) {
-            return y + "i";
+        if (real == 0) {
+            return imag + "i";
         }
-        // shouldn't get here (unless Inf or NaN)
-        return x + " + i*" + y;
+        return real + " + i*" + imag;
 
     }
 
@@ -128,9 +154,9 @@ public class Complex {
             return false;
         }
         Complex other = (Complex) obj;
-        if (x != other.x) {
+        if (real != other.real) {
             return false;
         }
-        return !(y != other.y);
+        return !(imag != other.imag);
     }
 }

@@ -1,8 +1,8 @@
 package FastIO;
 
 public class Point {
-    public long x;    // x-coordinate
-    public long y;    // y-coordinate
+    public long x;    // real-coordinate
+    public long y;    // imag-coordinate
 
     public Point(long x, long y) {
         this.x = x;
