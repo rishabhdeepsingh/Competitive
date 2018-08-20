@@ -39,17 +39,26 @@ typedef vector<ll> vll;
 #define ALL(a) std::begin(a), std::end(a)
 #define IN_REP int _t; cin >> _t ; while(_t--)
 #define IOS ios::sync_with_stdio(false);cin.tie(NULL)
-#define REP(i, a, b) for (int i = int(a); i <= int(b); i++)
+#define REP(i,n) for(int i=0;i<(n);i++)
+#define FOR(i,a,b) for(int i=(a);i<(b);i++)
+#define FORR(i,n) for(int i=(n);i>=0;i--)
 #define MAXN 1000005
 const int MOD = (int) 1e9 + 7;
-int n, q, m;
+int n, q, m, k;
 ll a[MAXN];
 
 int main() {
     IOS;
-    freopen("", "r", stdin);
+    #ifdef RDS
+  	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+  	freopen("log.txt", "w", stderr); 
+    #endif
     IN_REP {
 	
     }
+    #ifdef RDS
+	  fprintf(stdout,"\nTIME: %.3lf sec\n", (double)clock()/(CLOCKS_PER_SEC));
+    #endif
     return 0;
 }
