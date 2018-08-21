@@ -29,7 +29,7 @@ typedef pair<int, int> PII;
 typedef pair<ll, ll> PLL;
 typedef vector<int> VI;
 typedef vector<string> VS;
-typedef vector<pii> VII;
+typedef vector<PII> VII;
 typedef vector<ll> VLL;
  
 const int dx[] = {-1, 0, 1, 0, -1,-1, 1, 1};
@@ -37,6 +37,7 @@ const int dy[] = { 0, 1, 0,-1, -1, 1,-1, 1};
 
 const int dxhorse[] = {-2, -2, -1, -1, 1, 1, 2, 2};
 const int dyhorse[] = {1,  -1, 2 , -2, 2,-2, 1,-1};
+
 #define MP make_pair
 #define PB push_back
 #define F first
