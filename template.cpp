@@ -42,6 +42,7 @@ const int dyhorse[] = {1,  -1, 2 , -2, 2,-2, 1,-1};
 #define PB push_back
 #define F first
 #define S second
+#define SZ(x)	       x.size()
 #define MAX(a, b)      ((a)>(b)?(a):(b))
 #define MIN(a, b)      ((a)<(b)?(a):(b))
 #define ALL(a)         std::begin(a), std::end(a)
