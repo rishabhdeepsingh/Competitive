@@ -29,6 +29,7 @@ typedef pair<int, int> PII;
 typedef pair<LL, LL> PLL;
 typedef vector<int> VI;
 typedef vector<string> VS;
+typedef vector<bool> VB;
 typedef vector<PII> VII;
 typedef vector<LL> VLL;
 
