@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 
 using namespace std;
 
@@ -22,16 +22,16 @@ void __f(const char *names, Arg1 &&arg1, Args &&... args) {
 #else
 #define trace(...)
 #endif
-typedef long long ll;
+typedef long long int LL;
 typedef unsigned int uint;
-typedef unsigned long long ull;
+typedef unsigned long long ULL;
 typedef pair<int, int> PII;
-typedef pair<ll, ll> PLL;
+typedef pair<LL, LL> PLL;
 typedef vector<int> VI;
 typedef vector<string> VS;
 typedef vector<PII> VII;
-typedef vector<ll> VLL;
- 
+typedef vector<LL> VLL;
+
 const int dx[] = {-1, 0, 1, 0, -1,-1, 1, 1};
 const int dy[] = { 0, 1, 0,-1, -1, 1,-1, 1};
 
@@ -58,28 +58,25 @@ const int dyhorse[] = {1,  -1, 2 , -2, 2,-2, 1,-1};
 #define FOR(i,a,b)     for(int i=(a);i<(b);i++)
 #define FORR(i,n)      for(int i=(n);i>=0;i--)
 #define EPS 1e-9
+#define INF 1000000000000000
+#define MAXN 5000005
 
-template <typename T> inline T GCD(T a,T b)   {ll t;while(a){t = a;a = b%a;b = t;}return b;}
-template <typename T> inline T Pow(T base,T exp){ll result = 1;while (exp){if(exp&1)result*=base;exp>>=1;base*=base;}return result;}
-template <typename T> inline T Mulmod(T a, T b, T c){ll x = 0,y = a%c;while(b>0){if(b&1) x = (x+y)%c;y = (y<<1)%c;b >>= 1;}return x;}
-template <typename T> inline T Pow(T base,T exp,T mod){ll x = 1, y = base;while(exp>0){if(exp&1) x = Mulmod(x,y,mod);y = Mulmod(y,y,mod);exp >>= 1;}return x;}
-template <typename T> inline T Cube(T a){return a*a*a;}
-
-#define MAXN 1000005
 const int MOD = (int) 1e9 + 7;
-int n, q, m, k;
-ll a[MAXN];
+template <typename T> inline T GCD(T a,T b)   {LL t;while(a){t = a;a = b%a;b = t;}return b;}
+template <typename T> inline T Pow(T base,T exp){LL result = 1;while (exp){if(exp&1)result*=base;exp>>=1;base*=base;}return result;}
+template <typename T> inline T Mulmod(T a, T b, T c){LL x = 0,y = a%c;while(b>0){if(b&1) x = (x+y)%c;y = (y<<1)%c;b >>= 1;}return x;}
+template <typename T> inline T Pow(T base,T exp,T mod){LL x = 1, y = base;while(exp>0){if(exp&1) x = Mulmod(x,y,mod);y = Mulmod(y,y,mod);exp >>= 1;}return x;}
+template <typename T> inline T Cube(T a){return a*a*a;}
 
 int main() {
     IOS;
     #ifdef RDS
   	freopen("input.txt","r",stdin);
 	freopen("output.txt","w",stdout);
-  	freopen("log.txt", "w", stderr); 
+  	freopen("log.txt", "w", stderr);
     #endif
-    IN_REP {
+    
 	
-    }
     #ifdef RDS
 	  fprintf(stdout,"\nTIME: %.3lf sec\n", (double)clock()/(CLOCKS_PER_SEC));
     #endif
