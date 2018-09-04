@@ -69,13 +69,18 @@ template <typename T> inline T Mulmod(T a, T b, T c){LL x = 0,y = a%c;while(b>0)
 template <typename T> inline T Pow(T base,T exp,T mod){LL x = 1, y = base;while(exp>0){if(exp&1) x = Mulmod(x,y,mod);y = Mulmod(y,y,mod);exp >>= 1;}return x;}
 template <typename T> inline T Cube(T a){return a*a*a;}
 
-int main() {
+void IO(){
     IOS;
     #ifdef RDS
   	freopen("input.txt","r",stdin);
 	freopen("output.txt","w",stdout);
   	freopen("log.txt", "w", stderr);
     #endif
+}
+
+
+int main() {
+    IO();
     
 	
     #ifdef RDS
