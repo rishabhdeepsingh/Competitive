@@ -91,7 +91,7 @@ int main() {
 #ifdef RDS
     freopen("input.txt","r",stdin);
     freopen("output.txt","w",stdout);
-    freopen("log.txt", "w", stderr);s
+    freopen("log.txt", "w", stderr);
 #endif
     IN_REP {
         Doot_Diddly_Donger_Cuckerino();
