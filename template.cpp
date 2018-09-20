@@ -12,7 +12,7 @@ typedef vector<int> VI;
 typedef vector<string> VS;
 typedef vector<bool> VB;
 typedef vector<PII> VPII;
-typedef vector<LL> VPLL;
+typedef vector<LL> VLL;
 
 const int dx[] = {-1, 0, 1, 0, -1, -1, 1, 1};
 const int dy[] = {0, 1, 0, -1, -1, 1, -1, 1};
@@ -77,9 +77,6 @@ inline T Pow(T base, T exp, T mod) {
     }
     return x;
 }
-
-template<typename T>
-inline T Cube(T a) { return a * a * a; }
 
 void Doot_Diddly_Donger_Cuckerino() {
 
