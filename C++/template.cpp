@@ -12,6 +12,7 @@ typedef vector<int> VI;
 typedef vector<string> VS;
 typedef vector<bool> VB;
 typedef vector<PII> VPII;
+typedef vector<PLL> VPLL;
 typedef vector<LL> VLL;
 
 const int dx[] = {-1, 0, 1, 0, -1, -1, 1, 1};
@@ -21,6 +22,7 @@ const int dxhorse[] = {-2, -2, -1, -1, 1, 1, 2, 2};
 const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 
 #define MP make_pair
+#define MT make_tuple
 #define PB push_back
 #define F first
 #define S second
