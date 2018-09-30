@@ -1,3 +1,5 @@
+// doot diddly donger cuckerino Hahahahahah
+
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -14,6 +16,8 @@ typedef vector<bool> VB;
 typedef vector<PII> VPII;
 typedef vector<PLL> VPLL;
 typedef vector<LL> VLL;
+typedef priority_queue<int> pqueue
+typedef priority_queue<int,VI,greater<int>> pdqueue
 
 const int dx[] = {-1, 0, 1, 0, -1, -1, 1, 1};
 const int dy[] = {0, 1, 0, -1, -1, 1, -1, 1};
@@ -33,19 +37,13 @@ const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 #define Fill(n, x)      memset(n,x,sizeof n);
 #define IN_REP         int _t; cin >> _t ; while(_t--)
 #define IOS            ios::sync_with_stdio(false);cin.tie(NULL)
-#define Cin(a)         cin>>a;
-#define Cin2(a, b)      cin>>a>>b;
-#define Cin3(a, b, c)    cin>>a>>b>>c;
-#define Cin4(a, b, c, d)  cin>>a>>b>>c>>d;
-#define Cout(n)           cout<<n<<endl;
-#define REP(i, n)       for(int i=0;i<(n);i++)
 #define FOR(i, a, b)     for(int i=(a);i<(b);i++)
+#define REP(i, n)       FOR(i,0,n)
 #define FORR(i, n)      for(int i=(n);i>=0;i--)
 #define EPS 1e-9
+#define MOD (1000*1000*1000 + 7)
 #define INF 1000000000000007
 #define MAXN 5000007
-
-const int MOD = (int) 1e9 + 7;
 
 template<typename T>
 inline T Pow(T base, T exp) {
@@ -80,23 +78,10 @@ inline T Pow(T base, T exp, T mod) {
     return x;
 }
 
-void Doot_Diddly_Donger_Cuckerino() {
-
-}
-
-
 int main() {
     IOS;
-#ifdef RDS
-    freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout);
-    freopen("log.txt", "w", stderr);
-#endif
-    IN_REP {
-        Doot_Diddly_Donger_Cuckerino();
-    };
-#ifdef RDS
-    fprintf(stdout,"\nTIME: %.3lf sec\n", (double)clock()/(CLOCKS_PER_SEC));
-#endif
+    
+    
+    
     return 0;
 }
