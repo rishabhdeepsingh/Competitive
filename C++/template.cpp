@@ -16,8 +16,8 @@ typedef vector<bool> VB;
 typedef vector<PII> VPII;
 typedef vector<PLL> VPLL;
 typedef vector<LL> VLL;
-typedef priority_queue<int> pqueue
-typedef priority_queue<int,VI,greater<int>> pdqueue
+typedef priority_queue<int> pqueue;
+typedef priority_queue<int,VI,greater<int>> pdqueue;
 
 const int dx[] = {-1, 0, 1, 0, -1, -1, 1, 1};
 const int dy[] = {0, 1, 0, -1, -1, 1, -1, 1};
