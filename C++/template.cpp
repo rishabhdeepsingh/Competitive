@@ -5,7 +5,7 @@
 using namespace std;
 
 typedef long long int LL;
-typedef unsigned int uint;
+typedef unsigned int UINT;
 typedef unsigned long long ULL;
 typedef pair<int, int> PII;
 typedef pair<string, int> PSI;
@@ -16,12 +16,12 @@ typedef vector<bool> VB;
 typedef vector<PII> VPII;
 typedef vector<PLL> VPLL;
 typedef vector<LL> VLL;
+typedef tuple<int,int,int> TPL;
 typedef priority_queue<int> pqueue;
 typedef priority_queue<int,VI,greater<int>> pdqueue;
 
 const int dx[] = {-1, 0, 1, 0, -1, -1, 1, 1};
 const int dy[] = {0, 1, 0, -1, -1, 1, -1, 1};
-
 const int dxhorse[] = {-2, -2, -1, -1, 1, 1, 2, 2};
 const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 
@@ -33,19 +33,20 @@ const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 #define UNIQUE(X) (X).erase(unique(all(X)),(X).end())
 #define F first
 #define S second
-#define SZ(x)           x.size()
+#define SZ(x)           (x).size()
 #define MAX(a, b)      ((a)>(b)?(a):(b))
 #define MIN(a, b)      ((a)<(b)?(a):(b))
 #define ALL(a)         std::begin(a), std::end(a)
 #define Fill(n, x)      memset(n,x,sizeof n);
 #define IN_REP         int _t; cin >> _t ; while(_t--)
 #define IOS            ios::sync_with_stdio(false);cin.tie(NULL)
-#define FOR(i, a, b)     for(int i=(a);i<(b);i++)
+#define FOR(i, a, b)    for(int i=(a);i<(b);i++)
 #define REP(i, n)       FOR(i,0,n)
 #define FORR(i, n)      for(int i=(n);i>=0;i--)
-#define EPS 1e-9
+#define EPS (double) 1e-9
 #define MOD (1000*1000*1000 + 7)
-#define INF 1000000000000007
+#define INF 1011111111
+#define LLINF 1000111000111000111LL
 #define MAXN 5000007
 
 template<typename T>
