@@ -4,18 +4,21 @@
 
 using namespace std;
 
-typedef long long int LL;
+typedef long long LL;
 typedef unsigned int UINT;
 typedef unsigned long long ULL;
 typedef pair<int, int> PII;
 typedef pair<string, int> PSI;
 typedef pair<LL, LL> PLL;
 typedef vector<int> VI;
+typedef vector<VI> VVI;
 typedef vector<string> VS;
 typedef vector<bool> VB;
+typedef vector<VB> VVB;
 typedef vector<PII> VPII;
 typedef vector<PLL> VPLL;
 typedef vector<LL> VLL;
+typedef vector<VLL> VVLL;
 typedef tuple<int,int,int> TPL;
 typedef priority_queue<int> pqueue;
 typedef priority_queue<int,VI,greater<int>> pdqueue;
@@ -57,7 +60,7 @@ inline T Pow(T base, T exp) {
         exp >>= 1;
         base *= base;
     }
-    return result;
+    return result; 
 }
 
 template<typename T>
