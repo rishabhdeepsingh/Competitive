@@ -42,6 +42,7 @@ const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 #define Fill(n, x)      memset(n,x,sizeof n);
 #define IN_REP         int _t; cin >> _t ; while(_t--)
 #define IOS            ios::sync_with_stdio(false);cin.tie(NULL)
+#define FORD            for(int i=(a);i<(b);i+=(c))
 #define FOR(i, a, b)    for(int i=(a);i<(b);i++)
 #define REP(i, n)       FOR(i,0,n)
 #define FORR(i, n)      for(int i=(n);i>=0;i--)
