@@ -31,7 +31,7 @@ const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 #define MT make_tuple
 #define PB push_back
 #define EB emplace_back
-#define endl "\n"
+#define endl '\n'
 #define UNIQUE(X) (X).erase(unique(all(X)),(X).end())
 #define F first
 #define S second
