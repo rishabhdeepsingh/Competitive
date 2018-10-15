@@ -4,7 +4,7 @@
 
 using namespace std;
 
-typedef long long LL;
+typedef long long int LL;
 typedef unsigned int UINT;
 typedef unsigned long long ULL;
 typedef pair<int, int> PII;
@@ -14,7 +14,6 @@ typedef vector<int> VI;
 typedef vector<VI> VVI;
 typedef vector<string> VS;
 typedef vector<bool> VB;
-typedef vector<VB> VVB;
 typedef vector<PII> VPII;
 typedef vector<PLL> VPLL;
 typedef vector<LL> VLL;
@@ -54,41 +53,39 @@ const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 
 template<typename T>
 inline T Pow(T base, T exp) {
-    LL result = 1;
-    while (exp) {
-        if (exp & 1)result *= base;
-        exp >>= 1;
-        base *= base;
-    }
-    return result; 
+  LL result = 1;
+  while (exp) {
+    if (exp & 1)result *= base;
+      exp >>= 1;
+      base *= base;
+  }
+  return result; 
 }
 
 template<typename T>
 inline T Mulmod(T a, T b, T c) {
-    LL x = 0, y = a % c;
-    while (b > 0) {
-        if (b & 1) x = (x + y) % c;
-        y = (y << 1) % c;
-        b >>= 1;
-    }
-    return x;
+  LL x = 0, y = a % c;
+  while (b > 0) {
+    if (b & 1) x = (x + y) % c;
+      y = (y << 1) % c;
+      b >>= 1;
+  }
+  return x;
 }
 
 template<typename T>
 inline T Pow(T base, T exp, T mod) {
-    LL x = 1, y = base;
-    while (exp > 0) {
-        if (exp & 1) x = Mulmod(x, y, mod);
-        y = Mulmod(y, y, mod);
-        exp >>= 1;
+  LL x = 1, y = base;
+  while (exp > 0) {
+    if (exp & 1) x = Mulmod(x, y, mod);
+      y = Mulmod(y, y, mod);
+      exp >>= 1;
     }
-    return x;
+  return x;
 }
 
 int main() {
-    IOS;
+  IOS;
     
-    
-    
-    return 0;
+  return 0;
 }
