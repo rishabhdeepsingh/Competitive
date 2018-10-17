@@ -18,7 +18,7 @@ In ubuntu we can use the following code to check the time
 Settings for Different IDE etc.
 
 ## IntelliJ Idea
-[Settings](https://github.com/rishabhdeepsingh/settings/raw/master/Intellij/settings.jar)
+[Settings](https://github.com/rishabhdeepsingh/FastIO/blob/master/Intellij/settings.jar)
 
 ## VS Code
 [Extensions](vscode/extensions.md)
