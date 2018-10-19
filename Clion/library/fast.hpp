@@ -51,6 +51,11 @@ const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 #define INF 1011111111
 #define LLINF 1000111000111000111LL
 #define MAXN 5000007
+template<typename T>
+T gcd(T x, T y) {
+    if (y == 0)return x;
+    return gcd(y, x % y);
+}
 
 VB SieveOfEratosthenes(int n) {
     VB prime(n+1, true);
@@ -94,4 +99,12 @@ inline T Pow(T base, T exp, T mod) {
         exp >>= 1;
     }
     return x;
+}
+
+void to_upper(string &s) {
+    transform(ALL(s), s.begin(), ::toupper);
+}
+
+void to_lower(string &s) {
+    transform(ALL(s), s.begin(), ::tolower);
 }
