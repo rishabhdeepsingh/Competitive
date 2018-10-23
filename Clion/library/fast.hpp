@@ -35,13 +35,11 @@ const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 #define F first
 #define S second
 #define SZ(x)           (x).size()
-#define MAX(a, b)      ((a)>(b)?(a):(b))
-#define MIN(a, b)      ((a)<(b)?(a):(b))
 #define ALL(a)         std::begin(a), std::end(a)
 #define Fill(n, x)      memset(n,x,sizeof n);
 #define IN_REP         int _t; cin >> _t ; while(_t--)
 #define IOS            ios::sync_with_stdio(false);cin.tie(NULL)
-#define FAUTO(i,a)      for(auto i : a)
+#define FAUTO(i, a)      for(auto i : a)
 #define FORD            for(int i=(a);i<(b);i+=(c))
 #define FOR(i, a, b)    for(int i=(a);i<(b);i++)
 #define REP(i, n)       FOR(i,0,n)
@@ -60,16 +58,16 @@ T gcd(T x, T y) {
 
 template<typename T>
 void mini(T &a, T b) {
-    a = MIN(a, b);
+    a = min(a, b);
 }
 
 template<typename T>
 void maxi(T &a, T b) {
-    a = MAX(a, b);
+    a = max(a, b);
 }
 
 VB SieveOfEratosthenes(int n) {
-    VB prime(n+1, true);
+    VB prime(n + 1, true);
     for (int p = 2; p * p <= n; p++) {
         if (prime[p]) {
             for (int i = p * 2; i <= n; i += p)
@@ -112,7 +110,7 @@ inline T Pow(T base, T exp, T mod) {
     return x;
 }
 
-void to_upper(string &s) {
+inline void to_upper(string &s){
     transform(ALL(s), s.begin(), ::toupper);
 }
 
