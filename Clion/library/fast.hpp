@@ -51,10 +51,21 @@ const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 #define INF 1011111111
 #define LLINF 1000111000111000111LL
 #define MAXN 5000007
+
 template<typename T>
 T gcd(T x, T y) {
     if (y == 0)return x;
     return gcd(y, x % y);
+}
+
+template<typename T>
+void mini(T &a, T b) {
+    a = MIN(a, b);
+}
+
+template<typename T>
+void maxi(T &a, T b) {
+    a = MAX(a, b);
 }
 
 VB SieveOfEratosthenes(int n) {
