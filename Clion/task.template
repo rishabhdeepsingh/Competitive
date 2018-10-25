@@ -1,4 +1,4 @@
-#include "/home/whiteknife/Workspace/CLionProjects/Competitive/library/lib.hpp"
+#include "library/fast.hpp"
 
 class %ClassName% {
 public:
