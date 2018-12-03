@@ -54,7 +54,7 @@ const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 
 template<typename T> inline void maxi(T &x, T y){ x = max(x,y); }
 template<typename T> inline void mini(T &x, T y){ x = min(x,y); }
-ttemplate<typename T> inline void add(T &x, T y){ x+= y; if(x >= MOD) x-= MOD;}
+template<typename T> inline void add(T &x, T y){ x+= y; if(x >= MOD) x-= MOD;}
 template<typename T> inline void sub(T &x, T y){ x-=y; if (x < 0) x += MOD;}
 template<typename T> inline T mul(T a, T b) { LL x =(long long) a*b; x%= MOD; return x; }
 template<typename T> inline T power(T base, T exp) { LL result = 1; while (exp) {if (exp&1)result *= base; exp >>= 1; base *= base;} return result; }
