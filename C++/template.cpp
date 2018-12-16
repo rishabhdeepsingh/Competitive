@@ -47,7 +47,7 @@ const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 #define REP(i, n)       FOR(i,0,n)
 #define FORR(i, n)      for(int i=(n);i>=0;i--)
 #define EPS (double) 1e-9
-#define MOD (1000*1000*1000 + 7)
+#define MOD (long long)(1000*1000*1000 + 7)
 #define INF 1011111111
 #define LLINF 1000111000111000111LL
 #define MAXN 5000007
@@ -57,8 +57,9 @@ template<typename T> inline void mini(T &x, T y){ x = min(x,y); }
 template<typename T> inline void add(T &x, T y){ x+= y; if(x >= MOD) x-= MOD;}
 template<typename T> inline void sub(T &x, T y){ x-=y; if (x < 0) x += MOD;}
 template<typename T> inline T mul(T a, T b) { LL x =(long long) a*b; x%= MOD; return x; }
-template<typename T> inline T power(T base, T exp) { LL result = 1; while (exp) {if (exp&1)result *= base; exp >>= 1; base *= base;} return result; }
-template<typename T> inline T power(T a, T b, T mod) {  int res = 1;while (b > 0) { if (b & 1) {res = mul(res, a); }a = mul(a, a);b >>= 1;} return res;}
+template<typename T> inline T power(T base, T exp) { T result = 1; while (exp) {if (exp&1)result *= base; exp >>= 1; base *= base;} return result; }
+template<typename T> inline T power(T a, T b, T mod) {  T res = 1;while (b > 0) { if (b & 1) {res = mul(res, a); }a = mul(a, a);b >>= 1;} return res;}
+template<typename T> inline T modInverse(T n, T p){ return power(n, p-2,p); }
 template<typename T> inline bool isPrime(T n) { if(n<=1) return false; if(n<=3) return true; if (n%2 == 0 || n%3 == 0) return false; for(LL i=5; i*i <= n; i+=6){ if ((n%i == 0)||(n%(i+2)==0)) {return false;}}return true;}
 bool is_digit(char x){ return x>= '0' && x<= '9';}
 bool is_upper(char x){ return x>= 'A' && x<= 'Z';}
