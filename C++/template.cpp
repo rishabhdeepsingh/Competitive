@@ -32,7 +32,7 @@ const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
 #define PB push_back
 #define EB emplace_back
 #define endl '\n'
-#define UNIQUE(X) (X).erase(unique(all(X)),(X).end())
+#define UNIQUE(X) (X).erase(unique(ALL(X)),(X).end())
 #define F first
 #define S second
 #define SZ(x)           ((int) (x).size())
