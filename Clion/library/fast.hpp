@@ -4,7 +4,8 @@
 
 using namespace std;
 
-typedef long long int LL;
+typedef long long LL;
+typedef long double LD;
 typedef unsigned int UINT;
 typedef unsigned long long ULL;
 typedef pair<int, int> PII;
@@ -22,98 +23,34 @@ typedef tuple<int, int, int> TPL;
 typedef priority_queue<int> pqueue;
 typedef priority_queue<int, VI, greater<>> pdqueue;
 
-const int dx[] = {-1, 0, 1, 0, -1, -1, 1, 1};
-const int dy[] = {0, 1, 0, -1, -1, 1, -1, 1};
-const int dxhorse[] = {-2, -2, -1, -1, 1, 1, 2, 2};
-const int dyhorse[] = {1, -1, 2, -2, 2, -2, 1, -1};
-
+#define sim template<class T
 #define MP make_pair
 #define MT make_tuple
 #define PB push_back
 #define EB emplace_back
-#define UNIQUE(X) (X).erase(unique(all(X)),(X).end())
+#define UNIQUE(X) sort(ALL(X)); (X).erase(unique(ALL(X)),(X).end())
 #define F first
 #define S second
-#define SZ(x)           (x).size()
+#define SZ(x)           (int)(x).size()
 #define ALL(a)         std::begin(a), std::end(a)
-#define Fill(n, x)      memset(n,x,sizeof n);
+#define Fill(n, x)      memset(n,x,sizeof(n))
 #define IN_REP         int _t; cin >> _t ; while(_t--)
 #define IOS            ios::sync_with_stdio(false);cin.tie(NULL)
-#define FAUTO(i, a)      for(auto i : a)
-#define FORD            for(int i=(a);i<(b);i+=(c))
 #define FOR(i, a, b)    for(int i=(a);i<(b);i++)
 #define REP(i, n)       FOR(i,0,n)
 #define FORR(i, n)      for(int i=(n);i>=0;i--)
 #define EPS (double) 1e-9
-#define MOD (1000*1000*1000 + 7)
-#define INF 1011111111
-#define LLINF 1000111000111000111LL
-#define MAXN 5000007
-
-template<typename T>
-T gcd(T x, T y) {
-    if (y == 0)return x;
-    return gcd(y, x % y);
-}
-
-template<typename T>
-void mini(T &a, T b) {
-    a = min(a, b);
-}
-
-template<typename T>
-void maxi(T &a, T b) {
-    a = max(a, b);
-}
-
-VB SieveOfEratosthenes(int n) {
-    VB prime(n + 1, true);
-    for (int p = 2; p * p <= n; p++) {
-        if (prime[p]) {
-            for (int i = p * 2; i <= n; i += p)
-                prime[i] = false;
-        }
-    }
-    return prime;
-}
-
-template<typename T>
-inline T Pow(T base, T exp) {
-    T result = 1;
-    while (exp) {
-        if (exp & 1)result *= base;
-        exp >>= 1;
-        base *= base;
-    }
-    return result;
-}
-
-template<typename T>
-inline T Mulmod(T a, T b, T c) {
-    T x = 0, y = a % c;
-    while (b > 0) {
-        if (b & 1) x = (x + y) % c;
-        y = (y << 1) % c;
-        b >>= 1;
-    }
-    return x;
-}
-
-template<typename T>
-inline T Pow(T base, T exp, T mod) {
-    T x = 1, y = base;
-    while (exp > 0) {
-        if (exp & 1) x = Mulmod(x, y, mod);
-        y = Mulmod(y, y, mod);
-        exp >>= 1;
-    }
-    return x;
-}
-
-inline void to_upper(string &s){
-    transform(ALL(s), s.begin(), ::toupper);
-}
-
-void to_lower(string &s) {
-    transform(ALL(s), s.begin(), ::tolower);
-}
+#define MOD (LL)(1000*1000*1000 + 7)
+#define cerr2(x,y) cerr << (x) << " " << (y) << endl;
+#define cout2(x,y) cout << (x) << " " << (y) << endl;
+const LD PI = acos(-1);
+sim>T gcd(T x, T y) {return (y==0)?x:gcd(y, x % y);}
+sim>void mini(T &a, T b) { a = min(a, b); }
+sim>void maxi(T &a, T b) { a = max(a, b); }
+sim>inline void add(T &x, T y) {x += y;if (x >= MOD) x -= MOD;}
+sim>inline void sub(T &x, T y) {x -= y;if (x < 0) x += MOD;}
+sim>inline T mul(T a, T b) {LL x = (long long) a * b;x %= MOD;return x;}
+sim>inline T power(T base, T exp) {T result = 1; while (exp) {if (exp & 1)result *= base;exp >>= 1;base *= base;}return result;}
+sim>inline T power(T a, T b, T mod) {T res = 1;while (b > 0) {if (b & 1) { res = mul(res, a); }a = mul(a, a);b >>= 1;}return res%mod;}
+sim>inline T modInverse(T n, T p) { return power(n, p - 2, p)%p; }
+sim, class U>string to_string(pair<T, U> p) {return "" + to_string(p.F) + " " + to_string(p.S) + "";}
