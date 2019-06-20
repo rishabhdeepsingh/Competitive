@@ -9,4 +9,4 @@ file(GLOB TASKS "tasks/*.cpp")
 file(GLOB_RECURSE HEADERS "library/*.hpp")
 add_executable(test ${TASKS} ${HEADERS} library/fast.hpp)
 
-
+add_definitions(-DLOCAL)

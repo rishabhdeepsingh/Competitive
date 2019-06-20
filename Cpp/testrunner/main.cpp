@@ -1,4 +1,4 @@
-#include "/Users/whiteknife/Workspace/Competitive/Cpp/tasks/aa.cpp"
+#include "/Users/whiteknife/Workspace/Competitive/Cpp/tasks/a.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			aa solver;
+			a solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;

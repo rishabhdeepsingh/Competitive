@@ -31,6 +31,8 @@
 #include <functional>
 using namespace std;
 
+// @formatter:off
+
 typedef long long LL;
 typedef long double LD;
 typedef unsigned int UINT;
@@ -50,6 +52,30 @@ typedef priority_queue<int> pqueue;
 typedef priority_queue<int, VI, greater<> > pdqueue;
 
 #define sim             template<class T
+#define ris 			return * this
+#define dor 			> debug & operator <<
+#define eni(x) 			sim > typename enable_if<sizeof dud<T>(0) x 1, debug&>::type operator<<(T i)
+sim > struct rge { T b, e; };
+sim > rge<T> range(T i, T j) { return rge<T>{i, j}; }
+sim > auto dud(T* x) -> decltype(cerr << *x, 0);
+sim > char dud(...);
+struct debug {
+#ifdef LOCAL
+  ~debug() { cerr << endl; }
+	eni(!=) { cerr << boolalpha << i; ris;}
+	eni(==) { ris << range(begin(i), end(i)); }
+	sim, class U dor(pair<U,T> d) { ris << "(" << d.first << ", " << d.second << ")"; }
+	sim dor(rge<T> d) {
+		*this << "[";
+		for (auto it = d.b; it != d.e; ++it) *this << ", " + 2 * (it == d.b) << *it;
+		ris << "]";
+	}
+#else
+  sim dor(const T&) { ris; }
+#endif
+};
+#define imie(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
+
 #define MP              make_pair
 #define MT              make_tuple
 #define PB              push_back
@@ -81,12 +107,17 @@ sim>inline T power(T a, T b, T mod) {T res = 1;while (b > 0) {if (b & 1) { res =
 sim>inline T modInverse(T n, T p) { return power(n, p - 2, p)%p; }
 sim, class U>string to_string(pair<T, U> p) {return "" + to_string(p.F) + " " + to_string(p.S) + "";}
 
+// @formatter:on
 
-class aa {
+
+
+class a {
 public:
 	void solve(std::istream& cin, std::ostream& cout) {
-      int a = 10;
-      while (a--){
+      int x = 1;
+      VI a(3,122);
+      debug() << imie(a);
+      while (x--){
         cout << "hi\n";
       }
 	}
@@ -95,7 +126,7 @@ public:
 
 int main() {
     IOS;
-	aa solver;
+	a solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);
