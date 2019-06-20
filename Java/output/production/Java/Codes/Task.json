@@ -1,5 +1,5 @@
 {
-  "name" : "TaskA",
+  "name" : "Task",
   "testType" : "SINGLE",
   "input" : {
     "type" : "STANDARD",
@@ -9,15 +9,20 @@
     "type" : "STANDARD",
     "fileName" : "output.txt"
   },
-  "tests" : [ ],
+  "tests" : [ {
+    "input" : "",
+    "output" : "",
+    "index" : 0,
+    "active" : true
+  } ],
   "location" : "src/Codes",
   "vmArgs" : "-Xmx256m -Xss64m",
   "mainClass" : "Main",
-  "taskClass" : "Codes.TaskA",
+  "taskClass" : "Codes.Task",
   "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
   "checkerParameters" : "",
   "testClasses" : [ ],
-  "date" : "2019.05.09",
+  "date" : "2019.06.20",
   "contestName" : "",
   "truncate" : true,
   "inputClass" : "FastIO.InputReader",

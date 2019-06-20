@@ -1,5 +1,5 @@
 {
-  "name" : "BellmenFord",
+  "name" : "Task",
   "testType" : "SINGLE",
   "input" : {
     "type" : "STANDARD",
@@ -18,11 +18,11 @@
   "location" : "src/Codes",
   "vmArgs" : "-Xmx256m -Xss64m",
   "mainClass" : "Main",
-  "taskClass" : "Codes.BellmenFord",
+  "taskClass" : "Codes.Task",
   "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
   "checkerParameters" : "",
   "testClasses" : [ ],
-  "date" : "2019.05.10",
+  "date" : "2019.06.20",
   "contestName" : "",
   "truncate" : true,
   "inputClass" : "FastIO.InputReader",
