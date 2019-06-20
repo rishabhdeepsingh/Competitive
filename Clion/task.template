@@ -1,8 +1,0 @@
-#include "library/fast.hpp"
-
-class %ClassName% {
-public:
-	void solve(std::istream& cin, std::ostream& cout) {
-
-	}
-};
