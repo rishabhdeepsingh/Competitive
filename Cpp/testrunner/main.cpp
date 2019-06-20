@@ -1,4 +1,4 @@
-#include "/home/whiteknife/Workspace/Competitive/Cpp/tasks/a.cpp"
+#include "/Users/whiteknife/Workspace/Competitive/Cpp/tasks/aa.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"5", "", true, false},
+		{"", "", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			a solver;
+			aa solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;

@@ -1,8 +1,31 @@
 // doot diddly donger cuckerino Hahahahahah
 
-#include <bits/stdc++.h>
-
+#include <iostream>
+#include <complex>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <cstdio>
+#include <numeric>
+#include <cstring>
+#include <ctime>
+#include <cstdlib>
+#include <set>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <list>
+#include <cmath>
+#include <bitset>
+#include <cassert>
+#include <queue>
+#include <stack>
+#include <deque>
+#include <random>
+#include <functional>
 using namespace std;
+
+// @formatter:off
 
 typedef long long LL;
 typedef long double LD;
@@ -19,9 +42,8 @@ typedef vector<PII> VPII;
 typedef vector<PLL> VPLL;
 typedef vector<LL> VLL;
 typedef vector<VLL> VVLL;
-typedef tuple<int, int, int> TPL;
 typedef priority_queue<int> pqueue;
-typedef priority_queue<int, VI, greater<>> pdqueue;
+typedef priority_queue<int, VI, greater<> > pdqueue;
 
 #define sim             template<class T
 #define MP              make_pair
@@ -54,3 +76,6 @@ sim>inline T power(T base, T exp) {T result = 1; while (exp) {if (exp & 1)result
 sim>inline T power(T a, T b, T mod) {T res = 1;while (b > 0) {if (b & 1) { res = mul(res, a); }a = mul(a, a);b >>= 1;}return res%mod;}
 sim>inline T modInverse(T n, T p) { return power(n, p - 2, p)%p; }
 sim, class U>string to_string(pair<T, U> p) {return "" + to_string(p.F) + " " + to_string(p.S) + "";}
+
+// @formatter:on
+

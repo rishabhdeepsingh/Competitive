@@ -1,10 +1,11 @@
 #include "../library/fast.hpp"
 
-class a {
+class aa {
 public:
 	void solve(std::istream& cin, std::ostream& cout) {
-        int x;
-        cin >> x;
-        while(x--)cout << "Hi\n";
+      int a = 10;
+      while (a--){
+        cout << "hi\n";
+      }
 	}
 };
