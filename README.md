@@ -11,11 +11,12 @@ In ubuntu we can use the following code to check the time
     
 ## Using generator
     
+    #!/bin/bash
     for((i = 1;;++i));do
         echo $i
-        ./gen $i > inputt
-        diff -w < (./a < inputt) < (./brute < inputt) || break
+        diff -w <(./main < inputt) <(./brute < inputt) || break
     done
+
 
 To copy a single file to multiple Files
 
