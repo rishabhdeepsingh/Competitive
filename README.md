@@ -14,6 +14,7 @@ In ubuntu we can use the following code to check the time
     #!/bin/bash
     for((i = 1;;++i));do
         echo $i
+        ./gen $i > inputt
         diff -w <(./main < inputt) <(./brute < inputt) || break
     done
 
