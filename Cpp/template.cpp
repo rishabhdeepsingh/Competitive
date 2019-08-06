@@ -26,21 +26,22 @@ using namespace std;
 
 // @formatter:off
 
-typedef long long LL;
-typedef long double LD;
-typedef pair<int, int> PII;
-typedef pair<string, int> PSI;
-typedef pair<LL, LL> PLL;
-typedef vector<int> VI;
-typedef vector<string> VS;
-typedef vector<bool> VB;
-typedef vector<VI> VVI;
-typedef vector<PII> VPII;
-typedef vector<PLL> VPLL;
-typedef vector<LL> VLL;
-typedef vector<VLL> VVLL;
-typedef priority_queue<int> pqueue;
-typedef priority_queue<int, VI, greater<> > pdqueue;
+using LL = long long;
+using LD = long double;
+using ULL = unsigned long long;
+using PII = pair<int, int>;
+using PSI = pair<string, int>;
+using PLL = pair<LL, LL>;
+using VI = vector<int>;
+using VVI = vector<VI>;
+using VS = vector<string>;
+using VB = vector<bool>;
+using VPII = vector<PII>;
+using VPLL = vector<PLL>;
+using VLL = vector<LL>;
+using VVLL = vector<VLL>;
+using pqueue = priority_queue<int>;
+using pdqueue = priority_queue<int, VI, greater<> >;
 
 #define sim             template<class T
 #define ris 			return * this
