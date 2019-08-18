@@ -45,20 +45,17 @@ using vvll = vector<vll>;
 using pii = pair<int, int>;
 using vpii = vector<pii>;
 
+const ld eps = (ld) 1e-9;
+const ll MOD = (ll) 1e9 + 7;
+const ld PI = acos(-1);
+
 sim>T gcd(T x, T y) {return (y==0) ? x : gcd(y, x % y);}
 sim>void mini(T &a, T b) { a = min(a, b); }
 sim>void maxi(T &a, T b) { a = max(a, b); }
 sim>T mul(T x, T y) {return (x * y) % MOD;}
 sim>inline T power(T a, T b) {T res = 1;while (b > 0) {if (b&1) { res = mul(res, a); }a = mul(a, a);b >>= 1;}return res%MOD;}
 sim>inline T modInverse(T n) { return power(n, MOD - 2, MOD) % MOD; }
-string to_string(string s) { return '"' + s + '"';}
-string to_string(char s) { return string(1, s);}
-string to_string(const char* s) { return to_string((string) s);}
-sim, class U>string to_string(pair<T, U> p) {return to_string(p.F) + " " + to_string(p.S);}
 
-const ld eps = (ld) 1e-9;
-const ll MOD = (ll) 1e9 + 7;
-const ld PI = acos(-1);
 const int N = (int) 5e5 + 5;
  
 int main(int argc, char** argv){
