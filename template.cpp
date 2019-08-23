@@ -11,9 +11,9 @@ using namespace std;
 #define IOS             ios::sync_with_stdio(false);cin.tie(NULL)
 #define IN_REP          int tt; cin >> tt; while(tt--)
 #define sim             template<class T
-#define ris 						return * this
-#define dor 						> debug & operator <<
-#define eni(x) 			sim > typename enable_if<sizeof dud<T>(0) x 1, debug&>::type operator<<(T i)
+#define ris 		return * this
+#define dor 		> debug & operator <<
+#define eni(x) 		sim > typename enable_if<sizeof dud<T>(0) x 1, debug&>::type operator<<(T i)
 sim > struct rge { T b, e; };
 sim > rge<T> range(T i, T j) { return rge<T>{i, j}; }
 sim > auto dud(T* x) -> decltype(cerr << *x, 0);
