@@ -8,7 +8,7 @@ using namespace std;
 #define S               second
 #define all(a)          (a).begin(),(a).end()
 #define sz(x)           (ll)(x).size()
-#define IOS             ios::sync_with_stdio(false);cin.tie(NULL)
+#define IOS             ios::sync_with_stdio(false);cin.tie(NULL); cout << fixed << setprecision(12);
 #define IN_REP          int tt; cin >> tt; while(tt--)
 #define sim             template<class T
 #define ris 		return * this
