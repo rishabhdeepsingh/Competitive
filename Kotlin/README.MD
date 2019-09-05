@@ -81,7 +81,7 @@ println("${l+1} and $r")
 ```
 
 ### Ranges
-```
+```kotlin
 // [ or ] => Inclusive | ( or ) => Exclusive
 for (i in 1..n) print(i) // [1, n]
 for (i in 1 until n) print(i) // [1, n)
