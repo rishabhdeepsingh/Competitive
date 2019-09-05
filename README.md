@@ -2,6 +2,8 @@
 
 Fast Input and output Class for Competitive Coding.
 
+# [Kotlin Support](https://github.com/rishabhdeepsingh/Competitive/tree/master/Kotlin)
+
 # Bash testing for C++
 
 In ubuntu we can use the following code to check the time
