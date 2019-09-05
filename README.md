@@ -1,4 +1,4 @@
-# FastIO For Java and C++
+# FastIO For Different Languages in Competitive Programming
 
 Fast Input and output Class for Competitive Coding.
 
