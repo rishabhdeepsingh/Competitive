@@ -24,7 +24,10 @@ val b = -5
 val y = b ushr 1 // 2147483645
 val z = b shr 1  // -3
 ```
-
+### Type Alias
+```kotlin
+arrayList.add(PPII(1, PII(1, 2)))
+```
 
 # Samples
 
@@ -66,6 +69,12 @@ for (i in 0..n - 2) {
 val max = if (a > b) a else b
 ```
 
+### Imports 
+```kotlin
+import kotlin.arrayOf as Arr
+import kotlin.intArrayOf as Iarr
+```
+
 ### Printing
 ```kotlin
 println("${l+1} and $r")
@@ -90,9 +99,6 @@ a = b.also { b = a }
 ```kotlin
 typealias PII = Pair<Int, Int>
 typealias PPII = Pair<Int, PII>
-
-// Usage
-arrayList.add(PPII(1, PII(1, 2)))
 ```
 
 # Sources
