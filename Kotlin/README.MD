@@ -83,11 +83,11 @@ println("${l+1} and $r")
 ### Ranges
 ```
 // [ or ] => Inclusive | ( or ) => Exclusive
-for (i in 1..n) // [1, n]
-for (i in 1 until n) // [1, n)
-for (i in n  downTo 1) // [n, 1]
-for (i in 1..n step 2) // 1, 3, 5 , 7, 9 ...
-for (i in 8 downTo 1 step 2) // 8, 6, 4, 2
+for (i in 1..n) print(i) // [1, n]
+for (i in 1 until n) print(i) // [1, n)
+for (i in n  downTo 1) print(i) // [n, 1]
+for (i in 1..n step 2) print(i) // 1, 3, 5 , 7, 9 ...
+for (i in 8 downTo 1 step 2) print(i) // 8, 6, 4, 2
 ```
 
 ### Sorting
