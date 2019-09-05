@@ -1,4 +1,31 @@
 # KOTLIN
+
+# Examples
+
+### Left Shift
+```kotlin
+val a = 212     // (212  : 11010100
+val b = a shl 1 // (424  : 110101000)
+val c = a shl 0 // (212  : 11010100)
+val d = a shl 4 // (3392 : 110101000000)
+```
+### Right Shift
+```kotlin
+val a = 212     // (212 : 11010100
+val b = a shr 1 // (106 : 01101010)
+val c = a shr 0 // (212 : 11010100)
+val d = a shr 8 // (000 : 00000000)
+```
+### Unsigned Shift
+```kotlin
+val a = 5
+val x = a ushr 1 // 2
+val b = -5
+val y = b ushr 1 // 2147483645
+val z = b shr 1  // -3
+```
+
+
 # Samples
 
 ### 2D Arrays
