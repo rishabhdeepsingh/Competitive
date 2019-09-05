@@ -31,12 +31,12 @@ To copy a single file to multiple Files
     g++ -O2 -std=c++17 -Wno-unused-result -Wshadow -Wall -o "%e" "%f"
 
 # Settings
-Settings for Different IDE etc.
 
-## IntelliJ Idea
-[Settings](https://github.com/rishabhdeepsingh/FastIO/blob/master/Intellij/settings.jar)
+## C++
+Install Jhelper plugin and import the CPP project in Clion
 
-## VS Code
-[Extensions](vscode/extensions.md)
+## Java
+Install CHelper plugin and import the Java Project in Intellij Idea
 
-[Settings](vscode/settings.json.md)
+## Kotlin
+Create a new Project and use the template file.
