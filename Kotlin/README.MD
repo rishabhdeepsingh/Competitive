@@ -53,6 +53,7 @@ class CustomComparator : Comparator<Pair<Int, Pair<Int, Int>>> {
 
 val arrayList = ArrayList<Pair<Int, Pair<Int, Int>>>()
 val sorted = arrayList.sortedWith(CustomComparator())
+val sorted2 = arrayList.sortedWith(compareBy({ -it.second }, { it.first }))
 ```
 ### HashMap
 ```kotlin
