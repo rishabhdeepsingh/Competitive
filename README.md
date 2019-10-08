@@ -37,6 +37,8 @@ To copy a single file to multiple Files
     echo a.cpp b.cpp d.cpp | xargs -n 1 cp template.cpp
     
 ## Compile
-
-    g++ -DLOCAL -std=c++17 -Wshadow -Wall -o "%e" "%f" -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG -g
+### Normal
     g++ -O2 -std=c++17 -Wno-unused-result -Wshadow -Wall -o "%e" "%f"
+### Debugging
+    g++ -DLOCAL -std=c++17 -Wshadow -Wall -o "%e" "%f" -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG -g
+
