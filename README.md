@@ -22,9 +22,9 @@ In ubuntu we can use the following code to check the time
 ## Using generator
     
     #!/bin/bash
-    g++- -o gen gen.cpp
-    g++- -o main main.cpp
-    g++- -o brute brute.cpp
+    g++ -o gen gen.cpp
+    g++ -o main main.cpp
+    g++ -o brute brute.cpp
     for((i = 1;;++i));do
         echo $i
         ./gen $i > inputt
