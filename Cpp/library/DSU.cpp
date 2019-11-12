@@ -26,11 +26,4 @@ class DSU {
         }
         return true;
     }
-    int Count(){
-        int cnt = 0;
-        for (int i = 0; i < n; ++i) {
-            if(Root(i) == i) cnt++;
-        }
-        return cnt;
-    }
 };
