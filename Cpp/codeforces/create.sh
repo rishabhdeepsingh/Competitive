@@ -18,6 +18,6 @@ do
     mkdir $task
     cp template.cpp $task/sol.cpp 
     cp runall.sh gen.cpp test.sh time.sh $task/
- done
+done
 
  echo "Done Creating files"
