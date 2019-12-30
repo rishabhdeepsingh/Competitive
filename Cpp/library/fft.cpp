@@ -8,16 +8,16 @@ typedef long long int LL;
 typedef vector<LL> VLL;
 typedef std::complex<double> CD;
 
-#define PB push_back
-#define F first
-#define S second
+#define PB              push_back
+#define F               first
+#define s               second
 #define SZ(x)           x.size()
-#define ALL(a)         std::begin(a), std::end(a)
-#define IN_REP         int _t; cin >> _t ; while(_t--)
-#define IOS            ios::sync_with_stdio(false);cin.tie(NULL)
-#define FOR(i, a, b)     for(int i=(a);i<(b);i++)
+#define ALL(a)          std::begin(a), std::end(a)
+#define IN_REP          int _t; cin >> _t ; while(_t--)
+#define IOS             ios::sync_with_stdio(false);cin.tie(NULL)
+#define FOR(i, a, b)    for(int i=(a);i<(b);i++)
 #define REP(i, n)       FOR(i,0,n)
-const double PI = acos(-1);
+const double PI     =   acos(-1);
 typedef std::valarray<CD> CArray;
 
 // Cooley–Tukey FFT (in-place)

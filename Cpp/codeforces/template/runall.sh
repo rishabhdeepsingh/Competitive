@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 problem=$1
-if [ -z "$problem" ]; then
+
+if [[ -z "$problem" ]]; then
     problem=(`pwd`)        
 fi
 cd $problem
@@ -14,7 +16,9 @@ echo ${infiles[@]}
 for file in ${infiles[@]}
 do
     echo "$file"
-    ./sol < $file > out$file 
+    cat "$file"
+    ./sol < $file > out$file
+    echo "Answer for $file"
     cat out$file
 done
 
