@@ -1,5 +1,21 @@
 # KOTLIN
 
+- [Left Shift](#left-shift)
+- [Right Shift](#right-shift)
+- [Unsigned Shift](#unsigned-shift)
+- [Type Alias](#type-alias)
+- [2D Array](#2d-arrays)
+- [Comparing Pairs](#comparing-pairs)
+- [Hash Map](#hashmap)
+- [If Else](#if-else)
+- [Imports](#imports)
+- [Printing](#printing)
+- [Ranges](#ranges)
+- [Sorting](#sorting)
+- [Swappign](#swap-int)
+- [Type Alias](#type-alias)
+- [Sources](#sources)
+
 # Examples
 
 ### Left Shift
