@@ -1,3 +1,6 @@
+## Note
+for converting Java to kotling use <kbd> Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>K</kbd> for Intellij Idea.  
+Most of the LEM like @EgorKulikov and **petr mitrichev** use this.
 # KOTLIN
 
 - [Left Shift](#left-shift)
