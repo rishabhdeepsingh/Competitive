@@ -4,11 +4,14 @@ Fast Input and output Class for Competitive Coding.
 
 # Settings
 
+## Competitive Companion
+[Chrome](https://chrome.google.com/webstore/detail/competitive-companion/cjnmckjndlpiamhfimnnjmnckgghkjbl) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/competitive-companion/)
+
 ## [C++](https://github.com/rishabhdeepsingh/Competitive/tree/master/Cpp)
-Install Jhelper plugin and import the CPP project in Clion
+Install [Jhelper](https://github.com/AlexeyDmitriev/JHelper) plugin and import the Cpp project in Clion
 
 ## [Java](https://github.com/rishabhdeepsingh/Competitive/tree/master/Java)
-Install CHelper plugin and import the Java Project in Intellij Idea
+Install [CHelper](https://github.com/EgorKulikov/idea-chelper) plugin and import the Java Project in Intellij Idea
 
 ## [Kotlin](https://github.com/rishabhdeepsingh/Competitive/tree/master/Kotlin)
 Create a new Project and use the template file.
