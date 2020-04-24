@@ -1,3 +1,5 @@
 *.vscode*
 *.idea*
 Cpp/cmake-build-debug/
+/Java/out/*
+/Java/output/*
