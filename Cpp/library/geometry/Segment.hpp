@@ -1,0 +1,41 @@
+//
+// Created by White Knife on 11/05/20.
+//
+
+#ifndef CPP_LIBRARY_GEOMETRY_SEGMENT_HPP_
+#define CPP_LIBRARY_GEOMETRY_SEGMENT_HPP_
+
+#pragma once
+
+#include "Line.hpp"
+#include<algorithm>
+
+class Segment {
+  mutable Line l;
+public:
+  point a, b;
+  
+  Segment() {}
+  Segment(const point &_a, const point &_b) : a(_a), b(_b) {}
+  
+  bool contains(const point &p) const {
+    return distance(line(), p) < eps &&
+        p.x > std::min(a.x, b.x) - eps &&
+        p.x < std::max(a.x, b.x) + eps &&
+        p.y > std::min(a.y, b.y) - eps &&
+        p.y < std::max(a.y, b.y) + eps;
+  }
+  
+  const Line &line() const {
+    if (l.a == 0 && l.b == 0) {
+      l = ::line(a, b);
+    }
+    return l;
+  }
+  
+  PType length() const {
+    return distance(a, b);
+  }
+};
+
+#endif //CPP_LIBRARY_GEOMETRY_SEGMENT_HPP_
