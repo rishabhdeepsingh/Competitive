@@ -1,5 +1,6 @@
 *.vscode*
 *.idea*
+Cpp/contests/cf/contest/
 Cpp/cmake-build-debug/
 /Java/out/*
 /Java/output/*
