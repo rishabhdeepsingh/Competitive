@@ -1,30 +1,39 @@
+#pragma once
 #include "../IO.hpp"
 
-template<typename T>
+/*
+A structure able to perform the following operation on an array A:
+1. Sum x to A[i].
+2. Get the sum A[l] + A[l+1] + ... + A[r].
+Both the operation are O(log(N)).
+Everything is 0-based.
+Thanks to aryanc403 axiom sum(0,i) == arr[i]
+*/
+
+template <typename T>
 class fenwick {
-// Thanks to aryanc403 axiom sum(0,i) == arr[i]
 public:
   vector<T> bit;
   int n;
+  int LOGN;
   
-  fenwick(int _n) : n(_n + 1) {
+  fenwick(int _n) : n(_n), LOGN(log2(_n)) {
     bit.resize(n, T{});
   }
   
-  fenwick(const vector<T> &arr) : fenwick(arr.size()) {
+  fenwick(const vector<T>& arr) : fenwick(arr.size()) {
     for (size_t i = 0; i < arr.size(); ++i) {
-      update(i, i, arr[i]);
+      update(i, arr[i]);
     }
   }
-
-private:
+  
   void update(int idx, T delta) {
-    for (; idx < n; idx += idx & -idx) {
+    while (idx < n) {
       bit[idx] += delta;
+      idx |= (idx + 1);
     }
   }
-
-public:
+  
   void update(int l, int r, T delta) {
     update(l, delta);
     update(r + 1, -delta);
@@ -32,13 +41,43 @@ public:
   
   T query(int idx) {
     T res{};
-    for (; idx > 0; idx -= idx & -idx) {
+    while (idx >= 0) {
       res += bit[idx];
+      idx = (idx & (idx + 1)) - 1;
     }
     return res;
   }
   
   T query(int l, int r) {
     return query(r) - query(l - 1);
+  }
+  
+  void set(int p, T x) {
+    update(p, x - query(p));
+  }
+  
+  int lower_bound(T val) {
+    T sum = 0;
+    int pos = 0;
+    for (int i = LOGN; i >= 0; --i) {
+      int curr = pos + (1ll << i) - 1;
+      if (curr < n && sum + bit[curr] < val) {
+        sum += bit[curr];
+        pos += 1 << i;
+      }
+    }
+    return pos;
+  }
+  
+  int upper_bound(T val) {
+    int pos = 0;
+    for (int i = LOGN; i >= 0; --i) {
+      int curr = pos + (1ll << i) - 1;
+      if (curr < n && bit[curr] <= val) {
+        val -= bit[curr];
+        pos += 1 << i;
+      }
+    }
+    return pos;
   }
 };
