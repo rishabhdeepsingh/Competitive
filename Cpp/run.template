@@ -68,7 +68,7 @@ int main() {
   for(const jhelper::Test& test: tests ) {
     std::cout << "Test #" << ++testID << std::endl;
     if (!test.active){
-      std::cout << yellow << "Skipped" << def << std::endl;
+      std::cout << yellow << "SKIPPED" << def << std::endl;
       continue;
     }
     std::cout << "Input: \n" << test.input << std::endl;
@@ -97,8 +97,6 @@ int main() {
         }
       }
       std::cout << "Time: " << currentTime << std::endl;
-    } else {
-      std::cout << "SKIPPED\n";
     }
     std::cout << std::endl;
   }
