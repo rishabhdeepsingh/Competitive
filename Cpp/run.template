@@ -12,6 +12,7 @@ namespace Color {
 enum Code {
   FG_RED = 31,
   FG_GREEN = 32,
+  FG_YELLOW = 33,
   FG_BLUE = 34,
   FG_ORANGE = 208,
   FG_DEFAULT = 39,
@@ -32,6 +33,9 @@ public:
 }
 Color::Modifier red(Color::FG_RED);
 Color::Modifier green(Color::FG_GREEN);
+Color::Modifier yellow(Color::FG_YELLOW);
+Color::Modifier blue(Color::FG_BLUE);
+Color::Modifier orange(Color::FG_ORANGE);
 Color::Modifier def(Color::FG_DEFAULT);
 
 namespace jhelper {
@@ -63,11 +67,15 @@ int main() {
   double maxTime = 0.0;
   for(const jhelper::Test& test: tests ) {
     std::cout << "Test #" << ++testID << std::endl;
+    if (!test.active){
+      std::cout << yellow << "Skipped" << def << std::endl;
+      continue;
+    }
     std::cout << "Input: \n" << test.input << std::endl;
     if (test.has_output) {
-      std::cout << "Expected output: \n" << test.output << std::endl;
+      std::cout << blue << "Expected output: \n" << def << test.output << std::endl;
     } else {
-      std::cout << "Expected output: \n" << "N/A" << std::endl;
+      std::cout << blue << "Expected output: \n" << yellow << "N/A" << std::endl;
     }
     if (test.active) {
       std::stringstream in(test.input);
@@ -78,7 +86,7 @@ int main() {
       std::clock_t finish = std::clock();
       double currentTime = double(finish - start) / CLOCKS_PER_SEC;
       maxTime = std::max(currentTime, maxTime);
-      std::cout << "Actual output: \n" << out.str() << std::endl;
+      std::cout <<blue << "Actual output: \n" << def << out.str() << std::endl;
       if (test.has_output) {
         bool result = jhelper::check(test.output, out.str());
         allOK = allOK && result;
