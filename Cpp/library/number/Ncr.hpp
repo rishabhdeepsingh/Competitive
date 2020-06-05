@@ -1,48 +1,35 @@
-#include "numbers.hpp"
-#include "Modular.hpp"
+#pragma once
 
-vector<Mint> inverses(int length) {
-  vector<Mint> result(length);
-  if (length > 1) {
-    result[1] = 1;
-  }
-  for (int i = 2; i < length; i++) {
-    result[i] = -(MOD / i) * result[MOD % i];
-  }
-  return result;
-}
-
-vector<Mint> inverseFactorials(int length) {
-  auto result = inverses(length);
-  if (length > 0) {
-    result[0] = 1;
-  }
-  for (int i = 1; i < length; i++) {
-    result[i] *= result[i - 1];
-  }
-  return result;
-}
-
-class Ncr {
-public:
-  std::vector<std::vector<long long>> _ncr;
-  explicit Ncr(int n, long long mod = (1ll << 58)) {
-    _ncr.resize(n, std::vector<long long>(n, 0));
-    for (int i = 0; i < n; ++i) {
-      _ncr[i][0] = _ncr[i][i] = 1;
-      for (int j = 1; j < i; ++j) {
-        _ncr[i][j] = (_ncr[i - 1][j - 1] + _ncr[i - 1][j]) % mod;
-      }
+template <typename T>
+struct Ncr {
+  int MAX;
+  vector<T> fact;
+  vector<T> ifact;
+  vector<T> inverse;
+  
+  Ncr(int _n) : MAX{_n} {
+    fact.resize(MAX + 1, 1);
+    ifact.resize(MAX + 1, 1);
+    inverse.resize(MAX + 1, 1);
+    fact[0] = 1;
+    for (int i = 1; i <= MAX; ++i) {
+      fact[i] = fact[i - 1] * i;
+    }
+    ifact[MAX] = 1 / fact[MAX];
+    for (int i = MAX - 1; i >= 0; --i) {
+      ifact[i] = (i + 1) * ifact[i + 1];
+    }
+    for (int i = 1; i <= MAX; i++) {
+      inverse[i] = fact[i - 1] * ifact[i];
     }
   }
   
-  const std::vector<long long int>& operator[](int index) const {
-    return _ncr[index];
+  T ncr(int n, int k) {
+    T dem = ifact[k] * ifact[n - k];
+    return fact[n] * dem;
   }
-  long long operator()(int n, int r) const {
-    if (r <= n && r >= 0)
-      return _ncr[n][r];
-    else
-      return 0;
+  
+  T npr(int n, int r) {
+    return fact[n] * ifact[n - r];
   }
 };
