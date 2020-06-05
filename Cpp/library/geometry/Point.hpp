@@ -29,22 +29,25 @@ struct Point {
   Point<T>& operator%=(const Point<T>& o);
   Point<T>& operator%=(T o);
   
-  bool operator==(const Point<T> o) const;
+  bool operator==(const Point<T>& o) const;
+  bool operator!=(const Point<T>& o) const;
   
   T dot(Point<T> point) {
     return x * point.x + y * point.y + z * point.z;
   }
   
-  T abs() {
-    return x * x + y * y + z * z;
-  }
-  
-  Point cross(const Point<T>& o) {
+  Point<T> cross(const Point<T>& o) {
     return Point(
         this->y * o.z - this->z * o.y,
         this->z * o.x - this->x * o.z,
         this->x * o.y - this->y * o.x
     );
+  }
+  
+  void abs() {
+    this->x = std::abs(thi->x);
+    this->y = std::abs(thi->y);
+    this->z = std::abs(thi->z);
   }
   
   static const Point<T> ZERO;
@@ -64,7 +67,10 @@ template <typename T> Point<T> const Point<T>::ONE{1, 1, 1};
 template <typename T> Point<T> const Point<T>::TEN{10, 10, 10};
 
 template <typename T>
-bool Point<T>::operator==(const Point<T> o) const { return x == o.x and y == o.y and z == o.z; }
+bool Point<T>::operator==(const Point<T>& o) const { return x == o.x and y == o.y and z == o.z; }
+
+template <typename T>
+bool Point<T>::operator!=(const Point<T>& o) const { return !(*this == o); }
 
 template <typename T>
 Point<T>& Point<T>::operator+=(const Point<T>& o) {
@@ -76,6 +82,8 @@ Point<T>& Point<T>::operator+=(const Point<T>& o) {
 
 template <typename T>
 Point<T> operator+(const Point<T>& lhs, const Point<T>& rhs) { return Point<T>(lhs) += rhs; }
+template <typename T>
+Point<T> operator+(const Point<T>& lhs, T& rhs) { return Point<T>(lhs) += rhs; }
 
 template <typename T>
 Point<T>& Point<T>::operator-=(const Point<T>& o) {
@@ -148,11 +156,6 @@ T distance(const Point<T>& p, const Point<T>& q) {
 }
 
 template <typename T>
-T abs(const Point<T>& p, const Point<T>& q) {
-  return p.x * q.x + p.y + q.y + p.z + q.z;
-}
-
-template <typename T>
 std::ostream& operator<<(std::ostream& stream, const Point<T>& p) {
   return stream << p.x << " " << p.y << " " << p.z;
 }
@@ -177,5 +180,5 @@ PType normalize(PType angle) {
 }
 
 PType normalize(const point& p, const point& q, const point& r) {
-  return normalize(atan2(p.y - p.y, p.x - p.x) - atan2(r.y - p.y, r.x - p.x));
+  return normalize(atan2(PType(p.y - p.y), PType(p.x - p.x)) - atan2(PType(r.y - p.y), PType(r.x - p.x)));
 }
