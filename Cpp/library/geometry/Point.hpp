@@ -26,6 +26,8 @@ struct Point {
   Point<T>& operator*=(const T o);
   Point<T>& operator*=(const Point<T>& o);
   Point<T>& operator/=(const Point<T>& o);
+  Point<T>& operator%=(const Point<T>& o);
+  Point<T>& operator%=(T o);
   
   bool operator==(const Point<T> o) const;
   
@@ -115,6 +117,25 @@ Point<T>& Point<T>::operator/=(const Point<T>& o) {
 
 template <typename T>
 Point<T> operator/(const Point<T>& lhs, const Point<T>& rhs) { return Point<T>(lhs) /= rhs; }
+
+template <typename T>
+Point<T>& Point<T>::operator%=(const T o) {
+  this->x %= o;
+  this->y %= o;
+  this->z %= o;
+  return *this;
+}
+
+template <typename T>
+Point<T>& Point<T>::operator%=(const Point<T>& o) {
+  this->x %= o.x;
+  this->y %= o.y;
+  this->z %= o.z;
+  return *this;
+}
+
+template <typename T>
+Point<T> operator%(const Point<T>& lhs, const Point<T>& rhs) { return Point<T>(lhs) %= rhs; }
 
 template <typename T>
 T dot(const Point<T>& p, const Point<T>& q) {
