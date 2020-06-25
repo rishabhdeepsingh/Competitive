@@ -9,6 +9,7 @@ public:
   std::vector<long long> spf;
   std::vector<long long> primes;
   std::vector<long long> mobius;
+  std::vector<long long> phi;
   std::vector<bool> isPrime;
   
   Sieve(int _n = 2e6 + 7) : n(_n) {
@@ -30,6 +31,18 @@ public:
     }
   }
   
+  void genPhi() {
+    phi.resize(n + 1);
+    phi[0] = 0;
+    phi[1] = 1;
+    for (int i = 2; i <= n; i++)
+      phi[i] = i - 1;
+    
+    for (int i = 2; i <= n; i++)
+      for (int j = 2 * i; j <= n; j += i)
+        phi[j] -= phi[i];
+  }
+  
   void genMobius() {
     mobius.clear();
     mobius.resize(n, 0);
@@ -44,15 +57,40 @@ public:
     }
   }
   
-  vector<long long> divisors(long long val) {
-    vector<long long> res;
+  long long nextPrime(long long x, bool strict = false) {
+    auto it = upper_bound(primes.begin(), primes.end(), x);
+    if (!strict) {
+      if (isPrime[x]) {
+        return x;
+      }
+    }
+    next(it);
+    return *it;
+  }
+  
+  set<long long> divisorsBrute(long long val) {
+    set<long long> res;
+    for (long long i = 1; i * i <= val; i++) {
+      if (val % i == 0) {
+        if ((val / i) == i) {
+          res.insert(i);
+        } else {
+          res.insert(i);
+          res.insert(val / i);
+        }
+      }
+    }
+    return res;
+  }
+  
+  vector<pll> divisorPair(long long val) {
+    vector<pll> res;
     for (long long i = 1; i * i <= val; i++) {
       if (n % i == 0) {
         if (n / i == i) {
-          res.push_back(i);
+          res.emplace_back(i, i);
         } else {
-          res.push_back(i);
-          res.push_back(val / i);
+          res.emplace_back(i, val / i);
         }
       }
     }
@@ -77,34 +115,33 @@ public:
     return memo[val] = factors;
   }
   
-  std::set<long long> primeFactorSet(ll x) {
-    if (x >= n) {
-      return primeFactorSetBrute(x);
-    }
-    std::set<long long> ret;
-    while (x != 1) {
-      ret.insert(spf[x]);
+  std::map<long long, long long> primeFactorMap(ll x) {
+    if (x > n) return primeFactorMapBrute(x);
+    std::map<long long, long long> ret;
+    while (x > 1) {
+      ret[spf[x]]++;
       x /= spf[x];
     }
     return ret;
   }
 
 private:
-  set<long long> primeFactorSetBrute(ll val) {
-    set<long long> st;
+  map<long long, long long> primeFactorMapBrute(ll val) {
+    map<long long, long long> mp;
     while (val % 2 == 0) {
       val /= 2;
-      st.insert(2);
+      mp[2]++;
     }
     for (ll i = 3; i * i <= val; i += 2) {
-      while (n % i == 0) {
-        st.insert(i);
+      while (val % i == 0) {
+        mp[i]++;
         val /= i;
       }
     }
-    if (val > 2) st.insert(val);
-    return st;
-    
+    if (val > 2) {
+      mp[val]++;
+    }
+    return mp;
   }
   
   map<long long, long long> primeFactorPairBrute(ll val) {
