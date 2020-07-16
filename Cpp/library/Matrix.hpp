@@ -1,8 +1,4 @@
-#ifndef MATRIX_MATRIX_H
-#define MATRIX_MATRIX_H
-
-#include <vector>
-#include <stdexcept>
+#pragma once
 
 template <typename T>
 struct Matrix {
@@ -16,13 +12,13 @@ struct Matrix {
       matrix(row_count),
       _rows(row_count),
       _columns(column_count) {
-    matrix.resize(row_count, std::vector<T>(column_count, 0));
-    for (auto &row : matrix) {
+    matrix.resize(row_count, std::vector<T>(column_count, 1));
+    for (auto& row : matrix) {
       row.resize(_columns);
     }
   }
   
-  Matrix(std::size_t row_count, std::size_t column_count, const T &value) :
+  Matrix(std::size_t row_count, std::size_t column_count, const T& value) :
       matrix(row_count),
       _rows(row_count),
       _columns(column_count) {
@@ -37,14 +33,14 @@ struct Matrix {
     matrix = x;
   }
   
-  Matrix(const Matrix &other) = default;
+  Matrix(const Matrix& other) = default;
   
-  Matrix &operator=(const Matrix &other) = default;
+  Matrix& operator=(const Matrix& other) = default;
   
   // Scalar Multiplication
-  Matrix &operator*=(const T &scalar) {
-    for (auto &row : matrix) {
-      for (auto &cell : row) {
+  Matrix& operator*=(const T& scalar) {
+    for (auto& row : matrix) {
+      for (auto& cell : row) {
         cell *= scalar;
       }
     }
@@ -52,9 +48,9 @@ struct Matrix {
   }
   
   // Scalar Division
-  Matrix &operator/=(const T &scalar) {
-    for (auto &row : matrix) {
-      for (auto &cell : row) {
+  Matrix& operator/=(const T& scalar) {
+    for (auto& row : matrix) {
+      for (auto& cell : row) {
         cell /= scalar;
       }
     }
@@ -62,7 +58,7 @@ struct Matrix {
   }
   
   // Modular Operator
-  Matrix &operator%=(const T &mod) {
+  Matrix& operator%=(const T& mod) {
     for (std::size_t i = 0; i < _rows; i++) {
       for (std::size_t j = 0; j < _columns; j++) {
         matrix[i][j] %= mod;
@@ -72,7 +68,7 @@ struct Matrix {
   }
   
   // Matrix Multiplication
-  Matrix &operator*=(const Matrix &other) {
+  Matrix& operator*=(const Matrix& other) {
     if (_columns != other._rows) {
       throw std::logic_error("column count of lhs and row count of rhs are not equal\n");
     }
@@ -91,7 +87,7 @@ struct Matrix {
   }
   
   // addition Operator
-  Matrix &operator+=(const Matrix &other) {
+  Matrix& operator+=(const Matrix& other) {
     if (_rows != other._rows || _columns != other._columns) {
       throw std::logic_error("either or both of row count and column count of lhs and rhs are not equal\n");
     }
@@ -104,7 +100,7 @@ struct Matrix {
   }
   
   // Subtraction Operator
-  Matrix &operator-=(const Matrix &other) {
+  Matrix& operator-=(const Matrix& other) {
     if (_rows != other._rows || _columns != other._columns) {
       throw std::logic_error("either or both of row count and column count of lhs and rhs are not equal\n");
     }
@@ -180,14 +176,24 @@ struct Matrix {
   // Number of Columns
   std::size_t columns() const { return _columns; }
   
-  std::vector<T> &operator[](std::size_t row) { return matrix[row]; }
+  std::vector<T>& operator[](std::size_t row) { return matrix[row]; }
   
-  const std::vector<T> &operator[](std::size_t row) const { return matrix[row]; }
+  const std::vector<T>& operator[](std::size_t row) const { return matrix[row]; }
+  static Matrix<T> Identity(int n);
 };
+
+template <typename T>
+Matrix<T> Matrix<T>::Identity(int n) {
+  Matrix<T> res(n, n, 0);
+  for (int i = 0; i < n; ++i) {
+    res[i][i] = 1;
+  }
+  return res;
+}
 
 //Matrix Transpose
 template <typename T>
-Matrix<T> operator!(const Matrix<T> &other) {
+Matrix<T> operator!(const Matrix<T>& other) {
   Matrix<T> res(other.columns(), other.rows());
   for (auto row = 0; row < other.rows(); ++row) {
     for (auto col = 0; col < other.columns(); ++col) {
@@ -199,7 +205,7 @@ Matrix<T> operator!(const Matrix<T> &other) {
 
 //Equals Operator
 template <typename T>
-bool operator==(const Matrix<T> &lhs, const Matrix<T> &rhs) {
+bool operator==(const Matrix<T>& lhs, const Matrix<T>& rhs) {
   if (lhs.rows() != rhs.rows() || lhs.columns() != rhs.columns()) {
     return false;
   }
@@ -215,37 +221,37 @@ bool operator==(const Matrix<T> &lhs, const Matrix<T> &rhs) {
 
 //Not-Equals Operator
 template <typename T>
-bool operator!=(const Matrix<T> &lhs, const Matrix<T> &rhs) { return !(lhs == rhs); }
+bool operator!=(const Matrix<T>& lhs, const Matrix<T>& rhs) { return !(lhs == rhs); }
 
 //Add matrices
 template <typename T>
-Matrix<T> operator+(Matrix<T> &lhs, const Matrix<T> &rhs) { return lhs += rhs; }
+Matrix<T> operator+(Matrix<T>& lhs, const Matrix<T>& rhs) { return lhs += rhs; }
 
 //Subtract matrices
 template <typename T>
-Matrix<T> operator-(Matrix<T> &lhs, const Matrix<T> &rhs) { return lhs -= rhs; }
+Matrix<T> operator-(Matrix<T>& lhs, const Matrix<T>& rhs) { return lhs -= rhs; }
 
 // Multiply Matrices
 template <typename T>
-Matrix<T> operator*(Matrix<T> &lhs, const Matrix<T> &rhs) { return lhs *= rhs; }
+Matrix<T> operator*(Matrix<T>& lhs, const Matrix<T>& rhs) { return lhs *= rhs; }
 
 //Scalar multiplication
 template <typename T, typename U>
-Matrix<T> operator*(Matrix<T> &lhs, const U &rhs) { return lhs *= rhs; }
+Matrix<T> operator*(Matrix<T>& lhs, const U& rhs) { return lhs *= rhs; }
 
 //Scalar Division
 template <typename T, typename U>
-Matrix<T> operator/(Matrix<T> &lhs, const U &rhs) { return lhs /= rhs; }
+Matrix<T> operator/(Matrix<T>& lhs, const U& rhs) { return lhs /= rhs; }
 
 //Scalar modulo
 template <typename T, typename U>
-Matrix<T> operator%(Matrix<T> &lhs, const U &mod) { return lhs %= mod; }
+Matrix<T> operator%(Matrix<T>& lhs, const U& mod) { return lhs %= mod; }
 
 template <typename T, typename U>
-Matrix<T> operator*(const U &scalar, const Matrix<T> &lhs) { return lhs *= scalar; }
+Matrix<T> operator*(const U& scalar, const Matrix<T>& lhs) { return lhs *= scalar; }
 
 template <typename T>
-Matrix<T> operator*(const T &lhs, const Matrix<T> &rhs) { return rhs *= lhs; }
+Matrix<T> operator*(const T& lhs, const Matrix<T>& rhs) { return rhs *= lhs; }
 
 // Power of a Matrix
 template <typename T, typename U>
@@ -261,24 +267,9 @@ Matrix<T> power(Matrix<T> base, U exp) {
   return res;
 }
 
-template <typename T, typename U>
-Matrix<T> power(Matrix<T> base, U exp, T mod) {
-  Matrix<T> res = base % mod;
-  while (exp > 0) {
-    if (exp & 1) {
-      res *= base;
-//      res %= MOD;
-    }
-    exp >>= 1;
-    base *= base;
-//    base %= MOD;
-  }
-  return res;
-}
-
 // Trace of Matrix
 template <typename T>
-T trace(Matrix<T> &matrix) {
+T trace(Matrix<T>& matrix) {
   if (matrix.rows() != matrix.columns()) {
     throw std::logic_error("Not a square matrix\n");
   }
@@ -290,7 +281,7 @@ T trace(Matrix<T> &matrix) {
 }
 
 template <typename T>
-std::istream &operator>>(std::istream &is, Matrix<T> &matrix) {
+std::istream& operator>>(std::istream& is, Matrix<T>& matrix) {
   for (std::size_t i = 0; i < matrix.rows(); i++) {
     for (std::size_t j = 0; j < matrix.columns(); j++) {
       is >> matrix[i][j];
@@ -300,7 +291,7 @@ std::istream &operator>>(std::istream &is, Matrix<T> &matrix) {
 }
 
 template <typename T>
-std::ostream &operator<<(std::ostream &os, const Matrix<T> &matrix) {
+std::ostream& operator<<(std::ostream& os, const Matrix<T>& matrix) {
   for (std::size_t i = 0; i < matrix.rows(); i++) {
     for (std::size_t j = 0; j < matrix.columns(); j++) {
       os << matrix[i][j] << " \n"[j == matrix.columns() - 1];
@@ -308,5 +299,3 @@ std::ostream &operator<<(std::ostream &os, const Matrix<T> &matrix) {
   }
   return os;
 }
-
-#endif //MATRIX_MATRIX_H
