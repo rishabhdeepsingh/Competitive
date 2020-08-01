@@ -1,3 +1,6 @@
+#pragma once
+#include "../general.hpp"
+
 struct DSU {
   int n;
   std::vector<int> par;
@@ -11,7 +14,7 @@ struct DSU {
       rank[i] = 1;
     }
   }
-  explicit DSU(std::vector<long long> &_rank) : rank(move(_rank)) {
+  explicit DSU(std::vector<long long>& _rank) : rank(move(_rank)) {
     n = rank.size();
     par.resize(n);
     iota(par.begin(), par.end(), 0);

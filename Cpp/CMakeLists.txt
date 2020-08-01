@@ -6,7 +6,7 @@ file(GLOB HEADERS "library/*")
 add_executable(output output/main.cpp ${GLOB})
 add_executable(testrunner testrunner/main.cpp)
 
-# Dont change it
+# Don't change it
 file(GLOB TASKS "tasks/*.cpp")
 file(GLOB CONTESTS "contests/*.cpp")
 
