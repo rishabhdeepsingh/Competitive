@@ -1,6 +1,7 @@
-// Created by White Knife on 15/04/20.
-#pragma GCC optimize ("O3")
-#pragma GCC target ("sse4")
+// doot diddly donger cuckerino Hahahahahah
+
+#pragma GCC optimize("O3")
+#pragma GCC target("sse4")
 #pragma GCC target("popcnt")
 
 #include <bits/stdc++.h>
@@ -21,14 +22,14 @@ using namespace std;
 #define dor             > debug & operator <<
 #define eni(x)          sim > typename enable_if<sizeof dud<T>(0) x 1, debug&>::type operator<<(T i)
 sim> struct rge { T b, e; };
-sim> rge<T> range(T i, T j) { return rge<T>{i, j}; }
+sim> rge<T> rang(T i, T j) { return rge<T>{i, j}; }
 sim> auto dud(T *x) -> decltype(cerr << *x, 0);
 sim> char dud(...);
 struct debug {
 #ifdef LOCAL
   ~debug() { cerr << endl; }
   eni(!=) { cerr << boolalpha << i; ris; }
-  eni(==) { ris << range(all(i)); }
+  eni(==) { ris << rang(all(i)); }
   sim, typename U dor(pair<U, T> d) { ris << "(" << d.first << ", " << d.second << ")"; }
   sim dor(rge<T> d) { *this << "["; for (auto it = d.b; it != d.e; ++it) *this << ", " + 2 * (it == d.b) << *it; ris << "]"; }
 #else
@@ -37,32 +38,38 @@ struct debug {
 };
 #define pr(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 
-struct IoSetup {
-  IoSetup() {
-    std::cin.tie(nullptr);
-    std::ios::sync_with_stdio(false);
-    std::cout << std::fixed << std::setprecision(12);
-    std::cerr << std::fixed << std::setprecision(12);
-  }
-} iosetup;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
+using vi = vector<int>;
+using vb = vector<bool>;
 
-template <typename T, typename U>
-std::ostream &operator<<(std::ostream &os, const std::pair<T, U> &p) {
-  os << p.first << " " << p.second;
-  return os;
-}
+using vvi = vector<vi>;
+using vll = vector<ll>;
+using vvll = vector<vll>;
+using vpii = vector<pii>;
+using vpll = vector<pll>;
+template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
-template <typename T, typename U>
-std::istream &operator>>(std::istream &is, std::pair<T, U> &p) {
-  is >> p.first >> p.second;
-  return is;
-}
+const ld PI = acos(-1);
 
-template <typename T>
-std::ostream &operator<<(std::ostream &os, const std::vector<T> &v) {
-  for (int i = 0; i < (int) v.size(); i++) {
-    os << v[i] << (i + 1 != v.size() ? " " : "");
-  }
-  return os;
-}
+template<typename T> inline T mini(T& x, T y) { return x = min(x, y); }
+template<typename T> inline T maxi(T& x, T y) { return x = max(x, y); }
+template <typename T> T rand(T x, T y) { return rand() % (y - x + 1) + x; }
+mt19937 rnd(chrono::high_resolution_clock::now().time_since_epoch().count());
+
 // @formatter:on
+
+class $CLASSNAME$ {
+public:
+  $RC$ $METHODNAME$($METHODPARMS$) {
+  
+  }
+};
+
+$BEGINCUT$
+$TESTCODE$
+$DEFAULTMAIN$
+$ENDCUT$
