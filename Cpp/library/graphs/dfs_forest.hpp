@@ -135,7 +135,6 @@ private:
       auto &e = edges[id];
       int to = e.from ^e.to ^v;
       depth[to] = depth[v] + 1;
-      depth[to] = depth[v] + 1;
       dist[to] = dist[v] + e.cost;
       pv[to] = v;
       pe[to] = id;

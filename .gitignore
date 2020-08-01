@@ -1,6 +1,16 @@
 *.vscode*
 *.idea*
+*.DS_Store
 Cpp/contests/cf/contest/
 Cpp/cmake-build-debug/
+Cpp/contests/topcoder/codes/
+Cpp/output/gen
+Cpp/output/main 
+Cpp/output/main.cpp
+Cpp/output/brute
+*.a.out
+
+
 /Java/out/*
 /Java/output/*
+*.class

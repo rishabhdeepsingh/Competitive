@@ -27,7 +27,8 @@ public:
   vector<int> p, c;
   int n;
   // strings are s.substr(p[i], n - p[i]);
-  suffix_array(const string& _s) : s(move(_s)) {
+  
+  explicit suffix_array(string  _s) : s(std::move(_s)) {
     s += "$";
     n = (int) s.length();
     // Ordering and Equivalence classes
