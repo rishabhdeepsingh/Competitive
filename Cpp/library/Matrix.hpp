@@ -185,7 +185,7 @@ struct Matrix {
 template <typename T>
 Matrix<T> Matrix<T>::Identity(int n) {
   Matrix<T> res(n, n, 0);
-  for (int i = 0; i < n; ++i) {
+  for (size_t i = 0; i < n; ++i) {
     res[i][i] = 1;
   }
   return res;
@@ -256,7 +256,7 @@ Matrix<T> operator*(const T& lhs, const Matrix<T>& rhs) { return rhs *= lhs; }
 // Power of a Matrix
 template <typename T, typename U>
 Matrix<T> power(Matrix<T> base, U exp) {
-  Matrix<T> res = base;
+  Matrix<T> res = Matrix<T>::Identity(base.rows());
   while (exp > 0) {
     if (exp & 1) {
       res *= base;
