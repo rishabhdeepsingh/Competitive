@@ -64,18 +64,4 @@ template<typename T> inline T maxi(T& x, T y) { return x = max(x, y); }
 template <typename T> T rand(T x, T y) { return rand() % (y - x + 1) + x; }
 mt19937 rnd(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-template <typename Test, template <typename...> class Ref>
-struct is_specialization : std::false_type {};
-
-template <template <typename...> class Ref, typename... Args>
-struct is_specialization<Ref<Args...>, Ref> : std::true_type {};
-
-template <typename T, typename U>
-ostream& operator<<(ostream& os, const pair<T, U>& p) { return (os << p.first << " " << p.second); }
-
-template <typename T>
-ostream& operator<<(ostream& os, const vector<T>& vec) {
-  for (auto& x: vec) os << x << ((is_specialization<T, std::vector>::value) ? '\n' : ' ');
-  return os;
-}
 // @formatter:on
