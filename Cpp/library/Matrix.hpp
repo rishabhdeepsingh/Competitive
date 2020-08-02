@@ -1,4 +1,5 @@
 #pragma once
+#include "IO.hpp"
 
 template <typename T>
 struct Matrix {
@@ -12,7 +13,7 @@ struct Matrix {
       matrix(row_count),
       _rows(row_count),
       _columns(column_count) {
-    matrix.resize(row_count, std::vector<T>(column_count, 1));
+    matrix.resize(row_count, std::vector<T>(column_count, T{}));
     for (auto& row : matrix) {
       row.resize(_columns);
     }
@@ -68,17 +69,20 @@ struct Matrix {
   }
   
   // Matrix Multiplication
-  Matrix& operator*=(const Matrix& other) {
-    if (_columns != other._rows) {
+  Matrix& operator*=(const Matrix& o) {
+    if (_columns != o._rows) {
       throw std::logic_error("column count of lhs and row count of rhs are not equal\n");
     }
-    Matrix temp(_rows, other._columns, 0);
-    
+    auto other = transpose(o);
+    Matrix temp(_rows, other._columns, T{});
+
     for (std::size_t i = 0; i < temp._rows; i++) {
       for (std::size_t j = 0; j < temp._columns; j++) {
+        T res{};
         for (std::size_t k = 0; k < _columns; k++) {
-          temp[i][j] += matrix[i][k] * other[k][j];
+          res += matrix[i][k] * other[j][k];
         }
+        temp[i][j] = res;
       }
     }
     std::swap(matrix, temp.matrix);
@@ -185,7 +189,7 @@ struct Matrix {
 template <typename T>
 Matrix<T> Matrix<T>::Identity(int n) {
   Matrix<T> res(n, n, 0);
-  for (size_t i = 0; i < n; ++i) {
+  for (int i = 0; i < n; ++i) {
     res[i][i] = 1;
   }
   return res;
@@ -193,10 +197,10 @@ Matrix<T> Matrix<T>::Identity(int n) {
 
 //Matrix Transpose
 template <typename T>
-Matrix<T> operator!(const Matrix<T>& other) {
+Matrix<T> transpose(const Matrix<T>& other) {
   Matrix<T> res(other.columns(), other.rows());
-  for (auto row = 0; row < other.rows(); ++row) {
-    for (auto col = 0; col < other.columns(); ++col) {
+  for (size_t row = 0; row < other.rows(); ++row) {
+    for (size_t col = 0; col < other.columns(); ++col) {
       res[col][row] = other[row][col];
     }
   }
