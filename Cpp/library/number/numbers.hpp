@@ -6,7 +6,7 @@ const long long MOD7 = 1000000007;
 const long long MOD9 = 1000000009;
 const long long MODF = 998244353;
 
-long long MOD = MOD7;
+long long MOD = 4294967296ll;
 
 template <class T>
 inline T add(T &x, T y) {
@@ -47,7 +47,6 @@ T inverse(T a, T m) {
     swap(u, v);
   }
   assert(m == 1);
-  assert(u >= 0);
   return u;
 }
 
