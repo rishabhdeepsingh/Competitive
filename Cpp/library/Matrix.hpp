@@ -69,20 +69,17 @@ struct Matrix {
   }
   
   // Matrix Multiplication
-  Matrix& operator*=(const Matrix& o) {
-    if (_columns != o._rows) {
+  Matrix& operator*=(const Matrix& other) {
+    if (_columns != other._rows) {
       throw std::logic_error("column count of lhs and row count of rhs are not equal\n");
     }
-    auto other = transpose(o);
-    Matrix temp(_rows, other._columns, T{});
-
+    Matrix temp(_rows, other._columns, 0);
+  
     for (std::size_t i = 0; i < temp._rows; i++) {
       for (std::size_t j = 0; j < temp._columns; j++) {
-        T res{};
         for (std::size_t k = 0; k < _columns; k++) {
-          res += matrix[i][k] * other[j][k];
+          temp[i][j] += matrix[i][k] * other[k][j];
         }
-        temp[i][j] = res;
       }
     }
     std::swap(matrix, temp.matrix);
