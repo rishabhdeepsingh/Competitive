@@ -1,9 +1,8 @@
-// Created by White Knife on 15/04/20.
 // doot diddly donger cuckerino Hahahahahah
 
-#pragma GCC optimize("O3")
-#pragma GCC target("sse4")
-#pragma GCC target("popcnt")
+#pragma GCC optimize("Ofast")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx")
+#pragma GCC optimize("unroll-loops")
 #pragma once
 
 #include <bits/stdc++.h>
@@ -40,6 +39,7 @@ struct debug {
 };
 #define pr(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 
+using uint = unsigned int;
 using ll = long long;
 using ull = unsigned long long;
 using ld = long double;
@@ -55,7 +55,7 @@ using vll = vector<ll>;
 using vvll = vector<vll>;
 using vpii = vector<pii>;
 using vpll = vector<pll>;
-template <typename T> using ordered_set = tree<T, null_type, less<>, rb_tree_tag, tree_order_statistics_node_update>;
+template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 const ld PI = acos(-1);
 
@@ -63,5 +63,13 @@ template<typename T> inline T mini(T& x, T y) { return x = min(x, y); }
 template<typename T> inline T maxi(T& x, T y) { return x = max(x, y); }
 template <typename T> T rand(T x, T y) { return rand() % (y - x + 1) + x; }
 mt19937 rnd(chrono::high_resolution_clock::now().time_since_epoch().count());
-
+template <typename T, typename U>
+std::ostream& operator<<(std::ostream& stream, const pair<T, U>& p) {
+  return stream << p.first << " " << p.second;
+}
+template <typename T>
+std::ostream& operator<<(std::ostream& out, const vector<T>& vec) {
+  for (const T& x: vec) out << x << ' ';
+  return out;
+}
 // @formatter:on
