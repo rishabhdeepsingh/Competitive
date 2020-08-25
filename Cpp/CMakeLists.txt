@@ -73,7 +73,11 @@ file(GLOB HEADERS library/Algo/Z.hpp
         library/trees/lazysegtree.hpp
         library/trees/segtree.hpp
         library/trees/segtreemincount.hpp
-        library/trees/segtreesum.hpp)
+        library/trees/segtreesum.hpp
+        library/trees/segtreerangesum.hpp
+        library/generators.hpp
+        library/FUN.hpp
+        )
 add_executable(output output/main.cpp ${GLOB})
 add_executable(testrunner testrunner/main.cpp)
 
@@ -91,4 +95,3 @@ add_definitions(-Wshadow)
 add_definitions(-Wall)
 add_definitions(-fbounds-check)
 
-add_executable(gen output/gen.cpp)

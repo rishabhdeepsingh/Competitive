@@ -354,7 +354,7 @@ The following assertions allow you to choose the acceptable error bound:
 
 #### Floating-Point Predicate-Format Functions
 
-Some floating-point operations are useful, but not that often used. In order to
+Some floating-point ops are useful, but not that often used. In order to
 avoid an explosion of new macros, we provide them as predicate-format functions
 that can be used in predicate assertion macros (e.g. `EXPECT_PRED_FORMAT2`,
 etc).

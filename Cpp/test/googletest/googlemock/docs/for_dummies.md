@@ -15,7 +15,7 @@ and mocks actually mean very different things in the Test-Driven Development
 (TDD) community:
 
 *   **Fake** objects have working implementations, but usually take some
-    shortcut (perhaps to make the operations less expensive), which makes them
+    shortcut (perhaps to make the ops less expensive), which makes them
     not suitable for production. An in-memory file system would be an example of
     a fake.
 *   **Mocks** are objects pre-programmed with *expectations*, which form a
