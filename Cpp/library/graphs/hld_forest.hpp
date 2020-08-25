@@ -28,7 +28,7 @@ public:
     visited.resize(n);
   }
   
-  void build_hld(const vector<int> &vs) {
+  void build_hld(const vector<int>& vs) {
     for (int tries = 0; tries < 2; tries++) {
       if (vs.empty()) {
         dfs_all();

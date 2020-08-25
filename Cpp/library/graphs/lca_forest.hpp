@@ -15,6 +15,8 @@ public:
   using dfs_forest<T>::pos;
   using dfs_forest<T>::end;
   using dfs_forest<T>::depth;
+  using dfs_forest<T>::dist;
+  using dfs_forest<T>::sz;
   
   int h;
   vector<vector<int>> pr;
@@ -74,8 +76,8 @@ public:
     return pr[x][0];
   }
   
-  int dist(int u, int v){
+  int distance(int u, int v) {
     int x = lca(u, v);
-    return depth[u] + depth[v] - 2 * depth[x];
+    return dist[u] + dist[v] - 2 * dist[x];
   }
 };
