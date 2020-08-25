@@ -1,3 +1,4 @@
+#pragma once
 #include "forest.hpp"
 
 template<typename T>
@@ -7,17 +8,17 @@ public:
   using forest<T>::g;
   using forest<T>::n;
   
-  vector<int> pv;
-  vector<int> pe;
+  vector<int> pv; // Previous Vertex
+  vector<int> pe; // Previous Edge
   vector<int> order;
   vector<int> pos;
   vector<int> end;
   vector<int> sz;
   vector<int> root;
   vector<int> depth; // Depth of the node
-  vector<int> in;   // In time of the node
-  vector<int> out; // Out time of the node
-  vector<int> ft; // Tree flattening
+//  vector<int> in;   // In time of the node
+//  vector<int> out; // Out time of the node
+//  vector<int> ft; // Tree flattening
   vector<T> dist;
   int timer = 0;
   
@@ -35,10 +36,10 @@ public:
     sz = vector<int>(n, 0);
     root = vector<int>(n, -1);
     depth = vector<int>(n, -1);
-    dist = vector<T>(n);
-    in = vector<int>(n, -1);
-    out = vector<int>(n, -1);
-    ft = vector<int>(2 * n, -1);
+    dist = vector<T>(n, T{});
+//    in = vector<int>(n, -1);
+//    out = vector<int>(n, -1);
+//    ft = vector<int>(2 * n, -1);
     timer = 0;
   }
   
@@ -53,9 +54,9 @@ public:
     root.clear();
     depth.clear();
     dist.clear();
-    ft.clear();
-    in.clear();
-    out.clear();
+//    ft.clear();
+//    in.clear();
+//    out.clear();
   }
   
   vector<ll> dijkstra(int src) {
@@ -126,12 +127,10 @@ private:
     pos[v] = (int) order.size();
     order.push_back(v);
     sz[v] = 1;
-    in[v] = timer;
-    ft[timer++] = v;
+//    in[v] = timer;
+//    ft[timer++] = v;
     for (int id : g[v]) {
-      if (id == pe[v]) {
-        continue;
-      }
+      if (id == pe[v]) continue;
       auto &e = edges[id];
       int to = e.from ^e.to ^v;
       depth[to] = depth[v] + 1;
@@ -143,8 +142,8 @@ private:
       sz[v] += sz[to];
     }
     end[v] = (int) order.size() - 1;
-    out[v] = timer;
-    ft[timer++] = v;
+//    out[v] = timer;
+//    ft[timer++] = v;
   }
   
   void do_dfs_from(int v) {
