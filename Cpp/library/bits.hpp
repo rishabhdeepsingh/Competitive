@@ -18,6 +18,13 @@ inline int highestOneBit(int x) {
   return 1 << (31 - __builtin_clz(x | 1));
 }
 
+int highestBit(long long x) {
+  for (int mask = 63; mask >= 0; --mask) {
+    if ((x >> mask) & 1) return mask;
+  }
+  return 0;
+}
+
 inline int binaryDigits(int x) {
   return 32 - __builtin_clz(x | 1);
 }
@@ -77,5 +84,5 @@ inline bool isSet(int mask, int bit) {
     throw "Bad index";
   }
 #endif
-  return mask >> bit & 1;
+  return (mask >> bit) & 1;
 }
