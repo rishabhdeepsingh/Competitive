@@ -686,9 +686,9 @@ TEST(AbcTest, Xyz) {
 
 Regarding the tip on mixing a mock and a fake, here's an example on why it may
 be a bad sign: Suppose you have a class `System` for low-level system
-operations. In particular, it does file and I/O operations. And suppose you want
+ops. In particular, it does file and I/O ops. And suppose you want
 to test how your code uses `System` to do I/O, and you just want the file
-operations to work normally. If you mock out the entire `System` class, you'll
+ops to work normally. If you mock out the entire `System` class, you'll
 have to provide a fake implementation for the file operation part, which
 suggests that `System` is taking on too many roles.
 
