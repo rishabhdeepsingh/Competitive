@@ -57,7 +57,7 @@ bool check(std::string expected, std::string actual) {
 
 } // namespace jhelper
 
-int main() {
+int32_t main() {
   std::vector<jhelper::Test> tests = {
       %Tests%
   };
@@ -65,7 +65,13 @@ int main() {
   int testID = 0;
   std::cout << std::fixed;
   double maxTime = 0.0;
-  for(const jhelper::Test& test: tests ) {
+  int test_cnt = (int) tests.size();
+  //test_cnt = %ClassName%::stressTest;
+  for(int i = 0; i < test_cnt; ++i) {
+    //std::ostringstream generated_test;
+    //%ClassName%::generateTest(generated_test);
+    //jhelper::Test test{generated_test.str(), "", true, false};
+    const jhelper::Test& test = tests[i];
     std::cout << "Test #" << ++testID << std::endl;
     if (!test.active){
       std::cout << yellow << "SKIPPED" << def << std::endl;
