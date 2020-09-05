@@ -2,9 +2,9 @@
 
 #include "../../general.hpp"
 #include "../graph.h"
-#include "../../range/range.h"
+#include "../../range/range.hpp"
 #include "../../collections/indexed_heap.hpp"
-#include "../../range/rev_range.h"
+#include "../../range/rev_range.hpp"
 
 template <class Edge>
 pair<ll, ll> minCostFlow(Graph<Edge> &orGraph, int source, int sink, bool onlyNegative = false) {

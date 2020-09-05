@@ -1,7 +1,6 @@
 #pragma once
 
-#include <algorithm>
-#include "../general.hpp"
+#include "../IO.hpp"
 
 class NumberIterator : iterator<forward_iterator_tag, int> {
 public:
@@ -14,11 +13,11 @@ public:
     int operator*() { return v; }
 };
 
-class range : pii {
+class range : pair<int,int> {
 public:
-    range(int begin, int end) : pii(begin, max(begin, end)) {}
+    range(int begin, int end) : pair<int,int>(begin, max(begin, end)) {}
 
-    range(int n) : pii(0, max(0, n)) {}
+    range(int n) : pair<int,int>(0, max(0, n)) {}
 
     NumberIterator begin() {
         return first;
