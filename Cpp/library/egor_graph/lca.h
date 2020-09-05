@@ -3,7 +3,7 @@
 #include "../general.hpp"
 #include "../collections/segment_tree.hpp"
 #include "graph.h"
-#include "../range/range.h"
+#include "../range/range.hpp"
 #include "../collections/arr.hpp"
 #include "../collections/mdarr.h"
 #include "../bits.hpp"

@@ -1,8 +1,4 @@
-//
-// Created by White Knife on 24/04/20.
-//
-
-
+#pragma once
 #include "dfs_forest.hpp"
 
 template <typename T>

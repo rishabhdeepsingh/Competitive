@@ -2,7 +2,7 @@
 
 #include "../../general.hpp"
 #include "../graph.h"
-#include "../../range/rev_range.h"
+#include "../../range/rev_range.hpp"
 #include "../edges/base_edge.h"
 #include "../../recursive_function.hpp"
 

@@ -65,8 +65,8 @@ file(GLOB HEADERS library/Algo/Z.hpp
         library/number/prime_fft.hpp
         library/number/prime_tables.h
         library/number/primes5
-        library/range/range.h
-        library/range/rev_range.h
+        library/range/range.hpp
+        library/range/rev_range.hpp
         library/trees/fenwick.hpp
         library/trees/fenwick2d.hpp
         library/trees/fenwick_range.hpp

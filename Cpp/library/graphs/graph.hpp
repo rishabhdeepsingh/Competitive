@@ -1,3 +1,5 @@
+#pragma once
+#include "../IO.hpp"
 template <typename T>
 class graph {
 public:
@@ -17,15 +19,4 @@ public:
   }
   
   virtual int add(int from, int to, T cost) = 0;
-  
-//  void add_directed(int from, int to, T cost = 1) {
-//    g[from].push_back({from, to, cost});
-//    max_cost = max(max_cost, cost);
-//  }
 };
-
-//template <typename T>
-//int graph<T>::add(int from, int to, T cost) {
-//  add_directed(from, to, cost);
-//  add_directed(to, from, cost);
-//}

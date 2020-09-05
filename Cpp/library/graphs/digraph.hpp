@@ -1,11 +1,7 @@
+#pragma once
 #include "graph.hpp"
 
-#include <vector>
-#include <functional>
-using std::vector;
-using std::function;
-
-template<typename T>
+template <typename T>
 class digraph : public graph<T> {
 public:
   using graph<T>::edges;
@@ -25,10 +21,9 @@ public:
   
   digraph<T> reverse() const {
     digraph<T> rev(n);
-    for (auto &e : edges) {
+    for (auto& e : edges) {
       rev.add(e.to, e.from, e.cost);
     }
     return rev;
   }
 };
-

@@ -1,3 +1,4 @@
+#pragma once
 #include "graph.hpp"
 
 template <typename T>
