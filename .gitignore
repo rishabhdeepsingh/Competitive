@@ -5,6 +5,11 @@ Cpp/contests/cf/contest/
 Cpp/cmake-build-debug/
 Cpp/contests/topcoder/codes/
 Cpp/output/gen
+Cpp/output/*.txt
+Cpp/output/*.zip
+Cpp/output/*.out
+*/*.dSYM*
+Cpp/tasks/*
 Cpp/output/main 
 Cpp/output/main.cpp
 Cpp/testrunner/main.cpp

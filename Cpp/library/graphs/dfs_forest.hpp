@@ -101,6 +101,18 @@ public:
     return dis;
   }
   
+  pair<int, T> farthest() {
+    int id = -1;
+    T dis{};
+    for (int i = 0; i < n; ++i) {
+      if (dis <= dist[i]) {
+        dis = dist[i];
+        id = i;
+      }
+    }
+    return {id, dis};
+  }
+  
   void dfs(int v, bool clear_order = true) {
     if (pv.empty()) {
       init();
@@ -131,7 +143,7 @@ private:
 //    ft[timer++] = v;
     for (int id : g[v]) {
       if (id == pe[v]) continue;
-      auto &e = edges[id];
+      auto& e = edges[id];
       int to = e.from ^e.to ^v;
       depth[to] = depth[v] + 1;
       dist[to] = dist[v] + e.cost;
