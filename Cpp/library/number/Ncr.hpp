@@ -25,6 +25,7 @@ struct Ncr {
   }
   
   T ncr(int n, int k) {
+    if(n < 0 || k < 0 || k > n) return T{};
     T dem = ifact[k] * ifact[n - k];
     return fact[n] * dem;
   }
