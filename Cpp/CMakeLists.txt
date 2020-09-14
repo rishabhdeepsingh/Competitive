@@ -7,8 +7,8 @@ set(CMAKE_CXX_STANDARD 17)
 #/:$/&&!f{sub(/:$/,"");s=$0;f=1;next}
 #NF&&f{ print s"/"$0 }'
 
-file(GLOB HEADERS library/Algo/Z.hpp
-        library/Algo/manacher.hpp
+file(GLOB HEADERS library/string/Z.hpp
+        library/string/manacher.hpp
         library/collections/DSU.hpp
         library/collections/indexed_heap.hpp
         library/collections/ro_segtree.hpp
