@@ -1,5 +1,5 @@
 #pragma once
-#include "IO.hpp"
+#include "../IO.hpp"
 
 // Sort p by values in c
 void count_sort(vector<int>& p, vector<int>& c) {
