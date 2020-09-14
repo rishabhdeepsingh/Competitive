@@ -1,6 +1,3 @@
-//
-// Created by White Knife on 03/10/19.
-//
 #pragma once
 
 #include "../IO.hpp"

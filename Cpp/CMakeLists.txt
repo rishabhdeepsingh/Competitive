@@ -10,9 +10,7 @@ set(CMAKE_CXX_STANDARD 17)
 file(GLOB HEADERS library/Algo/Z.hpp
         library/Algo/manacher.hpp
         library/collections/DSU.hpp
-        library/collections/arr.hpp
         library/collections/indexed_heap.hpp
-        library/collections/mdarr.h
         library/collections/ro_segtree.hpp
         library/collections/segment_tree.hpp
         library/geometry/Circle.hpp

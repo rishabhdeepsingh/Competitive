@@ -1,10 +1,3 @@
-//
-// Created by White Knife on 11/05/20.
-//
-
-#ifndef CPP_LIBRARY_GEOMETRY_LINE_HPP_
-#define CPP_LIBRARY_GEOMETRY_LINE_HPP_
-
 #pragma once
 
 #include "Point.hpp"
@@ -43,5 +36,3 @@ point intersect(const Line &a, const Line &b) {
   PType det = a.b * b.a - a.a * b.b;
   return point((a.c * b.b - a.b * b.c) / det, (a.a * b.c - a.c * b.a) / det);
 }
-
-#endif //CPP_LIBRARY_GEOMETRY_LINE_HPP_

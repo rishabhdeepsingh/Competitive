@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../general.hpp"
-#include "../collections/arr.hpp"
 
 template <typename T>
 T gcd(T a, T b) {

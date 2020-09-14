@@ -1,14 +1,8 @@
-//
-// Created by White Knife on 11/05/20.
-//
-
-#ifndef CPP_LIBRARY_GEOMETRY_SEGMENT_HPP_
-#define CPP_LIBRARY_GEOMETRY_SEGMENT_HPP_
-
 #pragma once
 
 #include "Line.hpp"
-#include<algorithm>
+
+const ld eps = 1e-9;
 
 class Segment {
   mutable Line l;
@@ -37,5 +31,3 @@ public:
     return distance(a, b);
   }
 };
-
-#endif //CPP_LIBRARY_GEOMETRY_SEGMENT_HPP_
