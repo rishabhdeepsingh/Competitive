@@ -1,9 +1,9 @@
 // doot diddly donger cuckerino Hahahahahah
 
+#pragma once
 #pragma GCC optimize("Ofast")
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx")
 #pragma GCC optimize("unroll-loops")
-#pragma once
 
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
@@ -18,26 +18,6 @@ using namespace std;
 #define S               second
 #define all(x)          (x).begin(), (x).end()
 #define sz(x)           (long long) (x).size()
-#define sim             template<typename T
-#define ris             return *this
-#define dor             > debug & operator <<
-#define eni(x)          sim > typename enable_if<sizeof dud<T>(0) x 1, debug&>::type operator<<(T i)
-sim> struct rge { T b, e; };
-sim> rge<T> rang(T i, T j) { return rge<T>{i, j}; }
-sim> auto dud(T *x) -> decltype(cerr << *x, 0);
-sim> char dud(...);
-struct debug {
-#ifdef LOCAL
-  ~debug() { cerr << endl; }
-  eni(!=) { cerr << boolalpha << i; ris; }
-  eni(==) { ris << rang(all(i)); }
-  sim, typename U dor(pair<U, T> d) { ris << "(" << d.first << ", " << d.second << ")"; }
-  sim dor(rge<T> d) { *this << "["; for (auto it = d.b; it != d.e; ++it) *this << ", " + 2 * (it == d.b) << *it; ris << "]"; }
-#else
-  sim dor(const T&) { ris; }
-#endif
-};
-#define pr(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 
 using uint = unsigned int;
 using ll = long long;
