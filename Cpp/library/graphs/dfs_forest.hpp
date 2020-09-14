@@ -59,24 +59,6 @@ public:
 //    out.clear();
   }
   
-  vector<ll> dijkstra(int src) {
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    vector<ll> distance(n, 1e18 + 7);
-    pq.push(make_pair(0, src));
-    distance[src] = 0;
-    while (!pq.empty()) {
-      int u = pq.top().second;
-      pq.pop();
-      for (auto v: g[u]) {
-        int weight = edges[v].cost;
-        if (dist[v] > dist[u] + weight) {
-          dist[v] = dist[u] + weight;
-          pq.push({dist[v], v});
-        }
-      }
-    }
-    return distance;
-  }
   
   vector<T> bfs(int s) {
     T INF = std::numeric_limits<T>::max();
