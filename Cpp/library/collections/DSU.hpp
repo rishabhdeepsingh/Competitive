@@ -4,40 +4,28 @@
 struct DSU {
   int n;
   std::vector<int> par;
-  std::vector<long long> rank;
+  std::vector<long long> sz;
   
   explicit DSU(int _n) : n(_n) {
     par.resize(n);
-    rank.resize(n);
+    sz.resize(n);
     for (int i = 0; i < n; ++i) {
       par[i] = i;
-      rank[i] = 1;
+      sz[i] = 1;
     }
-  }
-  explicit DSU(std::vector<long long>& _rank) : rank(move(_rank)) {
-    n = rank.size();
-    par.resize(n);
-    iota(par.begin(), par.end(), 0);
   }
   
   int Root(int x) {
-    return x == par[x] ? x : par[x] = Root(par[x]);
+    return par[x] = (x == par[x]) ? x : Root(par[x]);
   }
   
   bool Unite(int x, int y) {
     x = Root(x);
     y = Root(y);
     if (x == y) return true;
-    if (rank[x] > rank[y]) {
-      par[y] = x;
-      rank[x] += rank[y];
-    } else if (rank[y] > rank[x]) {
-      par[x] = y;
-      rank[y] += rank[x];
-    } else {
-      par[x] = y;
-      rank[y]++;
-    }
+    if (sz[x] < sz[y]) swap(x, y);
+    par[y] = x;
+    sz[x] += sz[y];
     return false;
   }
   

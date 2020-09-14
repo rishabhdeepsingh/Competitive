@@ -1,17 +1,29 @@
+#pragma once
 #include "numbers.hpp"
 
 template <typename T>
-class Modular {
- public:
-  using Type = typename decay<decltype(T::value)>::type;
+T inverse(T a, T m) {
+  T u = 0, v = 1;
+  while (a != 0) {
+    T t = m / a;
+    m -= t * a; swap(a, m);
+    u -= t * v; swap(u, v);
+  }
+  assert(m == 1);
+  return u;
+}
 
-  constexpr Modular() : value() {}
+template <typename T>
+class Modular {
+public:
+  using Type = typename decay<decltype(T::value)>::type;
   
+  constexpr Modular() : value() {}
   template <typename U>
   Modular(const U& x) {
     value = normalize(x);
   }
-
+  
   template <typename U>
   static Type normalize(const U& x) {
     Type v;
@@ -20,12 +32,12 @@ class Modular {
     if (v < 0) v += mod();
     return v;
   }
-
+  
   const Type& operator()() const { return value; }
   template <typename U>
   explicit operator U() const { return static_cast<U>(value); }
   constexpr static Type mod() { return T::value; }
-
+  
   Modular& operator+=(const Modular& other) { if ((value += other.value) >= mod()) value -= mod(); return *this; }
   Modular& operator-=(const Modular& other) { if ((value -= other.value) < 0) value += mod(); return *this; }
   template <typename U> Modular& operator+=(const U& other) { return *this += Modular(other); }
@@ -35,16 +47,16 @@ class Modular {
   Modular operator++(int) { Modular result(*this); *this += 1; return result; }
   Modular operator--(int) { Modular result(*this); *this -= 1; return result; }
   Modular operator-() const { return Modular(-value); }
-
+  
   template <typename U = T>
   typename enable_if<is_same<typename Modular<U>::Type, int>::value, Modular>::type& operator*=(const Modular& rhs) {
-#ifdef _fWIN32
+#ifdef _WIN32
     uint64_t x = static_cast<int64_t>(value) * static_cast<int64_t>(rhs.value);
     uint32_t xh = static_cast<uint32_t>(x >> 32), xl = static_cast<uint32_t>(x), d, m;
     asm(
-      "divl %4; \n\fun"
+      "divl %4; \n\t"
       : "=a" (d), "=d" (m)
-      : "d" (xh), "a" (xl), "r" (MOD())
+      : "d" (xh), "a" (xl), "r" (mod())
     );
     value = m;
 #else
@@ -63,22 +75,19 @@ class Modular {
     value = normalize(value * rhs.value);
     return *this;
   }
-
+  
   Modular& operator/=(const Modular& other) { return *this *= Modular(inverse(other.value, mod())); }
-
-//  template <typename U>
-//  friend const Modular<U>& abs(const Modular<U>& v) { return v; }
-
+  
   template <typename U>
   friend bool operator==(const Modular<U>& lhs, const Modular<U>& rhs);
-
+  
   template <typename U>
   friend bool operator<(const Modular<U>& lhs, const Modular<U>& rhs);
-
+  
   template <typename U>
   friend std::istream& operator>>(std::istream& stream, Modular<U>& number);
 
- private:
+private:
   Type value;
 };
 
@@ -122,11 +131,6 @@ Modular<T> power(const Modular<T>& a, const U& b) {
 }
 
 template <typename T>
-bool IsZero(const Modular<T>& number) {
-  return number() == 0;
-}
-
-template <typename T>
 string to_string(const Modular<T>& number) {
   return to_string(number());
 }
@@ -144,18 +148,14 @@ std::istream& operator>>(std::istream& stream, Modular<T>& number) {
   return stream;
 }
 
-
-
-constexpr int md = (int) 1e9 + 7;
-//constexpr int md2 = md - 1;
-//constexpr int md = 998244353;
-using Mint = Modular<std::integral_constant<decay<decltype(md)>::type, md>>;
-//using Mint2 = Modular<std::integral_constant<decay<decltype(md2)>::type, md2>>;
-
 /*
 using ModType = int;
+
 struct VarMod { static ModType value; };
 ModType VarMod::value;
 ModType& md = VarMod::value;
 using Mint = Modular<VarMod>;
 */
+
+constexpr int md = 1e9 + 7;
+using Mint = Modular<std::integral_constant<decay<decltype(md)>::type, md>>;

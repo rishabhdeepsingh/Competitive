@@ -72,4 +72,9 @@ std::ostream& operator<<(std::ostream& out, const vector<T>& vec) {
   for (const T& x: vec) out << x << ' ';
   return out;
 }
+template <typename T>
+std::istream& operator>>(std::istream& in, vector<T>& vec) {
+  for(auto& x: vec) in >> x;
+  return in;
+}
 // @formatter:on

@@ -1,7 +1,7 @@
 #pragma once
 #include "forest.hpp"
 
-template<typename T>
+template <typename T>
 class dfs_forest : public forest<T> {
 public:
   using forest<T>::edges;

@@ -15,26 +15,6 @@ file(GLOB HEADERS library/Algo/Z.hpp
         library/collections/mdarr.h
         library/collections/ro_segtree.hpp
         library/collections/segment_tree.hpp
-        library/egor_graph/algo
-        library/egor_graph/dfs_order.h
-        library/egor_graph/edges
-        library/egor_graph/graph.h
-        library/egor_graph/hl_decomposition.h
-        library/egor_graph/lca.h
-        library/egor_graph/algo/centroid_decomposition.h
-        library/egor_graph/algo/dijkstra.h
-        library/egor_graph/algo/dinic.h
-        library/egor_graph/algo/edge_distances.h
-        library/egor_graph/algo/floyd_warshall.h
-        library/egor_graph/algo/mincost_flow.h
-        library/egor_graph/algo/strongly_connected.h
-        library/egor_graph/algo/top_sort.h
-        library/egor_graph/edges/base_edge.h
-        library/egor_graph/edges/biedge.h
-        library/egor_graph/edges/biweighted_edge.h
-        library/egor_graph/edges/flow_edge.h
-        library/egor_graph/edges/weighted_edge.h
-        library/egor_graph/edges/weighted_flow_edge.h
         library/geometry/Circle.hpp
         library/geometry/Line.hpp
         library/geometry/Point.hpp
@@ -50,7 +30,7 @@ file(GLOB HEADERS library/Algo/Z.hpp
         library/graphs/hld_forest.hpp
         library/graphs/lca_forest.hpp
         library/graphs/ntt.hpp
-        library/number/Modular.hpp
+        library/number/Mint.hpp
         library/number/Ncr.hpp
         library/number/Primes.hpp
         library/number/Rational.hpp

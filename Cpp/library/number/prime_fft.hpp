@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Modular.hpp"
+#include "Mint.hpp"
 
 namespace prime_fft {
 bool init = false;
