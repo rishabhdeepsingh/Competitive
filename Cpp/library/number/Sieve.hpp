@@ -43,7 +43,7 @@ public:
     mobius.clear();
     mobius.resize(maxn, 0);
     mobius[1] = 1;
-    for (ll i = 2; i < maxn; ++i) {
+    for (long long i = 2; i < maxn; ++i) {
       if (spf[i / spf[i]] == spf[i]) {
         mobius[i] = 0;
       } else {
@@ -82,12 +82,12 @@ public:
     return res;
   }
   
-  map<long long, long long> primeFactors(ll val) {
+  map<long long, long long> primeFactors(long long val) {
     if (val >= maxn) return primeFactorBrute(val);
     map<long long, long long> fac;
     while (val > 1) {
       int pf = spf[val];
-      ll cnt = 0;
+      long long cnt = 0;
       while (val % pf == 0) {
         cnt++;
         val /= pf;
@@ -97,13 +97,13 @@ public:
     return fac;
   }
   
-  map<long long, long long> primeFactorBrute(ll val) {
+  map<long long, long long> primeFactorBrute(long long val) {
     map<long long, long long> mp;
     while (val % 2 == 0) {
       mp[2]++;
       val /= 2;
     }
-    for (ll i = 3; i * i <= val; i += 2) {
+    for (long long i = 3; i * i <= val; i += 2) {
       while (val % i == 0) {
         mp[i]++;
         val /= i;
