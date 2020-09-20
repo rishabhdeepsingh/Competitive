@@ -96,10 +96,14 @@ public:
     }
     return fac;
   }
-
+  
   map<long long, long long> primeFactorBrute(ll val) {
     map<long long, long long> mp;
-    for (ll i = 2; i * i <= val; i += 2) {
+    while (val % 2 == 0) {
+      mp[2]++;
+      val /= 2;
+    }
+    for (ll i = 3; i * i <= val; i += 2) {
       while (val % i == 0) {
         mp[i]++;
         val /= i;
