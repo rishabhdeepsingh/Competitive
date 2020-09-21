@@ -87,6 +87,7 @@ public:
     map<long long, long long> fac;
     while (val > 1) {
       int pf = spf[val];
+      if (pf == 1) break;
       long long cnt = 0;
       while (val % pf == 0) {
         cnt++;
