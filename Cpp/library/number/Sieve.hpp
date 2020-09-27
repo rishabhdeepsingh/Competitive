@@ -7,7 +7,6 @@ public:
   std::vector<long long> spf;
   std::vector<long long> primes;
   std::vector<long long> mobius;
-  std::vector<long long> phi;
   std::vector<bool> isPrime;
   
   Sieve(int _n = 2e6 + 7) : maxn(_n + 1) {
@@ -29,18 +28,7 @@ public:
     }
   }
   
-  void genPhi() {
-    phi.resize(maxn + 1, 0);
-    phi[1] = 1;
-    for (int i = 2; i <= maxn; i++) phi[i] = i - 1;
-    
-    for (int i = 2; i <= maxn; i++)
-      for (int j = 2 * i; j <= maxn; j += i)
-        phi[j] -= phi[i];
-  }
-  
   void genMobius() {
-    mobius.clear();
     mobius.resize(maxn, 0);
     mobius[1] = 1;
     for (long long i = 2; i < maxn; ++i) {
