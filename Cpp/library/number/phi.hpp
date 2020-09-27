@@ -5,7 +5,7 @@ class Phi {
   vector<long long> phi;
 public:
   
-  explicit Phi(int n) {
+  explicit Phi(int n = 1e6 + 1000) {
     phi.resize(n + 1);
     for (int i = 0; i <= n; i++) {
       phi[i] = i;
@@ -24,8 +24,8 @@ public:
     return eulerPhi(index);
   }
   
-  long long eulerPhi(ll _n) const {
-    long long temp = _n, ans = _n;
+  unsigned long long eulerPhi(ll _n) const {
+    unsigned long long temp = _n, ans = _n;
     unsigned long long d = 2;
     while (d * d <= temp) {
       long long cnt = 0;
