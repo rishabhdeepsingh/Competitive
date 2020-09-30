@@ -1,5 +1,6 @@
 #pragma once
 #include "undigraph.hpp"
+#include "../collections/DSU.hpp"
 
 template <typename T>
 vector<int> find_mst(const undigraph<T>& g, T& ans) {
@@ -8,7 +9,7 @@ vector<int> find_mst(const undigraph<T>& g, T& ans) {
   sort(order.begin(), order.end(), [&g](int a, int b) {
     return g.edges[a].cost < g.edges[b].cost;
   });
-  dsu d(g.n);
+  DSU d(g.n);
   vector<int> ans_list;
   ans = 0;
   for (int id : order) {
