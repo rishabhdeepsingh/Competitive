@@ -31,6 +31,18 @@ T power(const T& a, long long b) {
   }
 }
 
+long long power(long long a, long long b, long long mod) {
+  long long res = 1;
+  while (b) {
+    if (b & 1) {
+      res = (res * a) % mod;
+    }
+    a = (a * a) % mod;
+    b /= 2;
+  }
+  return res;
+}
+
 template <typename T>
 T factorial(int n) {
   T result = 1;

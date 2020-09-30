@@ -35,7 +35,6 @@ Color::Modifier red(Color::FG_RED);
 Color::Modifier green(Color::FG_GREEN);
 Color::Modifier yellow(Color::FG_YELLOW);
 Color::Modifier blue(Color::FG_BLUE);
-Color::Modifier orange(Color::FG_ORANGE);
 Color::Modifier def(Color::FG_DEFAULT);
 
 namespace jhelper {
@@ -66,6 +65,7 @@ int32_t main() {
   std::cout << std::fixed;
   double maxTime = 0.0;
   int test_cnt = (int) tests.size();
+  int test_passed = 0;
   //test_cnt = %ClassName%::stressTest;
   for(int i = 0; i < test_cnt; ++i) {
     //std::ostringstream generated_test;
@@ -73,7 +73,7 @@ int32_t main() {
     //jhelper::Test test{generated_test.str(), "", true, false};
     const jhelper::Test& test = tests[i];
     std::cout << "Test #" << ++testID << std::endl;
-    if (!test.active){
+    if (!test.active) {
       std::cout << yellow << "SKIPPED" << def << std::endl;
       continue;
     }
@@ -92,12 +92,13 @@ int32_t main() {
       std::clock_t finish = std::clock();
       double currentTime = double(finish - start) / CLOCKS_PER_SEC;
       maxTime = std::max(currentTime, maxTime);
-      std::cout <<blue << "Actual output: \n" << def << out.str() << std::endl;
+      std::cout << blue << "Actual output: \n" << def << out.str() << std::endl;
       if (test.has_output) {
         bool result = jhelper::check(test.output, out.str());
         allOK = allOK && result;
-        if(result){
+        if(result) {
           std::cout << green << "OK" << def << std::endl;
+          test_passed++;
         } else {
           std::cout << red << "Wrong Answer" << def << std::endl;
         }
@@ -106,6 +107,7 @@ int32_t main() {
     }
     std::cout << std::endl;
   }
+  std::cout << (test_passed == test_cnt ? green : red) << test_passed << " / " << test_cnt << " passed" << def << std::endl;
   if(allOK) {
     std::cout << green << "All OK" << def << std::endl;
   } else {
