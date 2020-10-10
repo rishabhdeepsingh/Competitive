@@ -56,6 +56,28 @@ public:
     return ans;
   }
   
+  long long countDivisors(long long n) {
+    if (n == 1) return 1;
+    long long ans = 1;
+    for (int i = 0;; i++) {
+      if (primes[i] * primes[i] * primes[i] > n) break;
+      int cnt = 1;
+      while (n % primes[i] == 0) {
+        n /= primes[i];
+        cnt++;
+      }
+      ans *= cnt;
+    }
+    
+    if (isPrime[n])
+      ans = ans * 2;
+    else if (isPrime[sqrt(n)] && (long long) sqrt(n) == sqrt(n))
+      ans = ans * 3;
+    else if (n != 1)
+      ans = ans * 4;
+    return ans;
+  }
+  
   vector<pll> divisorPair(long long x) {
     vector<pll> res;
     for (long long i = 1; i * i <= x; i++) {

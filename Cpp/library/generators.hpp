@@ -4,6 +4,12 @@
 namespace GEN {
 
 template <typename T>
+T rand(T low, T high) {
+  std::uniform_int_distribution<T> uni(low, high);
+  return uni(rng);
+}
+
+template <typename T>
 vector<vector<T>> subarrays(vector<T>& arr) {
   int n = arr.size();
   vector<vector<T>> res;
