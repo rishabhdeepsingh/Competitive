@@ -13,9 +13,6 @@ vector<int> find_mst(const undigraph<T>& g, T& ans) {
   vector<int> ans_list;
   ans = 0;
   for (int id : order) {
-    if (g.ignore != nullptr && g.ignore(id)) {
-      continue;
-    }
     auto& e = g.edges[id];
     if (d.get(e.from) != d.get(e.to)) {
       d.unite(e.from, e.to);

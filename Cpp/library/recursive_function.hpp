@@ -1,6 +1,6 @@
 #pragma once
 
-#include "general.hpp"
+#include "IO.hpp"
 
 template <typename T>
 class RecursiveFunction {

@@ -12,7 +12,7 @@ public:
   std::vector<edge> edges;
   std::vector<std::vector<int>> g;
   int n;
-  int max_cost;
+  int max_cost{};
   
   graph(int _n) : n(_n) {
     g.resize(n);

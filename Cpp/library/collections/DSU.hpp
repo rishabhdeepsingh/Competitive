@@ -1,5 +1,5 @@
 #pragma once
-#include "../general.hpp"
+#include "../IO.hpp"
 
 struct DSU {
   enum Heuristics {
@@ -16,9 +16,10 @@ struct DSU {
       n(_n), heuristics(_heuristics) {
     par.resize(n);
     rank.resize(n);
+    int type = heuristics == SIZE;
     for (int i = 0; i < n; ++i) {
       par[i] = i;
-      rank[i] = heuristics == SIZE;
+      rank[i] = type;
     }
   }
   

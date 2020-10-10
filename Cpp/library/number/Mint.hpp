@@ -9,7 +9,7 @@ T inverse(T a, T m) {
     m -= t * a; swap(a, m);
     u -= t * v; swap(u, v);
   }
-  assert(m == 1);
+//  assert(m == 1);
   return u;
 }
 

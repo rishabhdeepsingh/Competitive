@@ -41,18 +41,28 @@ vector<T> randomVector(int n, T low, T high) {
   vector<T> res(n);
   uniform_int_distribution<T> distribution(low, high);
   for (int i = 0; i < n; ++i) {
-    res[i] = distribution(rnd);
+    res[i] = distribution(rng);
+  }
+  return res;
+}
+template <typename T>
+vector<vector<T>> randomMatrix(int n, int m, vector<T> vals) {
+  vector<vector<T>> res(n, vector<T>(m, vals[0]));
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < m; ++j) {
+      res[i][j] = vals[rand(0, (int) vals.size() - 1)];
+    }
   }
   return res;
 }
 
-vector<string> randomMatrix(int n, int m, vector<char> chars) {
-  vector<string> res(n, string(m, chars[0]));
-  for (int i = 0; i < n; ++i) {
-    for (int j = 0; j < m; ++j) {
-      res[i][j] = chars[((i&1) + (j&1)) & 1];
-    }
-  }
+vector<vector<int>> allPermutations(int n, int start = 0) {
+  vector<int> p(n);
+  iota(p.begin(), p.end(), start);
+  vector<vector<int>> res;
+  do {
+    res.push_back(p);
+  } while (next_permutation(p.begin(), p.end()));
   return res;
 }
 

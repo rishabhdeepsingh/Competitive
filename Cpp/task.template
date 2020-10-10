@@ -4,9 +4,9 @@ class %ClassName% {
 public:
 
   void solveOne(istream& cin, ostream& cout) {
-  
+
   }
-  
+
   void solve(std::istream& cin, std::ostream& cout) {
     int t = 1;
     cin >> t;
