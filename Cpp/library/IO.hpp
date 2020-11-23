@@ -1,21 +1,16 @@
 // doot diddly donger cuckerino Hahahahahah
 
 #pragma once
-//#pragma GCC optimize("Ofast")
-//#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx")
-//#pragma GCC optimize("unroll-loops")
+#pragma GCC optimize("Ofast")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx")
+#pragma GCC optimize("unroll-loops")
 
 #include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-
-using namespace __gnu_pbds;
-using namespace __gnu_cxx;
 using namespace std;
 
 using ll = long long;
 using ld = long double;
-using pll = pair<ll, ll>;
+using pii = pair<int, int>;
 using vi = vector<int>;
 
 #define all(x)  (x).begin(), (x).end()

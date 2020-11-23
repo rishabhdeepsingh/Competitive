@@ -51,6 +51,34 @@ vector<T> randomVector(int n, T low, T high) {
   }
   return res;
 }
+
+template <typename T>
+vector<T> permutation(int n, int start = 0){
+  vector<T> res(n);
+  iota(res.begin(), res.end(), start);
+  return res;
+}
+
+template <typename T>
+vector<T> uniqueVector(int n, T low, T high) {
+  set<int> st;
+  uniform_int_distribution<T> distribution(low, high);
+  while ((int) st.size() != n) {
+    st.insert(distribution(rng));
+  }
+  return vector<T>(st.begin(), st.end());
+}
+
+template <typename T>
+set<T> randomSet(int n, T low, T high) {
+  set<int> st;
+  uniform_int_distribution<T> distribution(low, high);
+  while ((int) st.size() != n) {
+    st.insert(distribution(rng));
+  }
+  return st;
+}
+
 template <typename T>
 vector<vector<T>> randomMatrix(int n, int m, vector<T> vals) {
   vector<vector<T>> res(n, vector<T>(m, vals[0]));

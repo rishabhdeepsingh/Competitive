@@ -23,6 +23,10 @@ struct DSU {
     }
   }
   
+  bool same(int x, int y) {
+    return get(x) == get(y);
+  }
+  
   int get(int x) {
     return par[x] = (x == par[x]) ? x : get(par[x]);
   }
@@ -30,7 +34,7 @@ struct DSU {
   bool unite(int x, int y) {
     x = get(x);
     y = get(y);
-    if (x == y) return true;
+    if (x == y) return false;
     if (rank[x] < rank[y]) swap(x, y);
     par[y] = x;
     if (heuristics == SIZE) {
@@ -38,6 +42,6 @@ struct DSU {
     } else {
       if (rank[x] == rank[y]) rank[x]++; // Rank Heuristics
     }
-    return false;
+    return true;
   }
 };

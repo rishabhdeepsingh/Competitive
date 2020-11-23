@@ -54,7 +54,7 @@ bool IsPrime(T n, const vector<T>& bases) {
   return true;
 }
 
-bool IsPrime(int64_t n) {
+bool IsPrime(long long n) {
   return IsPrime(n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});
 }
 
@@ -62,9 +62,9 @@ bool IsPrime(int32_t n) {
   return IsPrime(n, {2, 7, 61});
 }
 
-// but if you really need uint64_t version...
+// but if you really need unsigned long long version...
 /*
-bool IsPrime(uint64_t n) {
+bool IsPrime(unsigned long long n) {
   if (n < 2) {
     return false;
   }
@@ -81,9 +81,9 @@ bool IsPrime(uint64_t n) {
     return true;
   }
   uint32_t s = __builtin_ctzll(n - 1);
-  uint64_t d = (n - 1) >> s;
-  function<bool(uint64_t)> witness = [&n, &s, &d](uint64_t a) {
-    uint64_t cur = 1, p = d;
+  unsigned long long d = (n - 1) >> s;
+  function<bool(unsigned long long)> witness = [&n, &s, &d](unsigned long long a) {
+    unsigned long long cur = 1, p = d;
     while (p > 0) {
       if (p & 1) {
         cur = (__uint128_t) cur * a % n;
@@ -102,8 +102,8 @@ bool IsPrime(uint64_t n) {
     }
     return true;
   };
-  vector<uint64_t> bases_64bit = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
-  for (uint64_t a : bases_64bit) {
+  vector<unsigned long long> bases_64bit = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
+  for (unsigned long long a : bases_64bit) {
     if (a % n == 0) {
       return true;
     }
@@ -239,7 +239,7 @@ vector<pair<T, int>> Factorize(T x) {
     }
     return ret;
   }
-  if (x <= static_cast<int64_t>(precalculated) * precalculated) {
+  if (x <= static_cast<long long>(precalculated) * precalculated) {
     vector<pair<T, int>> ret;
     if (!IsPrime(x)) {
       for (T i : primes) {

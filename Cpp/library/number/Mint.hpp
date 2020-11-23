@@ -84,8 +84,8 @@ public:
   template <typename U>
   friend bool operator<(const Modular<U>& lhs, const Modular<U>& rhs);
   
-  template <typename U>
-  friend std::istream& operator>>(std::istream& stream, Modular<U>& number);
+  template <typename V, typename U>
+  friend V& operator>>(V& stream, Modular<U>& number);
 
 private:
   Type value;
@@ -135,14 +135,16 @@ string to_string(const Modular<T>& number) {
   return to_string(number());
 }
 
-template <typename T>
-std::ostream& operator<<(std::ostream& stream, const Modular<T>& number) {
+// U == std::ostream? but done this way because of fastoutput
+template <typename U, typename T>
+U& operator<<(U& stream, const Modular<T>& number) {
   return stream << number();
 }
 
-template <typename T>
-std::istream& operator>>(std::istream& stream, Modular<T>& number) {
-  typename common_type<typename Modular<T>::Type, int64_t>::type x;
+// U == std::istream? but done this way because of fastinput
+template <typename U, typename T>
+U& operator>>(U& stream, Modular<T>& number) {
+  typename common_type<typename Modular<T>::Type, long long>::type x;
   stream >> x;
   number.value = Modular<T>::normalize(x);
   return stream;
@@ -157,5 +159,5 @@ ModType& md = VarMod::value;
 using Mint = Modular<VarMod>;
 */
 
-constexpr int md = 1e9 + 7;
+constexpr int md = (int) 1e9 + 7;
 using Mint = Modular<std::integral_constant<decay<decltype(md)>::type, md>>;

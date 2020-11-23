@@ -4,12 +4,13 @@
 struct Sieve {
   int maxn;
 public:
+  using MapType = unordered_map<long long, long long>;
   std::vector<long long> spf;
   std::vector<long long> primes;
   std::vector<long long> mobius;
   std::vector<bool> isPrime;
   
-  Sieve(int _n = 2e6 + 7) : maxn(_n + 1) {
+  explicit Sieve(int _n = 2e6 + 7) : maxn(_n + 1) {
     spf.resize(maxn, 1);
     isPrime.resize(maxn, true);
     primes.clear();
@@ -78,8 +79,8 @@ public:
     return ans;
   }
   
-  vector<pll> divisorPair(long long x) {
-    vector<pll> res;
+  vector<pair<long long, long long>> divisorPair(long long x) {
+    vector<pair<long long, long long>> res;
     for (long long i = 1; i * i <= x; i++) {
       if (x % i == 0) {
         if (x / i == i) {
@@ -92,9 +93,25 @@ public:
     return res;
   }
   
-  map<long long, long long> primeFactors(long long val) {
+  set<long long> divisorSet(long long x) {
+    set<long long> res;
+    for (long long i = 1; i * i <= x; i++) {
+      if (x % i == 0) {
+        res.insert(i);
+        if (x / i != i) {
+          res.insert(x / i);
+        }
+      }
+    }
+    return res;
+  }
+  
+  MapType primeFactors(long long val) {
     if (val >= maxn) return primeFactorBrute(val);
-    map<long long, long long> fac;
+    static unordered_map<int, MapType> memo;
+    if(memo.count(val)) return memo[val];
+    long long temp = val;
+    MapType fac;
     while (val > 1) {
       int pf = spf[val];
       if (pf == 1) break;
@@ -105,11 +122,11 @@ public:
       }
       fac[pf] = cnt;
     }
-    return fac;
+    return memo[temp] = fac;
   }
   
-  map<long long, long long> primeFactorBrute(long long val) {
-    map<long long, long long> mp;
+  MapType primeFactorBrute(long long val) {
+    MapType mp;
     while (val % 2 == 0) {
       mp[2]++;
       val /= 2;
