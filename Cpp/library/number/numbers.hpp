@@ -30,9 +30,9 @@ T power(const T& a, long long b) {
     return power(a, b - 1) * a;
   }
 }
-
-long long power(long long a, long long b, long long mod) {
-  long long res = 1;
+template <typename T, typename U>
+T power(T a, T b, U mod) {
+  T res = 1;
   while (b) {
     if (b & 1) {
       res = (res * a) % mod;

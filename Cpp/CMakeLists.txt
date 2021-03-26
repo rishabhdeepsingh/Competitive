@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(Cpp)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_COMPILER g++-10)
 
 #ls -R library | awk '
 #/:$/&&f{s=$0;f=0}
@@ -55,6 +56,7 @@ file(GLOB HEADERS library/string/Z.hpp
         library/trees/segtreerangesum.hpp
         library/generators.hpp
         library/FUN.hpp
+        library/Utils.hpp
         )
 add_executable(output output/main.cpp ${GLOB})
 add_executable(testrunner testrunner/main.cpp)
@@ -71,5 +73,8 @@ add_definitions(-DLOCAL)
 add_definitions(-Wno-unused-result)
 add_definitions(-Wshadow)
 add_definitions(-Wall)
+add_definitions(-Wlogical-op)
 add_definitions(-fbounds-check)
+add_definitions(-D_GLIBCXX_DEBUG)
+add_definitions(-D_GLIBCXX_DEBUG_PEDANTIC)
 

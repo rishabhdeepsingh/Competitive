@@ -20,9 +20,7 @@ public:
   
   constexpr Modular() : value() {}
   template <typename U>
-  Modular(const U& x) {
-    value = normalize(x);
-  }
+  Modular(const U& x) : value(normalize(x)) {}
   
   template <typename U>
   static Type normalize(const U& x) {
