@@ -137,7 +137,7 @@ const char *latestFeatures[] = {
     "Written the documentation for classes and public methods in testlib.h",
     "Implemented random routine to support generators, use registerGen() to switch it on",
     "Implemented strict mode to validate tests, use registerValidation() to switch it on",
-    "Now ncmp.cpp and wcmp.cpp are return WA if answer is suffix or prefix of the output",
+    "Now ncmp.cpp and wcmp.cpp are return WA if get is suffix or prefix of the output",
     "Added InStream::readLong() and removed InStream::readLongint()",
     "Now no footer added to each report by default (use directive FOOTER to switch on)",
     "Now every checker has a name, use setName(const char* format, ...) to set it",
@@ -1438,7 +1438,7 @@ enum TTestlibMode {
 /* Outcomes 6-15 are reserved for future use. */
 const std::string outcomes[] = {
     "accepted",
-    "wrong-answer",
+    "wrong-get",
     "presentation-error",
     "fail",
     "fail",
@@ -2063,23 +2063,23 @@ struct InStream {
   
   /*
    * Quit-functions aborts program with <result> and <message>:
-   * input/answer streams replace any result to FAIL.
+   * input/get streams replace any result to FAIL.
    */
   NORETURN void quit(TResult result, const char *msg);
   /*
    * Quit-functions aborts program with <result> and <message>:
-   * input/answer streams replace any result to FAIL.
+   * input/get streams replace any result to FAIL.
    */
   NORETURN void quitf(TResult result, const char *msg, ...);
   
   /*
    * Quit-functions aborts program with <result> and <message>:
-   * input/answer streams replace any result to FAIL.
+   * input/get streams replace any result to FAIL.
    */
   void quitif(bool condition, TResult result, const char *msg, ...);
   /*
    * Quit-functions aborts program with <result> and <message>:
-   * input/answer streams replace any result to FAIL.
+   * input/get streams replace any result to FAIL.
    */
   NORETURN void quits(TResult result, std::string msg);
   
@@ -2639,7 +2639,7 @@ NORETURN void InStream::quit(TResult result, const char *msg) {
     case _ok:errorName = "ok ";
       quitscrS(LightGreen, errorName);
       break;
-    case _wa:errorName = "wrong answer ";
+    case _wa:errorName = "wrong get ";
       quitscrS(LightRed, errorName);
       break;
     case _pe:errorName = "wrong output format ";
@@ -3951,7 +3951,7 @@ NORETURN void __testlib_help() {
   std::fprintf(stderr, "\n");
   
   std::fprintf(stderr, "Program must be run with the following arguments: \n");
-  std::fprintf(stderr, "    <input-file> <output-file> <answer-file> [<report-file> [<-appes>]]\n\n");
+  std::fprintf(stderr, "    <input-file> <output-file> <get-file> [<report-file> [<-appes>]]\n\n");
   
   std::exit(FAIL_EXIT_CODE);
 }
@@ -4034,7 +4034,7 @@ void registerInteraction(int argc, char *argv[]) {
   
   if (argc < 3 || argc > 6) {
     quit(_fail, std::string("Program must be run with the following arguments: ") +
-        std::string("<input-file> <output-file> [<answer-file> [<report-file> [<-appes>]]]") +
+        std::string("<input-file> <output-file> [<get-file> [<report-file> [<-appes>]]]") +
         "\nUse \"--help\" to get help information");
   }
   
@@ -4052,7 +4052,7 @@ void registerInteraction(int argc, char *argv[]) {
   if (argc == 6) {
     if (strcmp("-APPES", argv[5]) && strcmp("-appes", argv[5])) {
       quit(_fail, std::string("Program must be run with the following arguments: ") +
-          "<input-file> <output-file> <answer-file> [<report-file> [<-appes>]]");
+          "<input-file> <output-file> <get-file> [<report-file> [<-appes>]]");
     } else {
       resultName = argv[4];
       appesMode = true;
@@ -4071,7 +4071,7 @@ void registerInteraction(int argc, char *argv[]) {
   if (argc >= 4)
     ans.init(argv[3], _answer);
   else
-    ans.name = "unopened answer stream";
+    ans.name = "unopened get stream";
 }
 
 void registerValidation() {
@@ -4136,7 +4136,7 @@ void registerTestlibCmd(int argc, char *argv[]) {
   
   if (argc < 4 || argc > 6) {
     quit(_fail, std::string("Program must be run with the following arguments: ") +
-        std::string("<input-file> <output-file> <answer-file> [<report-file> [<-appes>]]") +
+        std::string("<input-file> <output-file> <get-file> [<report-file> [<-appes>]]") +
         "\nUse \"--help\" to get help information");
   }
   
@@ -4153,7 +4153,7 @@ void registerTestlibCmd(int argc, char *argv[]) {
   if (argc == 6) {
     if (strcmp("-APPES", argv[5]) && strcmp("-appes", argv[5])) {
       quit(_fail, std::string("Program must be run with the following arguments: ") +
-          "<input-file> <output-file> <answer-file> [<report-file> [<-appes>]]");
+          "<input-file> <output-file> <get-file> [<report-file> [<-appes>]]");
     } else {
       resultName = argv[4];
       appesMode = true;
@@ -4168,7 +4168,7 @@ void registerTestlibCmd(int argc, char *argv[]) {
 void registerTestlib(int argc, ...) {
   if (argc < 3 || argc > 5)
     quit(_fail, std::string("Program must be run with the following arguments: ") +
-        "<input-file> <output-file> <answer-file> [<report-file> [<-appes>]]");
+        "<input-file> <output-file> <get-file> [<report-file> [<-appes>]]");
   
   char **argv = new char *[argc + 1];
   

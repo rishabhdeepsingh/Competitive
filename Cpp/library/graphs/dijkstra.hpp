@@ -16,9 +16,6 @@ vector<T> dijkstra(const graph<T>& g, int start) {
       continue;
     }
     for (int id : g.g[i]) {
-      if (g.ignore != nullptr && g.ignore(id)) {
-        continue;
-      }
       auto& e = g.edges[id];
       int to = e.from ^e.to ^i;
       if (dist[i] + e.cost < dist[to]) {

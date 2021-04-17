@@ -57,6 +57,7 @@ file(GLOB HEADERS library/string/Z.hpp
         library/generators.hpp
         library/FUN.hpp
         library/Utils.hpp
+        library/y_combinator.hpp
         )
 add_executable(output output/main.cpp ${GLOB})
 add_executable(testrunner testrunner/main.cpp)

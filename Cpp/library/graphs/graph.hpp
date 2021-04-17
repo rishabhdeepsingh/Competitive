@@ -8,7 +8,6 @@ public:
     int to;
     T cost;
   };
-  
   std::vector<edge> edges;
   std::vector<std::vector<int>> g;
   int n;

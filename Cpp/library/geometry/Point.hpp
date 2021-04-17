@@ -20,11 +20,19 @@ struct Point {
   
   Point<T>& operator+=(const Point<T>& o);
   Point<T>& operator-=(const Point<T>& o);
-  Point<T>& operator*=(const T o);
+  Point<T>& operator*=(T o);
   Point<T>& operator*=(const Point<T>& o);
   Point<T>& operator/=(const Point<T>& o);
   Point<T>& operator%=(const Point<T>& o);
   Point<T>& operator%=(T o);
+  
+  template <typename U>
+  Point<T>& operator/=(U o) {
+    this->x /= o;
+    this->y /= o;
+    this->z /= o;
+    return *this;
+  }
   
   bool operator==(const Point<T>& o) const;
   bool operator!=(const Point<T>& o) const;
@@ -42,9 +50,9 @@ struct Point {
   }
   
   void abs() {
-    this->x = std::abs(thi->x);
-    this->y = std::abs(thi->y);
-    this->z = std::abs(thi->z);
+    this->x = std::abs(this->x);
+    this->y = std::abs(this->y);
+    this->z = std::abs(this->z);
   }
   
   static const Point<T> ZERO;
@@ -57,6 +65,8 @@ struct Point {
   void swap32() { swap23(); }
   void swap13() { swap(x, z); }
   void swap31() { swap13(); }
+  
+  Point<T> rotate(Point<T> about, float angle);
 };
 
 template <typename T> Point<T> const Point<T>::ZERO{0, 0, 0};
@@ -120,8 +130,8 @@ Point<T>& Point<T>::operator/=(const Point<T>& o) {
   return *this;
 }
 
-template <typename T>
-Point<T> operator/(const Point<T>& lhs, const Point<T>& rhs) { return Point<T>(lhs) /= rhs; }
+template <typename T, typename U>
+Point<T> operator/(const Point<T>& lhs, U rhs) { return Point<T>(lhs) /= rhs; }
 
 template <typename T>
 Point<T>& Point<T>::operator%=(const T o) {
@@ -178,4 +188,23 @@ PType normalize(PType angle) {
 
 PType normalize(const point& p, const point& q, const point& r) {
   return normalize(atan2(PType(p.y - p.y), PType(p.x - p.x)) - atan2(PType(r.y - p.y), PType(r.x - p.x)));
+}
+
+template <typename T>
+Point<T> Point<T>::rotate(const Point<T> about, float angle) {
+  float s = sin(angle);
+  float c = cos(angle);
+  
+  // translate point to origin:
+  this->x -= about.x;
+  this->y -= about.y;
+  
+  // rotate point
+  T xnew = this->x * c - this->y * s;
+  T ynew = this->x * s + this->y * c;
+  
+  // translate point back:
+  this->x = xnew + about.x;
+  this->y = ynew + about.y;
+  return *this;
 }
