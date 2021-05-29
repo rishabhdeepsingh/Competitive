@@ -1,13 +1,31 @@
 #pragma once
 
 template <typename T>
+T factorial(int n) {
+  T result = 1;
+  for (int i = 2; i <= n; i++) {
+    result *= i;
+  }
+  return result;
+}
+
+template <typename T, typename U>
+T Ncrmod(T n, T r, U mod) {
+  if (r < 0 || r > n || n < 0) return T{};
+  if (n < mod) {
+    return (factorial<T>(n) / factorial<T>(r)) / factorial<T>(n - r);
+  }
+  return (Ncrmod(n % mod, r % mod, mod) * Ncrmod(n / mod, r / mod, mod)) % mod;
+}
+
+template <typename T>
 struct Ncr {
   int MAX;
-  vector<T> fact;
-  vector<T> ifact;
-  vector<T> inverse;
+  vector<T> fact{};
+  vector<T> ifact{};
+  vector<T> inverse{};
   
-  Ncr(int _n) : MAX{_n} {
+  explicit Ncr(int _n) : MAX{_n} {
     fact.resize(MAX + 1, 1);
     ifact.resize(MAX + 1, 1);
     inverse.resize(MAX + 1, 1);
@@ -25,7 +43,7 @@ struct Ncr {
   }
   
   T ncr(int n, int k) {
-    if(n < 0 || k < 0 || k > n) return T{};
+    if (n < 0 || k < 0 || k > n) return T{};
     T dem = ifact[k] * ifact[n - k];
     return fact[n] * dem;
   }

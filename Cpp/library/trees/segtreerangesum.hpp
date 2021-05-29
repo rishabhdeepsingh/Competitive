@@ -4,7 +4,7 @@
 struct node {
   node() = default;
   
-  node(long long v) {
+  explicit node(long long v) {
     // TODO: Update this
   }
   bool operator<(node& rhs) {

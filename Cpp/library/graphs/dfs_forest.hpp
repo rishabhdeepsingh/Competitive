@@ -22,9 +22,8 @@ public:
   vector<T> dist;
   int timer = 0;
   
-  dfs_forest(int _n) : forest<T>(_n) {
+  dfs_forest(int _n) : forest<T>(_n), timer(0) {
     init();
-    timer = 0;
   }
   
   void init() {
@@ -59,7 +58,6 @@ public:
 //    out.clear();
   }
   
-  
   vector<T> bfs(int s) {
     T INF = std::numeric_limits<T>::max();
     vector<T> dis(n, INF);
@@ -72,10 +70,14 @@ public:
       int u = que.front();
       que.pop();
       
-      for (auto v : g[u]) {
-        if (dis[v] == INF) {
-          dis[v] = dis[u] + 1;
-          que.push(v);
+      for (int id : g[u]) {
+        if (id == pe[u]) continue;
+        auto& e = edges[id];
+        int to = e.from ^e.to ^u;
+        
+        if (dis[to] == INF) {
+          dis[to] = dis[u] + 1;
+          que.push(to);
         }
       }
     }
@@ -125,7 +127,7 @@ private:
 //    ft[timer++] = v;
     for (int id : g[v]) {
       if (id == pe[v]) continue;
-      auto& e = edges[id];
+      const auto& e = edges[id];
       int to = e.from ^e.to ^v;
       depth[to] = depth[v] + 1;
       dist[to] = dist[v] + e.cost;

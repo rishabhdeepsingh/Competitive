@@ -52,8 +52,17 @@ vector<T> randomVector(int n, T low, T high) {
   return res;
 }
 
+string randomString(int n, char low, char high) {
+  string res(n, low);
+  uniform_int_distribution<char> distribution(low, high);
+  for (int i = 0; i < n; ++i) {
+    res[i] = distribution(rng);
+  }
+  return res;
+}
+
 template <typename T>
-vector<T> permutation(int n, int start = 0){
+vector<T> permutation(int n, int start = 0) {
   vector<T> res(n);
   iota(res.begin(), res.end(), start);
   return res;
@@ -97,6 +106,25 @@ vector<vector<int>> allPermutations(int n, int start = 0) {
   do {
     res.push_back(p);
   } while (next_permutation(p.begin(), p.end()));
+  return res;
+}
+
+void generatePallindromeUtils(string res, int len, int n, const vector<char>& chars, vector<string>& final) {
+  if (res.length() == (n + 1) / 2) {
+    for (int i = 0; i < (n / 2); ++i) {
+      res.push_back(res[n / 2 - i - 1]);
+    }
+    final.push_back(res);
+    return;
+  }
+  for (char c: chars) {
+    generatePallindromeUtils(res + c, len + 1, n, chars, final);
+  }
+}
+
+vector<string> genPallindromes(int n, vector<char> chars) {
+  vector<string> res;
+  generatePallindromeUtils("", 0, n, chars, res);
   return res;
 }
 

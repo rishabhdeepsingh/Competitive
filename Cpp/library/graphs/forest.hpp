@@ -8,7 +8,7 @@ public:
   using graph<T>::g;
   using graph<T>::n;
 
-  forest(int _n) : graph<T>(_n) {}
+  explicit forest(int _n) : graph<T>(_n) {}
 
   int add(int from, int to, T cost = 1) {
     assert(0 <= from && from < n && 0 <= to && to < n);

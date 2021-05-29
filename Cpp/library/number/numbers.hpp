@@ -44,27 +44,6 @@ T power(T a, T b, U mod) {
 }
 
 template <typename T>
-T factorial(int n) {
-  T result = 1;
-  for (int i = 2; i <= n; i++) {
-    result *= i;
-  }
-  return result;
-}
-
-template <typename T>
-std::vector<T> factorials(int length) {
-  std::vector<T> result(length);
-  if (length > 0) {
-    result[0] = 1;
-  }
-  for (int i = 1; i < length; i++) {
-    result[i] = result[i - 1] * i;
-  }
-  return result;
-}
-
-template <typename T>
 std::vector<T> powers(T base, int length) {
   std::vector<T> result(length);
   if (length > 0) {

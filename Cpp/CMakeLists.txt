@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(Cpp)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER g++-10)
+set(CMAKE_CXX_COMPILER g++-11)
 
 #ls -R library | awk '
 #/:$/&&f{s=$0;f=0}
@@ -58,6 +58,7 @@ file(GLOB HEADERS library/string/Z.hpp
         library/FUN.hpp
         library/Utils.hpp
         library/y_combinator.hpp
+        library/sparse_table.hpp
         )
 add_executable(output output/main.cpp ${GLOB})
 add_executable(testrunner testrunner/main.cpp)
@@ -66,7 +67,7 @@ add_executable(testrunner testrunner/main.cpp)
 file(GLOB TASKS "tasks/*.cpp")
 file(GLOB CONTESTS "contests/*.cpp")
 
-file(GLOB HEADERS "library/*.hpp")
+#file(GLOB HEADERS "library/*.hpp")
 
 add_executable(test ${TASKS} ${HEADERS})
 
@@ -74,6 +75,7 @@ add_definitions(-DLOCAL)
 add_definitions(-Wno-unused-result)
 add_definitions(-Wshadow)
 add_definitions(-Wall)
+add_definitions(-Wunused-parameter)
 add_definitions(-Wlogical-op)
 add_definitions(-fbounds-check)
 add_definitions(-D_GLIBCXX_DEBUG)

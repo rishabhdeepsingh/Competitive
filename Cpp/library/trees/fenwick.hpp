@@ -14,14 +14,14 @@ template <typename T>
 class fenwick {
 public:
   vector<T> bit;
-  int n;
-  int LOGN;
+  int n{};
+  int LOGN{};
   
-  fenwick(int _n) : n(_n), LOGN(log2(_n)) {
-    bit.resize(n, T{});
+  explicit fenwick(int _n, T def = T{}) : n(_n), LOGN(log2(_n)) {
+    bit.resize(n, def);
   }
   
-  fenwick(const vector<T>& arr) : fenwick(arr.size()) {
+  explicit fenwick(const vector<T>& arr) : fenwick(arr.size()) {
     for (size_t i = 0; i < arr.size(); ++i) {
       update(i, arr[i]);
     }
@@ -52,8 +52,11 @@ public:
     return query(r) - query(l - 1);
   }
   
-  void set(int p, T x) {
-    update(p, x - query(p));
+  bool set(int p, T val) {
+    T curr = query(p);
+    if (val == curr) return false;
+    update(p, val - curr);
+    return true;
   }
   
   int lower_bound(T val) {

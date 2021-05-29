@@ -8,22 +8,22 @@ public:
   std::vector<long long> spf;
   std::vector<long long> primes;
   std::vector<long long> mobius;
-  std::vector<bool> isPrime;
+  std::vector<bool> is_prime;
   
   explicit Sieve(int _n = 2e6 + 7) : maxn(_n + 1) {
     spf.resize(maxn, 1);
-    isPrime.resize(maxn, true);
+    is_prime.resize(maxn, true);
     primes.clear();
-    
-    isPrime[0] = isPrime[1] = false;
+  
+    is_prime[0] = is_prime[1] = false;
     
     for (long long i = 2; i < maxn; ++i) {
-      if (isPrime[i]) {
+      if (is_prime[i]) {
         primes.push_back(i);
         spf[i] = i;
       }
       for (long long j = 0; j < (int) primes.size() && (i * primes[j]) < maxn && primes[j] <= spf[i]; ++j) {
-        isPrime[i * primes[j]] = false;
+        is_prime[i * primes[j]] = false;
         spf[i * primes[j]] = primes[j];
       }
     }
@@ -43,9 +43,19 @@ public:
   
   long long nextPrime(long long x, bool strict = false) {
     auto it = upper_bound(primes.begin(), primes.end(), x);
-    if (!strict and isPrime[x]) return x;
+    if (!strict and is_prime[x]) return x;
     next(it);
     return *it;
+  }
+  
+  bool isPrime(long long num) {
+    if (num < maxn) {
+      return is_prime[num];
+    }
+    for (long long div = 2; div * div <= num; ++div) {
+      if (num % div == 0) return false;
+    }
+    return true;
   }
   
   long long numDivisors(long long val) {
@@ -70,9 +80,9 @@ public:
       ans *= cnt;
     }
     
-    if (isPrime[n])
+    if (is_prime[n])
       ans = ans * 2;
-    else if (isPrime[sqrt(n)] && (long long) sqrt(n) == sqrt(n))
+    else if (is_prime[sqrt(n)] && (long long) sqrt(n) == sqrt(n))
       ans = ans * 3;
     else if (n != 1)
       ans = ans * 4;
@@ -109,7 +119,7 @@ public:
   MapType primeFactors(long long val) {
     if (val >= maxn) return primeFactorBrute(val);
     static unordered_map<int, MapType> memo;
-    if(memo.count(val)) return memo[val];
+    if (memo.count(val)) return memo[val];
     long long temp = val;
     MapType fac;
     while (val > 1) {

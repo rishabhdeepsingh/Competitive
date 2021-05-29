@@ -1,5 +1,7 @@
 #pragma once
 #include "collections/DSU.hpp"
+#include "geometry/Point.hpp"
+
 /**
  * Point in DIM-dimensional space
  */

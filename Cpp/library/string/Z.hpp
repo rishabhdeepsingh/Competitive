@@ -2,6 +2,8 @@
 
 /*
  * Linear time pattern matching function
+ * z[i] is the length of the longest common prefix between s and the suffix of s starting at i.
+ * https://cp-algorithms.com/string/z-function.html
  */
 std::vector<int> ZTransform(std::string s) {
   int n = (int) s.length();

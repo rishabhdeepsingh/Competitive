@@ -14,7 +14,7 @@ public:
   using dfs_forest<T>::dist;
   using dfs_forest<T>::sz;
   
-  int h;
+  int h{};
   vector<vector<int>> pr;
   
   lca_forest(int _n) : dfs_forest<T>(_n) {}
@@ -38,7 +38,7 @@ public:
     }
   }
   
-  inline bool anc(int x, int y) {
+  inline bool anc(int x, int y) { // x is ancestor of y
     return (pos[x] <= pos[y] && end[y] <= end[x]);
   }
   
@@ -48,7 +48,7 @@ public:
     for (int j = h - 1; j >= 0; j--) {
       if (up & (1 << j)) {
         x = pr[x][j];
-        if (x == -1) {
+        if (x == -1) { // we have reached the root
           break;
         }
       }
@@ -58,12 +58,8 @@ public:
   
   inline int lca(int x, int y) {
     assert(!pr.empty());
-    if (anc(x, y)) {
-      return x;
-    }
-    if (anc(y, x)) {
-      return y;
-    }
+    if (anc(x, y)) return x;
+    if (anc(y, x)) return y;
     for (int j = h - 1; j >= 0; j--) {
       if (pr[x][j] != -1 && !anc(pr[x][j], y)) {
         x = pr[x][j];
@@ -72,8 +68,8 @@ public:
     return pr[x][0];
   }
   
-  int distance(int u, int v) {
-    int x = lca(u, v);
+  T distance(int u, int v) {
+    auto x = lca(u, v);
     return dist[u] + dist[v] - 2 * dist[x];
   }
 };
