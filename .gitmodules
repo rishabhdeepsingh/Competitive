@@ -1,0 +1,3 @@
+[submodule "Cpp/library/testlib"]
+	path = Cpp/library/testlib
+	url = git@github.com:MikeMirzayanov/testlib.git
