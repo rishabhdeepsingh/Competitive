@@ -1,0 +1,140 @@
+PROBLEM STATEMENT
+
+You are standing on the cell (0, 0) of an infinite square grid.
+
+
+Elsewhere in the grid is a rectangular obstacle.
+The obstacle covers all cells (x, y) such that x1 <= x <= x2 and y1 <= y <= y2.
+
+
+The value y1 is positive, the value x1 is non-positive, and the value x2 is non-negative.
+This means that if you went in the positive y direction, you would eventually hit the obstacle.
+
+
+From your starting cell (0, 0) you are allowed to take between 0 and s steps, inclusive.
+In each step you can move between two cells that share a side.
+Obviously, you cannot enter cells covered by the obstacle.
+Return the number of cells you can reach.
+
+
+DEFINITION
+Class:RectangularObstacle
+Method:countReachable
+Parameters:int, int, int, int, int
+Returns:long long
+Method signature:long long countReachable(int x1, int x2, int y1, int y2, int s)
+
+
+CONSTRAINTS
+-The x-coordinates will satisfy -10^6 <= x1 <= 0 <= x2 <= 10^6.
+-The y-coordinates will satisfy 1 <= y1 <= y2 <= 10^6.
+-s will be between 0 and 10^9, inclusive.
+
+
+EXAMPLES
+
+0)
+-5
+5
+3
+3
+2
+
+Returns: 13
+
+
+The situation is shown below: X denotes the obstacle, S your starting position, * other cells you can visit, and . cells you cannot visit because they are too far.
+
+
+XXXXXXXXXXX
+.....*.....
+....***....
+...**S**...
+....***....
+.....*.....
+...........
+
+
+1)
+-5
+5
+3
+3
+3
+
+Returns: 24
+
+
+The same situation as in Example 0 but we can do one more step. Note that walking into the obstacle is forbidden.
+
+
+XXXXXXXXXXX
+....***....
+...*****...
+..***S***..
+...*****...
+....***....
+.....*.....
+...........
+
+
+2)
+-4
+1
+1
+2
+6
+
+Returns: 61
+
+
+........*.....
+.......***....
+..XXXXXX***...
+.*XXXXXX****..
+******S******.
+.***********..
+..*********...
+...*******....
+....*****.....
+.....***......
+......*.......
+..............
+
+A fairly general case in which we can go partially around the obstacle.
+
+
+3)
+0
+0
+1
+1
+4
+
+Returns: 38
+
+
+...........
+....*.*....
+...*****...
+..***X***..
+.****S****.
+..*******..
+...*****...
+....***....
+.....*.....
+...........
+
+A nice, vaguely heart-shaped area.
+
+
+4)
+-100
+100
+42
+47
+0
+
+Returns: 1
+
+If you cannot move, the only cell you can visit is the starting cell.
