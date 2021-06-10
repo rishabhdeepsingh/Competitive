@@ -1,7 +1,7 @@
 #include "../library/IO.hpp"
 
 class %ClassName% {
-public:
+ public:
 
   void solve() {
 

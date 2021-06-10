@@ -102,7 +102,7 @@ int main() {
                 std::cout << blue << "Result: " << red << "Wrong answer" << def << std::endl;
             }
         } else {
-            cout << red << " NO OUTPUT" << std::endl;
+            std::cout << red << " NO OUTPUT" << std::endl;
         }
         std::cout << blue << "Time: " << int(currentTime) << "." << (int(currentTime * 10) % 10)
                   << (int(currentTime * 100) % 10) << (int(currentTime * 1000) % 10) << "s" << def << std::endl;

@@ -59,6 +59,8 @@ file(GLOB HEADERS library/string/Z.hpp
         library/Utils.hpp
         library/y_combinator.hpp
         library/sparse_table.hpp
+        library/tensor.hpp
+        library/testlib/testlib.h
         )
 add_executable(output output/main.cpp ${GLOB})
 add_executable(testrunner testrunner/main.cpp)

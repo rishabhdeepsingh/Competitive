@@ -54,8 +54,7 @@ public:
     if (l == r) {
       return;
     }
-    int mid, left, right;
-    tie(mid, left, right) = getchild(x, l, r);
+    auto [mid, left, right] = getchild(x, l, r);
     build(left, l, mid);
     build(right, mid + 1, r);
     pull(x, right);
@@ -67,8 +66,7 @@ public:
       tree[x].apply(lx, rx, v[lx]);
       return;
     }
-    int mid, left, right;
-    tie(mid, left, right) = getchild(x, lx, rx);
+    auto [mid, left, right] = getchild(x, lx, rx);
     build(left, lx, mid, v);
     build(right, mid + 1, rx, v);
     pull(x, right);
@@ -92,8 +90,7 @@ public:
     if (L <= lx && rx <= R) {
       return tree[x];
     }
-    int mid, left, right;
-    tie(mid, left, right) = getchild(x, lx, rx);
+    auto [mid, left, right] = getchild(x, lx, rx);
     push(x, lx, rx);
     node res{};
     if (R <= mid) {
@@ -125,8 +122,7 @@ public:
       tree[x].apply(lx, rx, v...);
       return;
     }
-    int mid, left, right;
-    tie(mid, left, right) = getchild(x, lx, rx);
+    auto [mid, left, right] = getchild(x, lx, rx);
     push(x, lx, rx);
     if (L <= mid) {
       modify(left, lx, mid, L, R, v...);
@@ -148,8 +144,7 @@ public:
       return lx;
     }
     push(x, lx, rx);
-    int mid, left, right;
-    tie(mid, left, right) = getchild(x, lx, rx);
+    auto [mid, left, right] = getchild(x, lx, rx);
     int res;
     if (f(tree[x + 1])) {
       res = find_first_knowingly(left, lx, mid, f);
@@ -168,8 +163,7 @@ public:
       return find_first_knowingly(x, lx, rx, f);
     }
     push(x, lx, rx);
-    int mid, left, right;
-    tie(mid, left, right) = getchild(x, lx, rx);
+    auto [mid, left, right] = getchild(x, lx, rx);
     int res = -1;
     if (L <= mid) {
       res = find_first(left, lx, mid, L, R, f);
@@ -186,8 +180,7 @@ public:
       return lx;
     }
     push(x, lx, rx);
-    int mid, left, right;
-    tie(mid, left, right) = getchild(x, lx, rx);
+    auto [mid, left, right] = getchild(x, lx, rx);
     int res;
     if (f(tree[right])) {
       res = find_last_knowingly(right, mid + 1, rx, f);
@@ -207,8 +200,7 @@ public:
     }
     push(x, lx, rx);
     int res = -1;
-    int mid, left, right;
-    tie(mid, left, right) = getchild(x, lx, rx);
+    auto [mid, left, right] = getchild(x, lx, rx);
     if (R > mid) {
       res = find_last(right, mid + 1, rx, L, R, f);
     }
