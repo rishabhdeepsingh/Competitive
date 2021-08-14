@@ -8,7 +8,7 @@ Cpp/output/gen
 Cpp/output/*.txt
 Cpp/output/*.zip
 Cpp/output/*.out
-*/*.dSYM*
+**/*.dSYM*
 Cpp/tasks/*
 Cpp/output/main 
 Cpp/output/main.cpp
