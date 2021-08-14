@@ -1,19 +1,45 @@
+// doot diddly donger cuckerino Hahahahahah
+
+#pragma once
+#pragma GCC optimize("Ofast")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx")
+#pragma GCC optimize("unroll-loops")
+
 #include <bits/stdc++.h>
 using namespace std;
+
 using ll = long long;
-mt19937_64 rnd(chrono::high_resolution_clock::now().time_since_epoch().count());
+using ld = long double;
+using pii = pair<int, int>;
+using vi = vector<int>;
 
-// Returns Pure random no seed required
-template<class T> T Rand(){ uniform_int_distribution<T> dist; return (T) dist(rnd); }
-template<class T, T Min, T Max> T Rand(){ return Min + Rand<T>() % (Max - Min - 1); }
+#define all(x) (x).begin(), (x).end()
+const ld PI = acos(-1);
 
-int rand(int s, int e) {
-    return s + rand() % (e - s + 1);
+template <typename T, typename U>
+inline bool chmax(T &a, U b) { return a < b && (a = b, true); }
+template <typename T, typename U>
+inline bool chmin(T &a, U b) { return a > b && (a = b, true); }
+mt19937 rng(chrono::high_resolution_clock::now().time_since_epoch().count());
+template <typename T, typename U>
+std::ostream &operator<<(std::ostream &stream, const pair<T, U> &p) {
+  return stream << p.first << " " << p.second;
+}
+template <typename T1, typename U>
+istream &operator>>(istream &is, pair<T1, U> &p) {
+  is >> p.first >> p.second;
+  return is;
+}
+template <typename T>
+std::ostream &operator<<(std::ostream &out, const vector<T> &vec) {
+  for (const T &x : vec) out << x << ' ';
+  return out;
+}
+template <typename T>
+std::istream &operator>>(std::istream &in, vector<T> &vec) {
+  for (auto &x : vec) in >> x;
+  return in;
 }
 
-int main(int argc, char* argv[]) {
-    srand(atoi(argv[1]));
-    int tc = Rand<int, 1, 10>();
-    
-    cout << tc << endl;
+int32_t main() {
 }

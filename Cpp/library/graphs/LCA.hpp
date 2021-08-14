@@ -17,7 +17,7 @@ struct RMQ {
   vector<T> values;
   vector<vector<int>> range_low;
 
-  RMQ(const vector<T> &_values = {}) {
+  explicit RMQ(const vector<T> &_values = {}) {
     if (!_values.empty())
       build(_values);
   }

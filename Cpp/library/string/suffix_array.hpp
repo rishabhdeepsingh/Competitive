@@ -95,7 +95,7 @@ public:
   long long countDistinct() {
     build_lcp();
     long long result = 0;
-    for (int i = 0; i < lcp.size(); i++)
+    for (int i = 0; i < int(lcp.size()); i++)
       result += (n - 1 - p[i]) - lcp[i];
     return result;
   }

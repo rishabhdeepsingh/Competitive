@@ -17,11 +17,11 @@ template <typename T>
 class Modular {
 public:
   using Type = typename decay<decltype(T::value)>::type;
-  
+
   constexpr Modular() : value() {}
   template <typename U>
   Modular(const U& x) : value(normalize(x)) {}
-  
+
   template <typename U>
   static Type normalize(const U& x) {
     Type v;
@@ -30,12 +30,12 @@ public:
     if (v < 0) v += mod();
     return v;
   }
-  
+
   const Type& operator()() const { return value; }
   template <typename U>
   explicit operator U() const { return static_cast<U>(value); }
   constexpr static Type mod() { return T::value; }
-  
+
   Modular& operator+=(const Modular& other) { if ((value += other.value) >= mod()) value -= mod(); return *this; }
   Modular& operator-=(const Modular& other) { if ((value -= other.value) < 0) value += mod(); return *this; }
   template <typename U> Modular& operator+=(const U& other) { return *this += Modular(other); }
@@ -45,7 +45,7 @@ public:
   const Modular operator++(int) { Modular result(*this); *this += 1; return result; }
   const Modular operator--(int) { Modular result(*this); *this -= 1; return result; }
   Modular operator-() const { return Modular(-value); }
-  
+
   template <typename U = T>
   typename enable_if<is_same<typename Modular<U>::Type, int>::value, Modular>::type& operator*=(const Modular& rhs) {
 #ifdef _WIN32
@@ -73,15 +73,15 @@ public:
     value = normalize(value * rhs.value);
     return *this;
   }
-  
+
   Modular& operator/=(const Modular& other) { return *this *= Modular(inverse(other.value, mod())); }
-  
+
   template <typename U>
   friend bool operator==(const Modular<U>& lhs, const Modular<U>& rhs);
-  
+
   template <typename U>
   friend bool operator<(const Modular<U>& lhs, const Modular<U>& rhs);
-  
+
   template <typename V, typename U>
   friend V& operator>>(V& stream, Modular<U>& number);
 

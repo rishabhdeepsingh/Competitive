@@ -62,7 +62,7 @@ private:
     if (cur_bit == 0 && ans == -1) {
       ans = get((val >> level << level) | (1 << level), level - 1, nonnull(n->children[1]));
     }
-    
+
     return ans;
   }
   

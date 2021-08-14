@@ -44,9 +44,12 @@ file(GLOB HEADERS library/string/Z.hpp
         library/number/prime_fft.hpp
         library/number/prime_tables.h
         library/number/primes5
+        library/number/fibonacci.h
         library/range/range.hpp
         library/range/rev_range.hpp
         library/trees/fenwick.hpp
+        library/trees/centroid_decomposition.h
+        library/trees/lca.h
         library/trees/fenwick2d.hpp
         library/trees/fenwick_range.hpp
         library/trees/lazysegtree.hpp

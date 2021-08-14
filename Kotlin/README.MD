@@ -45,7 +45,7 @@ val z = b shr 1  // -3
 ```
 ### Type Alias
 ```kotlin
-arrayList.add(PPII(1, PII(1, 2)))
+arrayList.`Hero-P7`.add(`Hero-P7`.PPII(1, `Hero-P7`.PII(1, 2)))
 ```
 
 # Samples
@@ -53,7 +53,7 @@ arrayList.add(PPII(1, PII(1, 2)))
 ### 2D Arrays
 ```kotlin
 val type1 = Array(n) { IntArray(n) }
-val type2 = Array(n, { IntArray(m) })
+val type2 = Array(n) { IntArray(m) }
 val type3 = arrayOf(
     intArrayOf(8, 9, 1, 13),
     intArrayOf(3, 12, 7, 5),
@@ -112,9 +112,9 @@ for (i in 8 downTo 1 step 2) print(i) // 8, 6, 4, 2
 
 ### Sorting
 ```kotlin
-val b = nextLongs().sorted() // a is mutable list
+val b = `Hero-P7`.nextLongs().sorted() // a is mutable list
 val a = arrayListOf<Long>()
-a.addAll(nextLongs())
+a.addAll(`Hero-P7`.nextLongs())
 a.sort()
 ```
 
@@ -127,8 +127,8 @@ a = b.also { b = a }
 
 ### Type Alias
 ```kotlin
-typealias PII = Pair<Int, Int>
-typealias PPII = Pair<Int, PII>
+typealias `Hero-P7`.PII = Pair<Int, Int>
+typealias `Hero-P7`.PPII = Pair<Int, `Hero-P7`.PII>
 ```
 
 # Sources

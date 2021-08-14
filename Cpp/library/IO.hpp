@@ -16,20 +16,27 @@ using vi = vector<int>;
 #define all(x)  (x).begin(), (x).end()
 const ld PI = acos(-1);
 
-template <typename T> inline T mini(T& x, T y) { return x = min(x, y); }
-template <typename T> inline T maxi(T& x, T y) { return x = max(x, y); }
+template<typename T, typename U>
+inline bool chmax(T &a, U b) { return a < b && (a = b, true); }
+template<typename T, typename U>
+inline bool chmin(T &a, U b) { return a > b && (a = b, true); }
 mt19937 rng(chrono::high_resolution_clock::now().time_since_epoch().count());
-template <typename T, typename U>
-std::ostream& operator<<(std::ostream& stream, const pair<T, U>& p) {
+template<typename T, typename U>
+std::ostream &operator<<(std::ostream &stream, const pair<T, U> &p) {
   return stream << p.first << " " << p.second;
 }
-template <typename T>
-std::ostream& operator<<(std::ostream& out, const vector<T>& vec) {
-  for (const T& x: vec) out << x << ' ';
+template<typename T1, typename U>
+istream &operator>>(istream &is, pair<T1, U> &p) {
+  is >> p.first >> p.second;
+  return is;
+}
+template<typename T>
+std::ostream &operator<<(std::ostream &out, const vector<T> &vec) {
+  for (const T &x: vec) out << x << ' ';
   return out;
 }
-template <typename T>
-std::istream& operator>>(std::istream& in, vector<T>& vec) {
-  for (auto& x: vec) in >> x;
+template<typename T>
+std::istream &operator>>(std::istream &in, vector<T> &vec) {
+  for (auto &x: vec) in >> x;
   return in;
 }

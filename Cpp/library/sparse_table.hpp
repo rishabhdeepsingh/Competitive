@@ -1,31 +1,28 @@
 #include "IO.hpp"
 
-template <typename T>
-struct sparse_table {
-  int n{};
-  int LOGN{};
-  vector<T> bin_log{};
-  function<T(T, T)> unite;
-  vector<vector<T>> m{};
-  
-  explicit sparse_table(const vector<T>& a, const function<T(T, T)>& _unite) : n(a.size()), unite(std::move(_unite)) {
-    while ((1 << (LOGN)) <= n) LOGN++;
-    m.resize(n, vector<T>(LOGN, 0));
-    bin_log.resize(n + 1);
-    bin_log[1] = 0;
-    for (int i = 2; i <= n; ++i) bin_log[i] = bin_log[i / 2] + 1;
-    for (int i = 0; i < n; ++i) {
-      m[i][0] = a[i];
-    }
-    for (int k = 1; k < LOGN; ++k) {
-      for (int i = 0; i + (1 << k) - 1 < n; ++i) {
-        m[i][k] = unite(m[i][k - 1], m[i + (1 << (k - 1))][k - 1]);
+template<typename T, class F = function<T(const T &, const T &)>>
+class SparseTable {
+ public:
+  int n;
+  vector<vector<T>> mat;
+  F func;
+
+  SparseTable(const vector<T> &a, const F &f) : func(f) {
+    n = static_cast<int>(a.size());
+    int max_log = 32 - __builtin_clz(n);
+    mat.resize(max_log);
+    mat[0] = a;
+    for (int j = 1; j < max_log; j++) {
+      mat[j].resize(n - (1 << j) + 1);
+      for (int i = 0; i <= n - (1 << j); i++) {
+        mat[j][i] = func(mat[j - 1][i], mat[j - 1][i + (1 << (j - 1))]);
       }
     }
   }
-  T query(int l, int r) {
-    int len = r - l + 1;
-    int k = bin_log[len];
-    return unite(m[l][k], m[r - (1 << k) + 1][k]);
+
+  T get(int from, int to) const {
+    assert(0 <= from && from <= to && to <= n - 1);
+    int lg = 32 - __builtin_clz(to - from + 1) - 1;
+    return func(mat[lg][from], mat[lg][to - (1 << lg) + 1]);
   }
 };
