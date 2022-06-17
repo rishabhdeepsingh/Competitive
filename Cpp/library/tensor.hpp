@@ -73,7 +73,7 @@ struct tensor {
  protected:
   std::array<int, NDIMS> shape;
   std::array<int, NDIMS> strides;
-  int len;
+  int len{};
   T *data;
 
  public:
@@ -116,7 +116,7 @@ struct tensor {
   view_t view() {
     return tensor_view<T, NDIMS>(shape, strides, data);
   }
-  operator view_t() {
+  explicit operator view_t() {
     return view();
   }
 
@@ -124,7 +124,7 @@ struct tensor {
   const_view_t view() const {
     return tensor_view<const T, NDIMS>(shape, strides, data);
   }
-  operator const_view_t() const {
+  explicit operator const_view_t() const {
     return view();
   }
 

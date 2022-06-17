@@ -1,14 +1,11 @@
 #pragma once
 #include "digraph.hpp"
 
-template <typename T>
-vector<int> find_topsort(const digraph<T>& g) {
+template<typename T>
+vector<int> find_topsort(const digraph<T> &g) {
   vector<int> deg(g.n, 0);
-  for (int id = 0; id < (int) g.edges.size(); id++) {
-    if (g.ignore != nullptr && g.ignore(id)) {
-      continue;
-    }
-    deg[g.edges[id].to]++;
+  for (const auto &edge: g.edges) {
+    deg[edge.to]++;
   }
   vector<int> x;
   for (int i = 0; i < g.n; i++) {
@@ -18,11 +15,8 @@ vector<int> find_topsort(const digraph<T>& g) {
   }
   for (int ptr = 0; ptr < (int) x.size(); ptr++) {
     int i = x[ptr];
-    for (int id : g.g[i]) {
-      if (g.ignore != nullptr && g.ignore(id)) {
-        continue;
-      }
-      auto& e = g.edges[id];
+    for (int id: g.g[i]) {
+      auto &e = g.edges[id];
       int to = e.to;
       if (--deg[to] == 0) {
         x.push_back(to);
@@ -30,7 +24,7 @@ vector<int> find_topsort(const digraph<T>& g) {
     }
   }
   if ((int) x.size() != g.n) {
-    return vector<int>();
+    return {};
   }
   return x;
 }

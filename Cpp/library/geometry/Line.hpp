@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Point.hpp"
+#include "Point3.hpp"
 
 class Line {
 public:

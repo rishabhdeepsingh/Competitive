@@ -3,7 +3,15 @@
 class %ClassName% {
  public:
 
-  void solve() {
+  void solveOne() {
 
+  }
+
+  void solve() {
+    int tc = 1;
+    cin >> tc;
+    for (int t = 1; t <= tc; ++t) {
+      solveOne();
+    }
   }
 };

@@ -85,8 +85,8 @@ struct Sieve {
     return true;
   }
 
-  long long numDivisors(long long val) {
-    auto div = primeFactors(val);
+  long long numDivisors(long long x) {
+    auto div = primeFactors(x);
     long long ans = 1;
     for (const auto &p: div) {
       ans *= p.second + 1;
@@ -154,30 +154,30 @@ struct Sieve {
     return res;
   }
 
-  MapType primeFactors(long long val) {
+  MapType primeFactors(long long x) {
     MapType fac;
-    while (val > 1) {
-      auto pf = spf[val];
+    while (x > 1) {
+      auto pf = spf[x];
       if (pf == 1) break;
       long long cnt = 0;
-      while (val % pf == 0) {
+      while (x % pf == 0) {
         cnt++;
-        val /= pf;
+        x /= pf;
       }
       fac[pf] = cnt;
     }
     return fac;
   }
 
-  set<long long> divisorsBrute(long long val) {
+  set<long long> divisorsBrute(long long x) {
     set<long long> res;
-    for (long long i = 1; i * i <= val; i++) {
-      if (val % i == 0) {
-        if ((val / i) == i) {
+    for (long long i = 1; i * i <= x; i++) {
+      if (x % i == 0) {
+        if ((x / i) == i) {
           res.insert(i);
         } else {
           res.insert(i);
-          res.insert(val / i);
+          res.insert(x / i);
         }
       }
     }

@@ -13,22 +13,26 @@ bool collinear(const pair<T, T> &p1, const pair<T, T> &p2, const pair<T, T> &p3)
                    p3.first, p3.second);
 }
 
-template<typename T>
-bool positive(T val) {
-  return val > 0;
+ll to_decimal(const string &s, int base) {
+  ll ans = 0;
+  for (char c: s) {
+    ans *= base;
+    ans += c - '0';
+  }
+  return ans;
 }
 
-template<typename T>
-T manhatten(pair<T, T> start, pair<T, T> end) {
+template<typename T, typename U>
+inline auto manhatten(const pair<T, U> &start, const pair<T, U> &end) {
   return std::abs(start.first - end.first) + std::abs(start.second - end.second);
 }
 
 template<typename T, typename FUN>
 vector<T> filter(vector<T> vec, FUN &&fun) {
   vector<T> res;
-  for (const auto &val: vec) {
-    if (fun(vec)) {
-      res.push_back(val);
+  for (val v: vec) {
+    if (fun(v)) {
+      res.push_back(v);
     }
   }
   return res;
