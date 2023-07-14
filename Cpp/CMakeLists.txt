@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(Cpp)
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_COMPILER g++-11)
+set(CMAKE_CXX_COMPILER g++)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 
 #ls -R library | awk '
@@ -12,6 +12,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 file(GLOB HEADERS library/string/Z.hpp
         library/string/manacher.hpp
         library/collections/DSU.hpp
+        library/collections/MEX.hpp
         library/collections/indexed_heap.hpp
         library/collections/ro_segtree.hpp
         library/collections/segment_tree.hpp

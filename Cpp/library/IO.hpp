@@ -17,7 +17,6 @@ using vi = vector<int>;
 #define all(x)  (x).begin(), (x).end()
 #define sz(x)   (int)(x).size()
 #define var     auto&
-#define val     const auto&
 const ld PI = acos(-1);
 
 template<typename T, typename U>
