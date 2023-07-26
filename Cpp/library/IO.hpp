@@ -14,9 +14,7 @@ using ld = long double;
 using pii = pair<int, int>;
 using vi = vector<int>;
 
-#define all(x)  (x).begin(), (x).end()
 #define sz(x)   (int)(x).size()
-#define var     auto&
 const ld PI = acos(-1);
 
 template<typename T, typename U>
@@ -35,7 +33,7 @@ std::istream &operator>>(std::istream &is, std::pair<T1, U> &p) {
 }
 template<typename T>
 std::ostream &operator<<(std::ostream &out, const std::vector<T> &vec) {
-  for (val x: vec) out << x << ' ';
+  for (auto& x: vec) out << x << ' ';
   return out;
 }
 template<typename T>
