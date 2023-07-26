@@ -2,7 +2,7 @@
 #include "../IO.hpp"
 
 class matching {
-public:
+ public:
   vector<vector<int>> g;
   vector<int> pa;
   vector<int> pb;
@@ -10,7 +10,7 @@ public:
   int n, m;
   int res;
   int iter;
-  
+
   matching(int _n, int _m) : n(_n), m(_m) {
     assert(0 <= n && 0 <= m);
     pa = vector<int>(n, -1);
@@ -20,22 +20,22 @@ public:
     res = 0;
     iter = 0;
   }
-  
+
   void add(int from, int to) {
     assert(0 <= from && from < n && 0 <= to && to < m);
     g[from].push_back(to);
   }
-  
+
   bool dfs(int v) {
     was[v] = iter;
-    for (int u : g[v]) {
+    for (int u: g[v]) {
       if (pb[u] == -1) {
         pa[v] = u;
         pb[u] = v;
         return true;
       }
     }
-    for (int u : g[v]) {
+    for (int u: g[v]) {
       if (was[pb[u]] != iter && dfs(pb[u])) {
         pa[v] = u;
         pb[u] = v;
@@ -44,7 +44,7 @@ public:
     }
     return false;
   }
-  
+
   int solve() {
     while (true) {
       iter++;
@@ -61,7 +61,7 @@ public:
     }
     return res;
   }
-  
+
   int run_one(int v) {
     if (pa[v] != -1) {
       return 0;

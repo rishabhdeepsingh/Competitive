@@ -6,12 +6,12 @@ struct DSU {
     SIZE,
     RANK
   };
-  
+
   int n;
   std::vector<int> par;
   std::vector<int> rank;
   Heuristics heuristics;
-  
+
   explicit DSU(int _n, Heuristics _heuristics = RANK) :
       n(_n), heuristics(_heuristics) {
     par.resize(n);
@@ -22,15 +22,15 @@ struct DSU {
       rank[i] = type;
     }
   }
-  
+
   bool same(int x, int y) {
     return get(x) == get(y);
   }
-  
+
   int get(int x) {
     return par[x] = (x == par[x]) ? x : get(par[x]);
   }
-  
+
   bool unite(int x, int y) {
     x = get(x);
     y = get(y);

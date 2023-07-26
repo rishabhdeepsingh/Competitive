@@ -1,9 +1,9 @@
 #pragma once
 #include "lca_forest.hpp"
 
-template <typename T>
+template<typename T>
 class hld_forest : public lca_forest<T> {
-public:
+ public:
   using lca_forest<T>::edges;
   using lca_forest<T>::g;
   using lca_forest<T>::n;
@@ -16,21 +16,21 @@ public:
   using lca_forest<T>::dfs_all;
   using lca_forest<T>::lca;
   using lca_forest<T>::build_lca;
-  
+
   vector<int> head;
   vector<int> visited;
-  
+
   hld_forest(int _n) : lca_forest<T>(_n) {
     visited.resize(n);
   }
-  
+
   void build_hld(const vector<int>& vs) {
     for (int tries = 0; tries < 2; tries++) {
       if (vs.empty()) {
         dfs_all();
       } else {
         order.clear();
-        for (int v : vs) {
+        for (int v: vs) {
           dfs(v, false);
         }
         assert((int) order.size() == n);
@@ -45,7 +45,7 @@ public:
         int best = -1, bid = 0;
         for (int j = 0; j < (int) g[i].size(); j++) {
           int id = g[i][j];
-          int v = edges[id].from ^edges[id].to ^i;
+          int v = edges[id].from ^ edges[id].to ^ i;
           if (pv[v] != i) {
             continue;
           }
@@ -70,16 +70,19 @@ public:
       }
     }
   }
-  
+
   void build_hld(int v) {
     build_hld(vector<int>(1, v));
   }
-  
+
   void build_hld_all() {
     build_hld(vector<int>());
   }
-  
-  bool apply_on_path(int x, int y, bool with_lca, function<void(int, int, bool)> f) {
+
+  bool apply_on_path(int x,
+                     int y,
+                     bool with_lca,
+                     function<void(int, int, bool)> f) {
     // f(x, y, up): up -- whether this part of the path goes up
     assert(!head.empty());
     int z = lca(x, y);

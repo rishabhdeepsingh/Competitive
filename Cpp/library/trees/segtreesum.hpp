@@ -3,12 +3,12 @@
 
 struct node {
   node() = default;
-  
+
   node(long long v) {
     // TODO: Update this
   }
   bool operator<(node& rhs) {
-  
+
   }
 };
 
@@ -18,7 +18,7 @@ static node NEUTERAL_ELEMENT;
 struct segtreesum {
   int len{};
   vector<node> values;
-  
+
   node unite(const node& left, const node& right) {
     // TODO: Update this
   }
@@ -30,14 +30,14 @@ struct segtreesum {
     while (len < n) len *= 2;
     values.assign(2 * len, node{});
   }
-  
+
   explicit segtreesum(int n) { init(n); }
-  
+
   explicit segtreesum(const vector<ll>& a) {
     init(a.size());
     build(a, 0, 0, len);
   }
-  
+
   void build(const vector<long long>& a, int x, int lx, int rx) {
     if (rx - lx == 1) {
       if (lx < (int) a.size()) {
@@ -50,7 +50,7 @@ struct segtreesum {
     build(a, 2 * x + 2, m, rx);
     values[x] = unite(values[2 * x + 1], values[2 * x + 2]);
   }
-  
+
   void update(int x, int lx, int rx, int i, long long val) {
     if (rx - lx == 1) {
       values[x] = single(val);
@@ -64,11 +64,11 @@ struct segtreesum {
     }
     values[x] = unite(values[2 * x + 1], values[2 * x + 2]);
   }
-  
+
   void update(int i, long long val) {
     update(0, 0, len, i, val);
   }
-  
+
   node query(int x, int lx, int rx, int l, int r) {
     if (lx >= r || l >= rx) return NEUTERAL_ELEMENT;
     if (lx >= l && rx <= r) return values[x];
@@ -77,11 +77,11 @@ struct segtreesum {
     node sr = query(2 * x + 2, m, rx, l, r);
     return unite(sl, sr);
   }
-  
+
   node query(int l, int r) {
     return query(0, 0, len, l, r);
   }
-  
+
   int findkth(int x, int lx, int rx, int k) {
     if (rx - lx == 1) {
       return lx; //Index
@@ -94,11 +94,11 @@ struct segtreesum {
       return findkth(2 * x + 2, m, rx, k - sl);
     }
   }
-  
+
   int findkth(int k) {
     return findkth(0, 0, len, k);
   }
-  
+
   int first_above(int x, int lx, int rx, node val, int l) {
     if (values[x] < val) return -1;
     if (rx <= l) return -1;
@@ -110,11 +110,11 @@ struct segtreesum {
     }
     return res;
   }
-  
+
   int first_above(int val, int l = -1) {
     return first_above(0, 0, len, val, l);
   }
-  
+
   int mid(int lx, int rx) {
     return (lx + rx) / 2;
   }

@@ -1,11 +1,12 @@
 #pragma once
+#include "./dfs_undigraph.hpp"
 
-template <typename T>
-vector<int> find_biconv(dfs_undigraph<T> &g, int &cnt) {
+template<typename T>
+vector<int> find_biconv(dfs_undigraph<T>& g, int& cnt) {
   g.dfs_all();
   vector<int> vertex_comp(g.n);
   cnt = 0;
-  for (int i : g.order) {
+  for (int i: g.order) {
     if (g.pv[i] == -1) {
       vertex_comp[i] = -1;
       continue;

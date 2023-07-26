@@ -1,15 +1,5 @@
-//
-// Created by White Knife on 02/04/20.
-//
-
-#ifndef CPP_LIBRARY_LCA_HPP_
-#define CPP_LIBRARY_LCA_HPP_
-
-#include <vector>
-#include <algorithm>
-#include <cassert>
-
-using namespace std;
+#pragma once
+#include "../IO.hpp"
 
 template<typename T, bool maximum_mode = false>
 struct RMQ {
@@ -17,7 +7,7 @@ struct RMQ {
   vector<T> values;
   vector<vector<int>> range_low;
 
-  explicit RMQ(const vector<T> &_values = {}) {
+  explicit RMQ(const vector<T>& _values = {}) {
     if (!_values.empty())
       build(_values);
   }
@@ -28,10 +18,11 @@ struct RMQ {
 
   // Note: when `values[a] == values[b]`, returns b.
   int better_index(int a, int b) const {
-    return (maximum_mode ? values[b] < values[a] : values[a] < values[b]) ? a : b;
+    return (maximum_mode ? values[b] < values[a] : values[a] < values[b]) ? a
+                                                                          : b;
   }
 
-  void build(const vector<T> &_values) {
+  void build(const vector<T>& _values) {
     values = _values;
     n = values.size();
     levels = largest_bit(n) + 1;
@@ -45,14 +36,16 @@ struct RMQ {
 
     for (int k = 1; k < levels; k++)
       for (int i = 0; i <= n - (1 << k); i++)
-        range_low[k][i] = better_index(range_low[k - 1][i], range_low[k - 1][i + (1 << (k - 1))]);
+        range_low[k][i] = better_index(range_low[k - 1][i],
+                                       range_low[k - 1][i + (1 << (k - 1))]);
   }
 
   // Note: breaks ties by choosing the largest index.
   int query_index(int a, int b) const {
     assert(0 <= a && a < b && b <= n);
     int level = largest_bit(b - a);
-    return better_index(range_low[level][a], range_low[level][b - (1 << level)]);
+    return better_index(range_low[level][a],
+                        range_low[level][b - (1 << level)]);
   }
 
   T query_value(int a, int b) const {
@@ -68,12 +61,12 @@ struct LCA {
   vector<int> tour_start, tour_end, tour_list, postorder;
   vector<int> heavy_root;
   RMQ<int> rmq;
-  LCA(int _n = 0) {
+  explicit LCA(int _n = 0) {
     init(_n);
   }
 
   // Warning: this does not call build().
-  LCA(const vector<vector<int>> &_adj) {
+  explicit LCA(const vector<vector<int>>& _adj) {
     init(_adj);
   }
 
@@ -92,7 +85,7 @@ struct LCA {
   }
 
   // Warning: this does not call build().
-  void init(const vector<vector<int>> &_adj) {
+  void init(const vector<vector<int>>& _adj) {
     init(_adj.size());
     adj = _adj;
   }
@@ -113,7 +106,7 @@ struct LCA {
     if (parent_it != adj[node].end())
       adj[node].erase(parent_it);
 
-    for (int child : adj[node]) {
+    for (int child: adj[node]) {
       dfs(child, node);
       subtree_size[node] += subtree_size[child];
     }
@@ -124,7 +117,7 @@ struct LCA {
     });
   }
 
-  int tour, post_tour;
+  int tour{}, post_tour{};
 
   void tour_dfs(int node, bool heavy) {
     heavy_root[node] = heavy ? heavy_root[parent[node]] : node;
@@ -134,7 +127,7 @@ struct LCA {
     tour_start[node] = tour++;
     bool heavy_child = true;
 
-    for (int child : adj[node]) {
+    for (int child: adj[node]) {
       tour_dfs(child, heavy_child);
       euler.push_back(node);
       heavy_child = false;
@@ -163,8 +156,9 @@ struct LCA {
     assert((int) euler.size() == 2 * n);
     vector<int> euler_depths;
 
-    for (int node : euler)
+    for (int node: euler) {
       euler_depths.push_back(node < 0 ? node : depth[node]);
+    }
 
     rmq.build(euler_depths);
   }
@@ -172,7 +166,7 @@ struct LCA {
   pair<int, int> find_farthest(int node, int par, int path) const {
     pair<int, int> current = {path, node};
 
-    for (int neighbor : adj[node])
+    for (int neighbor: adj[node])
       if (neighbor != par)
         current = max(current, find_farthest(neighbor, node, path + 1));
 
@@ -203,7 +197,8 @@ struct LCA {
   }
 
   bool on_path(int x, int a, int b) const {
-    return (is_ancestor(x, a) || is_ancestor(x, b)) && is_ancestor(get_lca(a, b), x);
+    return (is_ancestor(x, a) || is_ancestor(x, b))
+        && is_ancestor(get_lca(a, b), x);
   }
 
   int get_dist(int a, int b) const {
@@ -216,7 +211,9 @@ struct LCA {
     assert(is_ancestor(a, b));
 
     // Note: this depends on RMQ breaking ties by latest index.
-    int child = euler[rmq.query_index(first_occurrence[a], first_occurrence[b] + 1) + 1];
+    int child =
+        euler[1
+            + rmq.query_index(first_occurrence[a], first_occurrence[b] + 1)];
     assert(parent[child] == a);
     assert(is_ancestor(child, b));
     return child;
@@ -254,7 +251,8 @@ struct LCA {
     if (nodes.empty())
       return {};
 
-    auto &&compare_tour = [&](int a, int b) { return tour_start[a] < tour_start[b]; };
+    auto&& compare_tour =
+        [&](int a, int b) { return tour_start[a] < tour_start[b]; };
     sort(nodes.begin(), nodes.end(), compare_tour);
     int k = nodes.size();
 
@@ -271,6 +269,3 @@ struct LCA {
     return result;
   }
 };
-
-
-#endif //CPP_LIBRARY_LCA_HPP_

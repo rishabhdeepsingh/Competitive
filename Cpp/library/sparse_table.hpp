@@ -1,13 +1,13 @@
 #include "IO.hpp"
 
-template<typename T, class F = function<T(const T &, const T &)>>
+template<typename T, class F = function<T(const T&, const T&)>>
 class SparseTable {
  public:
   int n;
   vector<vector<T>> mat;
   F func;
 
-  SparseTable(const vector<T> &a, const F &f) : func(f) {
+  SparseTable(const vector<T>& a, const F& f) : func(f) {
     n = static_cast<int>(a.size());
     int max_log = 32 - __builtin_clz(n);
     mat.resize(max_log);

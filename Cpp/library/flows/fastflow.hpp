@@ -1,18 +1,18 @@
 #pragma once
 #include "../IO.hpp"
 
-template <typename T>
+template<typename T>
 class flow_graph {
-public:
+ public:
   static constexpr T eps = (T) 1e-9;
-  
+
   struct edge {
     int to;
     T c;
     T f;
     int rev;
   };
-  
+
   vector<vector<edge>> g;
   vector<int> ptr;
   vector<int> d;
@@ -20,11 +20,11 @@ public:
   vector<int> cnt_on_layer;
   vector<int> prev_edge;
   bool can_reach_sink;
-  
+
   int n;
   int st, fin;
   T flow;
-  
+
   flow_graph(int _n, int _st, int _fin) : n(_n), st(_st), fin(_fin) {
     assert(0 <= st && st < n && 0 <= fin && fin < n && st != fin);
     g.resize(n);
@@ -35,16 +35,16 @@ public:
     prev_edge.resize(n);
     flow = 0;
   }
-  
+
   void clear_flow() {
     for (int i = 0; i < n; i++) {
-      for (edge& e : g[i]) {
+      for (edge& e: g[i]) {
         e.f = 0;
       }
     }
     flow = 0;
   }
-  
+
   void add(int from, int to, T forward_cap, T backward_cap) {
     assert(0 <= from && from < n && 0 <= to && to < n);
     int from_size = g[from].size();
@@ -52,7 +52,7 @@ public:
     g[from].push_back({to, forward_cap, 0, to_size});
     g[to].push_back({from, backward_cap, 0, from_size});
   }
-  
+
   bool expath() {
     fill(d.begin(), d.end(), n);
     q[0] = fin;
@@ -63,7 +63,7 @@ public:
     int beg = 0, end = 1;
     while (beg < end) {
       int i = q[beg++];
-      for (const edge& e : g[i]) {
+      for (const edge& e: g[i]) {
         const edge& back = g[e.to][e.rev];
         if (back.c - back.f > eps && d[e.to] == n) {
           cnt_on_layer[d[e.to]]--;
@@ -75,7 +75,7 @@ public:
     }
     return (d[st] != n);
   }
-  
+
   T augment(int& v) {
     T cur = numeric_limits<T>::max();
     int i = fin;
@@ -98,10 +98,10 @@ public:
     }
     return cur;
   }
-  
+
   int retreat(int v) {
     int new_dist = n - 1;
-    for (const edge& e : g[v]) {
+    for (const edge& e: g[v]) {
       if (e.c - e.f > eps && d[e.to] < new_dist) {
         new_dist = d[e.to];
       }
@@ -119,7 +119,7 @@ public:
     }
     return v;
   }
-  
+
   T max_flow() {
     can_reach_sink = true;
     for (int i = 0; i < n; i++) {
@@ -151,7 +151,7 @@ public:
     }
     return flow;
   }
-  
+
   vector<bool> min_cut() {
     max_flow();
     assert(!expath());

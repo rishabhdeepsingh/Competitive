@@ -1,14 +1,14 @@
 #pragma once
 #include "undigraph.hpp"
 
-template <typename T>
+template<typename T>
 class dfs_undigraph : public undigraph<T> {
-public:
+ public:
   using undigraph<T>::edges;
   using undigraph<T>::g;
   using undigraph<T>::n;
   using undigraph<T>::ignore;
-  
+
   vector<int> pv;
   vector<int> pe;
   vector<int> order;
@@ -21,9 +21,9 @@ public:
   vector<T> dist;
   vector<int> was;
   int attempt;
-  
+
   dfs_undigraph(int _n) : undigraph<T>(_n) {}
-  
+
   void init() {
     pv = vector<int>(n, -1);
     pe = vector<int>(n, -1);
@@ -38,7 +38,7 @@ public:
     was = vector<int>(n, -1);
     attempt = 0;
   }
-  
+
   void clear() {
     pv.clear();
     pe.clear();
@@ -53,19 +53,19 @@ public:
     was.clear();
   }
 
-private:
+ private:
   void do_dfs(int v) {
     was[v] = attempt;
     pos[v] = (int) order.size();
     order.push_back(v);
     sz[v] = 1;
     min_depth[v] = depth[v];
-    for (int id : g[v]) {
+    for (int id: g[v]) {
       if (id == pe[v] || (ignore != nullptr && ignore(id))) {
         continue;
       }
       auto& e = edges[id];
-      int to = e.from ^e.to ^v;
+      int to = e.from ^ e.to ^ v;
       if (was[to] == attempt) {
         min_depth[v] = min(min_depth[v], depth[to]);
         continue;
@@ -81,7 +81,7 @@ private:
     }
     end[v] = (int) order.size() - 1;
   }
-  
+
   void do_dfs_from(int v) {
     ++attempt;
     depth[v] = 0;
@@ -91,7 +91,7 @@ private:
     do_dfs(v);
   }
 
-public:
+ public:
   void dfs(int v, bool clear_order = true) {
     if (pv.empty()) {
       init();
@@ -102,7 +102,7 @@ public:
     }
     do_dfs_from(v);
   }
-  
+
   void dfs_all() {
     init();
     for (int v = 0; v < n; v++) {

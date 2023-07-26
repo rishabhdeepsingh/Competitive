@@ -1,19 +1,19 @@
 #pragma once
 #include "flow_graph.hpp"
 
-template <typename T>
+template<typename T>
 class flow_decomposition {
-public:
+ public:
   const flow_graph<T>& g;
-  
+
   vector<vector<int>> paths;
   vector<T> path_flows;
   vector<vector<int>> cycles;
   vector<T> cycle_flows;
-  
+
   flow_decomposition(const flow_graph<T>& _g) : g(_g) {
   }
-  
+
   void decompose() {
     vector<T> fs(g.edges.size());
     for (int i = 0; i < (int) g.edges.size(); i++) {
@@ -86,10 +86,10 @@ public:
         assert(found);
       }
       T path_flow = numeric_limits<T>::max();
-      for (int id : path) {
+      for (int id: path) {
         path_flow = min(path_flow, fs[id]);
       }
-      for (int id : path) {
+      for (int id: path) {
         fs[id] -= path_flow;
         fs[id ^ 1] += path_flow;
       }
@@ -101,7 +101,7 @@ public:
         path_flows.push_back(path_flow);
       }
     }
-    for (const T& f : fs) {
+    for (const T& f: fs) {
       assert(-g.eps <= f && f <= g.eps);
     }
   }

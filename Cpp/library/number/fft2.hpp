@@ -1,29 +1,29 @@
 #include "numbers.hpp"
 
-template <typename T>
+template<typename T>
 class FFT {
   int n, LGN;
   bool inverse;
   using Complex = std::complex<T>;
   vector<Complex> omega;
   vector<Complex> result;
-  
-  void bitReverseCopy(const vector<Complex> &src, vector<Complex> &dest) const;
 
-public:
-  
+  void bitReverseCopy(const vector<Complex>& src, vector<Complex>& dest) const;
+
+ public:
   /* Initializes FFT. n must be a power of 2. */
   FFT(int _n, bool inv = false);
-  
+
   /* Computes Discrete Fourier Transform of given buffer. */
-  vector<Complex> transform(const vector<Complex> &buf);
-  vector<Complex> transform(const vector<long double> &buf);
+  vector<Complex> transform(const vector<Complex>& buf);
+  vector<Complex> transform(const vector<long double>& buf);
 //  vector<ld> mul(vector<ld> a, vector<ld> b);
 
 };
 
-template <typename T>
-FFT<T>::FFT(int _n, bool inv) : n(_n), inverse(inv), result(vector<Complex>(n)) {
+template<typename T>
+FFT<T>::FFT(int _n, bool inv)
+    : n(_n), inverse(inv), result(vector<Complex>(n)) {
   LGN = 0;
   for (int i = n; i > 1; i >>= 1) {
     ++LGN;
@@ -37,8 +37,8 @@ FFT<T>::FFT(int _n, bool inv) : n(_n), inverse(inv), result(vector<Complex>(n)) 
   }
 }
 
-template <typename T>
-vector<complex<T>> FFT<T>::transform(const vector<Complex> &buf) {
+template<typename T>
+vector<complex<T>> FFT<T>::transform(const vector<Complex>& buf) {
   bitReverseCopy(buf, result);
   long long m = 1;
   for (int s = 0; s < LGN; ++s) {
@@ -60,14 +60,15 @@ vector<complex<T>> FFT<T>::transform(const vector<Complex> &buf) {
   return result;
 }
 
-template <typename T>
-vector<complex<T>> FFT<T>::transform(const vector<long double> &buf) {
+template<typename T>
+vector<complex<T>> FFT<T>::transform(const vector<long double>& buf) {
   vector<Complex> poly_complex(buf.begin(), buf.end());
   return transform(poly_complex);
 }
 
-template <typename T>
-void FFT<T>::bitReverseCopy(const vector<Complex> &src, vector<Complex> &dest) const {
+template<typename T>
+void FFT<T>::bitReverseCopy(const vector<Complex>& src,
+                            vector<Complex>& dest) const {
   for (int i = 0; i < n; ++i) {
     int index = i, rev = 0;
     for (int j = 0; j < LGN; ++j) {
@@ -78,7 +79,7 @@ void FFT<T>::bitReverseCopy(const vector<Complex> &src, vector<Complex> &dest) c
   }
 }
 
-template <typename T>
+template<typename T>
 vector<T> mul(vector<T> poly_a, vector<T> poly_b) {
   // 1. Make place for resulting polynomial and ensure n is a power of two.
   int new_n = poly_a.size() + poly_b.size();
@@ -88,12 +89,12 @@ vector<T> mul(vector<T> poly_a, vector<T> poly_b) {
   }
   poly_a.resize(power_of_2, 0);
   poly_b.resize(power_of_2, 0);
-  
+
   // 2. Compute point-value representation of a and b for values of unity roots using DFT.
   FFT<T> dft(power_of_2);
   vector<complex<T>> poly_a_values = dft.transform(poly_a);
   vector<complex<T>> poly_b_values = dft.transform(poly_b);
-  
+
   for (int i = 0; i < power_of_2; ++i) {
     poly_a_values[i] *= power_of_2;
     poly_b_values[i] *= power_of_2;

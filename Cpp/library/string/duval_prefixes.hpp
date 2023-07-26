@@ -1,7 +1,7 @@
 #pragma once
 #include "../IO.hpp"
 
-template <typename T>
+template<typename T>
 vector<int> duval_prefixes(int n, const T& s) {
   vector<int> z = z_function(n, s);
   vector<int> ans(n, 0);
@@ -32,7 +32,7 @@ vector<int> duval_prefixes(int n, const T& s) {
   // returns 0-indexed positions of the least cyclic shifts of all prefixes
 }
 
-template <typename T>
+template<typename T>
 vector<int> duval_prefixes(const T& s) {
   return duval_prefixes((int) s.size(), s);
 }

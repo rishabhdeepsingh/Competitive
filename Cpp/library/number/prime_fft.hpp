@@ -18,6 +18,7 @@ void initPrimeFFT() {
   prime_fft::init = true;
   prime_fft::rootPower = 1;
   int pw = 0;
+  int MOD = md;
   while ((MOD - 1) % (2 * prime_fft::rootPower) == 0) {
     prime_fft::rootPower *= 2;
     pw++;
@@ -36,7 +37,7 @@ void initPrimeFFT() {
 }
 
 namespace prime_fft {
-void primeFFT(vector<Mint> &array, bool invert, int n) {
+void primeFFT(vector<Mint>& array, bool invert, int n) {
   for (int i = 1, j = 0; i < n; ++i) {
     int bit = n >> 1;
     for (; j >= bit; bit >>= 1) {
@@ -47,7 +48,7 @@ void primeFFT(vector<Mint> &array, bool invert, int n) {
       swap(array[i], array[j]);
     }
   }
-  
+
   for (int len = 2; len <= n; len <<= 1) {
     Mint wlen = invert ? reverseRoot : root;
     for (int i = len; i < rootPower; i <<= 1) {
@@ -74,8 +75,12 @@ void primeFFT(vector<Mint> &array, bool invert, int n) {
 
 }
 
-template <typename It>
-void multiply(const It fBegin, const It fEnd, const It sBegin, const It sEnd, It res) {
+template<typename It>
+void multiply(const It fBegin,
+              const It fEnd,
+              const It sBegin,
+              const It sEnd,
+              It res) {
   initPrimeFFT();
   size_t fLen = fEnd - fBegin;
   size_t sLen = sEnd - sBegin;
@@ -93,8 +98,8 @@ void multiply(const It fBegin, const It fEnd, const It sBegin, const It sEnd, It
   while (resultSize < resLen) {
     resultSize *= 2;
   }
-  vector<Mint> &aa = prime_fft::aa;
-  vector<Mint> &bb = prime_fft::bb;
+  vector<Mint>& aa = prime_fft::aa;
+  vector<Mint>& bb = prime_fft::bb;
   if (aa.size() < resultSize) {
     aa.resize(resultSize);
     bb.resize(resultSize);
@@ -105,7 +110,7 @@ void multiply(const It fBegin, const It fEnd, const It sBegin, const It sEnd, It
   copy(sBegin, sEnd, bb.begin());
   prime_fft::primeFFT(aa, false, resultSize);
   if (equal(fBegin, fEnd, sBegin, sEnd)) {
-    copy(all(aa), bb.begin());
+    copy(aa.begin(), aa.end(), bb.begin());
   } else {
     prime_fft::primeFFT(bb, false, resultSize);
   }
@@ -118,9 +123,13 @@ void multiply(const It fBegin, const It fEnd, const It sBegin, const It sEnd, It
   }
 }
 
-vector<Mint> multiply(vector<Mint> &first, vector<Mint> &second) {
+vector<Mint> multiply(vector<Mint>& first, vector<Mint>& second) {
   auto len = first.size() + second.size() - 1;
   vector<Mint> res(len);
-  multiply(all(first), all(second), res.begin());
+  multiply(first.begin(),
+           first.end(),
+           second.begin(),
+           second.end(),
+           res.begin());
   return res;
 }

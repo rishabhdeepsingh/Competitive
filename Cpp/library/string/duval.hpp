@@ -1,7 +1,7 @@
 #pragma once
 #include "../IO.hpp"
 
-template <typename T>
+template<typename T>
 int duval(int n, const T& s) {
   assert(n >= 1);
   int i = 0, ans = 0;
@@ -24,7 +24,7 @@ int duval(int n, const T& s) {
   // returns 0-indexed position of the least cyclic shift
 }
 
-template <typename T>
+template<typename T>
 int duval(const T& s) {
   return duval((int) s.size(), s);
 }

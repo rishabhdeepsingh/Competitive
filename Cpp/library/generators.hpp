@@ -3,14 +3,14 @@
 
 namespace GEN {
 
-template <typename T>
+template<typename T>
 T rand(T low, T high) {
   std::uniform_int_distribution<T> uni(low, high);
   return uni(rng);
 }
 
-template <typename T>
-vector<vector<T>> subarrays(vector<T>& arr) {
+template<typename T>
+vector<vector<T>> subarrays(const vector<T>& arr) {
   int n = arr.size();
   vector<vector<T>> res;
   for (int i = 0; i < n; ++i) {
@@ -25,8 +25,8 @@ vector<vector<T>> subarrays(vector<T>& arr) {
   return res;
 }
 
-template <typename T>
-vector<vector<T>> subsequence(vector<T>& arr) {
+template<typename T>
+vector<vector<T>> subsequence(const vector<T>& arr) {
   int n = arr.size();
   unsigned long MAX = 1ul << n;
   vector<vector<T>> res;
@@ -42,7 +42,7 @@ vector<vector<T>> subsequence(vector<T>& arr) {
   return res;
 }
 
-template <typename T>
+template<typename T>
 vector<T> randomVector(int n, T low, T high) {
   vector<T> res(n);
   uniform_int_distribution<T> distribution(low, high);
@@ -61,14 +61,14 @@ string randomString(int n, char low, char high) {
   return res;
 }
 
-template <typename T>
+template<typename T>
 vector<T> permutation(int n, int start = 0) {
   vector<T> res(n);
   iota(res.begin(), res.end(), start);
   return res;
 }
 
-template <typename T>
+template<typename T>
 vector<T> uniqueVector(int n, T low, T high) {
   set<int> st;
   uniform_int_distribution<T> distribution(low, high);
@@ -78,7 +78,7 @@ vector<T> uniqueVector(int n, T low, T high) {
   return vector<T>(st.begin(), st.end());
 }
 
-template <typename T>
+template<typename T>
 set<T> randomSet(int n, T low, T high) {
   set<int> st;
   uniform_int_distribution<T> distribution(low, high);
@@ -88,7 +88,7 @@ set<T> randomSet(int n, T low, T high) {
   return st;
 }
 
-template <typename T>
+template<typename T>
 vector<vector<T>> randomMatrix(int n, int m, vector<T> vals) {
   vector<vector<T>> res(n, vector<T>(m, vals[0]));
   for (int i = 0; i < n; ++i) {
@@ -109,7 +109,11 @@ vector<vector<int>> allPermutations(int n, int start = 0) {
   return res;
 }
 
-void generatePallindromeUtils(string res, int len, int n, const vector<char>& chars, vector<string>& final) {
+void generate_pallindrome_utils(string res,
+                                int len,
+                                int n,
+                                const vector<char>& chars,
+                                vector<string>& final) {
   if (res.length() == (n + 1) / 2) {
     for (int i = 0; i < (n / 2); ++i) {
       res.push_back(res[n / 2 - i - 1]);
@@ -118,13 +122,13 @@ void generatePallindromeUtils(string res, int len, int n, const vector<char>& ch
     return;
   }
   for (char c: chars) {
-    generatePallindromeUtils(res + c, len + 1, n, chars, final);
+    generate_pallindrome_utils(res + c, len + 1, n, chars, final);
   }
 }
 
-vector<string> genPallindromes(int n, vector<char> chars) {
+vector<string> Pallindromes(int n, vector<char> chars) {
   vector<string> res;
-  generatePallindromeUtils("", 0, n, chars, res);
+  generate_pallindrome_utils("", 0, n, chars, res);
   return res;
 }
 

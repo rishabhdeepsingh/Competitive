@@ -2,8 +2,8 @@
 
 #include "numbers.hpp"
 
-template <typename T>
-T gcd(T a, T b, T &x, T &y) {
+template<typename T>
+T gcd(T a, T b, T& x, T& y) {
   if (a == 0) {
     x = 0;
     y = 1;
@@ -15,7 +15,7 @@ T gcd(T a, T b, T &x, T &y) {
 }
 
 class bigmod {
-public:
+ public:
   long long n;
   bigmod() : n(0) {}
   bigmod(__int128 _n) {
@@ -29,25 +29,25 @@ public:
     }
     this->n = _n;
   }
-  bigmod &operator+=(const bigmod &other) {
+  bigmod& operator+=(const bigmod& other) {
     n += other.n;
     if (n >= MOD) {
       n -= MOD;
     }
     return *this;
   }
-  bigmod &operator-=(const bigmod &other) {
+  bigmod& operator-=(const bigmod& other) {
     n -= other.n;
     if (n < 0) {
       n += MOD;
     }
     return *this;
   }
-  bigmod &operator*=(const bigmod &other) {
+  bigmod& operator*=(const bigmod& other) {
     n = __int128(n) * other.n % MOD;
     return *this;
   }
-  bigmod &operator/=(const bigmod &other) {
+  bigmod& operator/=(const bigmod& other) {
 #ifdef LOCAL
     if (other.n == 0) {
       throw "Division by zero";
@@ -73,38 +73,38 @@ public:
   }
 };
 
-bigmod operator+(const bigmod &a, const bigmod &b) {
+bigmod operator+(const bigmod& a, const bigmod& b) {
   return bigmod(a) += b;
 }
 
-bigmod operator-(const bigmod &a, const bigmod &b) {
+bigmod operator-(const bigmod& a, const bigmod& b) {
   return bigmod(a) -= b;
 }
 
-bigmod operator*(const bigmod &a, const bigmod &b) {
+bigmod operator*(const bigmod& a, const bigmod& b) {
   return bigmod(a) *= b;
 }
 
-bigmod operator/(const bigmod &a, const bigmod &b) {
+bigmod operator/(const bigmod& a, const bigmod& b) {
   return bigmod(a) /= b;
 }
 
-std::ostream &operator<<(std::ostream &out, const bigmod &val) {
+std::ostream& operator<<(std::ostream& out, const bigmod& val) {
   return out << val.n;
 }
 
-bool operator==(const bigmod &a, const bigmod &b) {
+bool operator==(const bigmod& a, const bigmod& b) {
   return a.n == b.n;
 }
 
-bool operator!=(const bigmod &a, const bigmod &b) {
+bool operator!=(const bigmod& a, const bigmod& b) {
   return a.n != b.n;
 }
 
 bool isPrime(long long n) {
   std::random_device rd;
   std::mt19937_64 gen(rd());
-  
+
   int s = 0;
   long long d = n - 1;
   while (d % 2 == 0) {
@@ -151,7 +151,7 @@ long long findPrimeDivisor(long long n) {
   bigmod x = 2;
   bigmod y = 2;
   long long d = 1;
-  
+
   while (d == 1) {
     x = x * x + 1;
     y = y * y + 1;

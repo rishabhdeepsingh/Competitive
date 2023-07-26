@@ -17,10 +17,10 @@ class digraph : public graph<T> {
     edges.push_back({from, to, cost});
     return id;
   }
-  
+
   digraph<T> reverse() const {
     digraph<T> rev(n);
-    for (auto &e: edges) {
+    for (auto& e: edges) {
       rev.add(e.to, e.from, e.cost);
     }
     return rev;

@@ -5,18 +5,18 @@ class Manacher {
   string s;
   string init(string s) {
     string res = "#";
-    for (char c : s) {
+    for (char c: s) {
       res += c;
       res += '#';
     }
     return res;
   }
 
-public:
+ public:
   explicit Manacher(string _s) : s(move(_s)) {
     s = init(s);
   }
-  
+
   string manacher(string s) {
     s = init(s);
     int len = s.size();
@@ -34,7 +34,8 @@ public:
         p[i] = min(p[2 * pos - i], (maxR - i));
       else
         p[i] = 1;
-      while ((i - p[i] >= 0) && (i + p[i] < len) && (s[i - p[i]] == s[i + p[i]])) {
+      while ((i - p[i] >= 0) && (i + p[i] < len)
+          && (s[i - p[i]] == s[i + p[i]])) {
         p[i]++;
       }
       if (i + p[i] - 1 > maxR) {

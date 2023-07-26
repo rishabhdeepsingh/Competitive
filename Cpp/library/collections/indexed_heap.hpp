@@ -7,26 +7,26 @@ class IndexedHeap {
   vector<int> pos;
   int sz = 0;
   function<bool(int, int)> cmp;
-  
+
   void swap(int i, int j) {
     std::swap(heap[i], heap[j]);
     std::swap(pos[heap[i]], pos[heap[j]]);
   }
 
-public:
+ public:
   IndexedHeap(int cap = 0, const function<bool(int, int)> _cmp = less<>())
       : heap(vector<int>(cap)),
-      pos(vector<int>(cap, -1)),
-      cmp(_cmp) {}
-      
+        pos(vector<int>(cap, -1)),
+        cmp(_cmp) {}
+
   int size() const {
     return sz;
   }
-  
+
   bool empty() const {
     return sz == 0;
   }
-  
+
   void siftUp(int index) {
 #ifdef LOCAL
     if (index < 0 || index >= sz) {
@@ -49,7 +49,7 @@ public:
     heap[0] = val;
     pos[val] = 0;
   }
-  
+
   void siftDown(int index) {
 #ifdef LOCAL
     if (index < 0 || index >= sz) {
@@ -71,7 +71,7 @@ public:
       index = child;
     }
   }
-  
+
   int operator[](int index) const {
 #ifdef LOCAL
     if (index < 0 || index >= sz) {
@@ -80,7 +80,7 @@ public:
 #endif
     return heap[index];
   }
-  
+
   void push(int element) {
 #ifdef LOCAL
     if (element < 0 || element >= (int) pos.size() || pos[element] != -1) {
@@ -91,7 +91,7 @@ public:
     pos[element] = sz;
     siftUp(sz++);
   }
-  
+
   int at(int element) const {
 #ifdef LOCAL
     if (element < 0 || element >= (int) pos.size()) {
@@ -100,7 +100,7 @@ public:
 #endif
     return pos[element];
   }
-  
+
   int top() const {
 #ifdef LOCAL
     if (sz == 0) {
@@ -109,7 +109,7 @@ public:
 #endif
     return heap[0];
   }
-  
+
   int pop() {
 #ifdef LOCAL
     if (sz == 0) {
@@ -127,7 +127,7 @@ public:
     siftDown(0);
     return res;
   }
-  
+
   bool erase(int element) {
 #ifdef LOCAL
     if (element < 0 || element >= (int) pos.size()) {
@@ -149,9 +149,9 @@ public:
     siftUp(index);
     return true;
   }
-  
+
   void clear() {
     sz = 0;
-    fill(all(pos), -1);
+    fill(pos.begin(), pos.end(), -1);
   }
 };

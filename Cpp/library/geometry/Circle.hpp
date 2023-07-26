@@ -1,18 +1,12 @@
-//
-// Created by White Knife on 11/05/20.
-//
-
-#ifndef CPP_LIBRARY_GEOMETRY_CIRCLE_HPP_
-#define CPP_LIBRARY_GEOMETRY_CIRCLE_HPP_
-
+#pragma once
 #include "Line.hpp"
 
 class Circle {
-public:
+ public:
   const point center;
   const PType r;
-  
-  Circle(const point &center, const PType _r) : center(center), r(_r) {}
+
+  Circle(const point& center, const PType _r) : center(center), r(_r) {}
 };
 
 vector<point> intersect(const Circle& c, const Line& l) {
@@ -40,7 +34,9 @@ vector<point> intersect(const Circle& c, const Circle& d) {
   }
   PType a = 2 * (d.center.x - c.center.x);
   PType b = 2 * (d.center.y - c.center.y);
-  PType f = d.r * d.r - c.r * c.r + c.center.x * c.center.x - d.center.x * d.center.x + c.center.y * c.center.y - d.center.y * d.center.y;
+  PType f =
+      d.r * d.r - c.r * c.r + c.center.x * c.center.x - d.center.x * d.center.x
+          + c.center.y * c.center.y - d.center.y * d.center.y;
   auto l = getLine(a, b, f);
   return intersect(c, l);
 }
@@ -56,4 +52,3 @@ vector<point> touchingpoints(const Circle& c, const point& p) {
   Circle power(p, sqrt((dist - c.r) * (dist + c.r)));
   return intersect(c, power);
 }
-#endif //CPP_LIBRARY_GEOMETRY_CIRCLE_HPP_

@@ -1,5 +1,6 @@
 #pragma once
 #include "IO.hpp"
+// @formatter:off
 
 #define sim       template<typename T
 #define ris       return *this
@@ -21,3 +22,4 @@ struct debug {
 #endif
 };
 #define pr(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
+// @formatter:on

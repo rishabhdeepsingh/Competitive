@@ -21,7 +21,7 @@ class fenwick {
     bit.resize(n, def);
   }
 
-  explicit fenwick(const vector<T> &arr) : fenwick(arr.size()) {
+  explicit fenwick(const vector<T>& arr) : fenwick(arr.size()) {
     for (size_t i = 0; i < arr.size(); ++i) {
       update(i, arr[i]);
     }

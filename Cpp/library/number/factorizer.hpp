@@ -1,21 +1,20 @@
 #pragma once
 #include "Mint.hpp"
 
-
 namespace factorizer {
 
-template <typename T>
+template<typename T>
 struct FactorizerVarMod { static T value; };
-template <typename T>
+template<typename T>
 T FactorizerVarMod<T>::value;
 
-template <typename T>
+template<typename T>
 bool IsPrime(T n, const vector<T>& bases) {
   if (n < 2) {
     return false;
   }
   vector<T> small_primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
-  for (const T& x : small_primes) {
+  for (const T& x: small_primes) {
     if (n % x == 0) {
       return n == x;
     }
@@ -30,7 +29,7 @@ bool IsPrime(T n, const vector<T>& bases) {
     s++;
   }
   FactorizerVarMod<T>::value = n;
-  for (const T& a : bases) {
+  for (const T& a: bases) {
     if (a % n == 0) {
       continue;
     }
@@ -128,7 +127,7 @@ void RunLinearSieve(int n) {
       least[i] = i;
       primes.push_back(i);
     }
-    for (int x : primes) {
+    for (int x: primes) {
       if (x > least[i] || i * x > n) {
         break;
       }
@@ -164,8 +163,9 @@ void RunSieve(int n) {
   RunLinearSieve(n);
 }
 
-template <typename T>
-vector<pair<T, int>> MergeFactors(const vector<pair<T, int>>& a, const vector<pair<T, int>>& b) {
+template<typename T>
+vector<pair<T, int>> MergeFactors(const vector<pair<T, int>>& a,
+                                  const vector<pair<T, int>>& b) {
   vector<pair<T, int>> c;
   int i = 0;
   int j = 0;
@@ -176,7 +176,8 @@ vector<pair<T, int>> MergeFactors(const vector<pair<T, int>>& a, const vector<pa
       ++j;
       continue;
     }
-    if (j == (int) b.size() || (i < (int) a.size() && a[i].first < b[j].first)) {
+    if (j == (int) b.size()
+        || (i < (int) a.size() && a[i].first < b[j].first)) {
       c.push_back(a[i++]);
     } else {
       c.push_back(b[j++]);
@@ -185,7 +186,7 @@ vector<pair<T, int>> MergeFactors(const vector<pair<T, int>>& a, const vector<pa
   return c;
 }
 
-template <typename T>
+template<typename T>
 vector<pair<T, int>> RhoC(const T& n, const T& c) {
   if (n <= 1) {
     return {};
@@ -217,12 +218,12 @@ vector<pair<T, int>> RhoC(const T& n, const T& c) {
   return {};
 }
 
-template <typename T>
+template<typename T>
 vector<pair<T, int>> Rho(const T& n) {
   return RhoC(n, static_cast<T>(1));
 }
 
-template <typename T>
+template<typename T>
 vector<pair<T, int>> Factorize(T x) {
   if (x <= 1) {
     return {};
@@ -242,7 +243,7 @@ vector<pair<T, int>> Factorize(T x) {
   if (x <= static_cast<long long>(precalculated) * precalculated) {
     vector<pair<T, int>> ret;
     if (!IsPrime(x)) {
-      for (T i : primes) {
+      for (T i: primes) {
         T t = x / i;
         if (i > t) {
           break;
@@ -268,10 +269,10 @@ vector<pair<T, int>> Factorize(T x) {
   return Rho(x);
 }
 
-template <typename T>
+template<typename T>
 vector<T> BuildDivisorsFromFactors(const vector<pair<T, int>>& factors) {
   vector<T> divisors = {1};
-  for (auto& p : factors) {
+  for (auto& p: factors) {
     int sz = (int) divisors.size();
     for (int i = 0; i < sz; i++) {
       T cur = divisors[i];

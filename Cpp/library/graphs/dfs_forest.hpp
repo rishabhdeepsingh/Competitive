@@ -1,13 +1,13 @@
 #pragma once
 #include "forest.hpp"
 
-template <typename T>
+template<typename T>
 class dfs_forest : public forest<T> {
-public:
+ public:
   using forest<T>::edges;
   using forest<T>::g;
   using forest<T>::n;
-  
+
   vector<int> pv; // Previous Vertex
   vector<int> pe; // Previous Edge
   vector<int> order;
@@ -21,11 +21,11 @@ public:
 //  vector<int> ft; // Tree flattening
   vector<T> dist;
   int timer = 0;
-  
+
   dfs_forest(int _n) : forest<T>(_n), timer(0) {
     init();
   }
-  
+
   void init() {
     pv = vector<int>(n, -1);
     pe = vector<int>(n, -1);
@@ -41,7 +41,7 @@ public:
 //    ft = vector<int>(2 * n, -1);
     timer = 0;
   }
-  
+
   void clear() {
     timer = 0;
     pv.clear();
@@ -57,34 +57,34 @@ public:
 //    in.clear();
 //    out.clear();
   }
-  
+
   vector<T> bfs(int s) {
     T INF = std::numeric_limits<T>::max();
     vector<T> dis(n, INF);
     std::queue<T> que;
-    
+
     dis[s] = 0;
     que.push(s);
-    
+
     while (!que.empty()) {
       int u = que.front();
       que.pop();
-      
-      for (int id : g[u]) {
+
+      for (int id: g[u]) {
         if (id == pe[u]) continue;
         auto& e = edges[id];
-        int to = e.from ^e.to ^u;
-        
+        int to = e.from ^ e.to ^ u;
+
         if (dis[to] == INF) {
           dis[to] = dis[u] + 1;
           que.push(to);
         }
       }
     }
-    
+
     return dis;
   }
-  
+
   pair<int, T> farthest() {
     int id = -1;
     T dis{};
@@ -96,7 +96,7 @@ public:
     }
     return {id, dis};
   }
-  
+
   void dfs(int v, bool clear_order = true) {
     if (pv.empty()) {
       init();
@@ -107,7 +107,7 @@ public:
     }
     do_dfs_from(v);
   }
-  
+
   void dfs_all() {
     init();
     for (int v = 0; v < n; v++) {
@@ -118,17 +118,17 @@ public:
     assert((int) order.size() == n);
   }
 
-private:
+ private:
   void do_dfs(int v) {
     pos[v] = (int) order.size();
     order.push_back(v);
     sz[v] = 1;
 //    in[v] = timer;
 //    ft[timer++] = v;
-    for (int id : g[v]) {
+    for (int id: g[v]) {
       if (id == pe[v]) continue;
       const auto& e = edges[id];
-      int to = e.from ^e.to ^v;
+      int to = e.from ^ e.to ^ v;
       depth[to] = depth[v] + 1;
       dist[to] = dist[v] + e.cost;
       pv[to] = v;
@@ -141,7 +141,7 @@ private:
 //    out[v] = timer;
 //    ft[timer++] = v;
   }
-  
+
   void do_dfs_from(int v) {
     depth[v] = 0;
     dist[v] = T{};
@@ -149,5 +149,5 @@ private:
     pv[v] = pe[v] = -1;
     do_dfs(v);
   }
-  
+
 };

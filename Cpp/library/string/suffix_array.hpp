@@ -12,7 +12,7 @@ void count_sort(vector<int>& p, vector<int>& c) {
   for (int i = 1; i < n; ++i) {
     pos[i] = pos[i - 1] + cnt[i - 1];
   }
-  for (auto x : p) {
+  for (auto x: p) {
     int id = c[x];
     p_new[pos[id]] = x;
     pos[id]++;
@@ -21,13 +21,13 @@ void count_sort(vector<int>& p, vector<int>& c) {
 }
 
 struct suffix_array {
-private:
+ private:
   string s;
-public:
+ public:
   vector<int> p, c, lcp;
   int n;
   // strings are s.substr(p[i], n - p[i]);
-  
+
   explicit suffix_array(string _s) : s(std::move(_s)) {
     lcp.clear();
     s += "$";
@@ -71,11 +71,11 @@ public:
       c = c_new;
     }
   }
-  
+
   string sub(int i) {
     return s.substr(p[i], n - 1 - p[i]);
   }
-  
+
   vector<int> build_lcp() {
     if (!lcp.empty()) return lcp;
     lcp = vector<int>(n, 0);
@@ -91,7 +91,7 @@ public:
     }
     return lcp;
   }
-  
+
   long long countDistinct() {
     build_lcp();
     long long result = 0;
@@ -99,11 +99,11 @@ public:
       result += (n - 1 - p[i]) - lcp[i];
     return result;
   }
-  
+
   int operator[](int index) const {
     return p[index];
   }
-  
+
   // Returns all the substrings of the given string
   vector<string> allSubs() {
     vector<string> res;
@@ -112,7 +112,7 @@ public:
     }
     return res;
   }
-  
+
   int count(const string& sub) {
     int high = upper(sub);
     int low = lower(sub);
@@ -137,7 +137,7 @@ public:
     }
     return res;
   }
-  
+
   int upper(const string& sub) {
     int low = 0, high = n - 1, res = -1;
     while (low <= high) {
@@ -154,5 +154,4 @@ public:
     }
     return res;
   }
-  
 };

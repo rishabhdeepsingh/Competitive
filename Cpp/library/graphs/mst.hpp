@@ -2,7 +2,7 @@
 #include "undigraph.hpp"
 #include "../collections/DSU.hpp"
 
-template <typename T>
+template<typename T>
 vector<int> find_mst(const undigraph<T>& g, T& ans) {
   vector<int> order(g.edges.size());
   iota(order.begin(), order.end(), 0);
@@ -12,7 +12,7 @@ vector<int> find_mst(const undigraph<T>& g, T& ans) {
   DSU d(g.n);
   vector<int> ans_list;
   ans = 0;
-  for (int id : order) {
+  for (int id: order) {
     auto& e = g.edges[id];
     if (d.get(e.from) != d.get(e.to)) {
       d.unite(e.from, e.to);

@@ -1,8 +1,8 @@
 #pragma once
 #include "../IO.hpp"
-template <typename T>
+template<typename T>
 class graph {
-public:
+ public:
   struct edge {
     int from;
     int to;
@@ -12,10 +12,10 @@ public:
   std::vector<std::vector<int>> g;
   int n;
   int max_cost{};
-  
-  graph(int _n) : n(_n) {
+
+  explicit graph(int _n) : n(_n) {
     g.resize(n);
   }
-  
+
   virtual int add(int from, int to, T cost) = 0;
 };

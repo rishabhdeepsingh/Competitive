@@ -1,21 +1,21 @@
 #pragma once
 #include "flow_graph.hpp"
 
-template <typename T>
+template<typename T>
 class dinic {
-public:
+ public:
   flow_graph<T>& g;
-  
+
   vector<int> ptr;
   vector<int> d;
   vector<int> q;
-  
+
   dinic(flow_graph<T>& _g) : g(_g) {
     ptr.resize(g.n);
     d.resize(g.n);
     q.resize(g.n);
   }
-  
+
   bool expath() {
     fill(d.begin(), d.end(), -1);
     q[0] = g.fin;
@@ -23,7 +23,7 @@ public:
     int beg = 0, end = 1;
     while (beg < end) {
       int i = q[beg++];
-      for (int id : g.g[i]) {
+      for (int id: g.g[i]) {
         const auto& e = g.edges[id];
         const auto& back = g.edges[id ^ 1];
         if (back.c - back.f > g.eps && d[e.to] == -1) {
@@ -37,7 +37,7 @@ public:
     }
     return false;
   }
-  
+
   T dfs(int v, T w) {
     if (v == g.fin) {
       return w;
@@ -58,7 +58,7 @@ public:
     }
     return 0;
   }
-  
+
   T max_flow() {
     while (expath()) {
       for (int i = 0; i < g.n; i++) {
@@ -79,7 +79,7 @@ public:
     }
     return g.flow;
   }
-  
+
   vector<bool> min_cut() {
     max_flow();
     vector<bool> ret(g.n);

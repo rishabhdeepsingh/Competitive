@@ -1,9 +1,9 @@
 #pragma once
 #include "../IO.hpp"
 
-template <typename T>
+template<typename T>
 class hungarian {
-public:
+ public:
   int n;
   int m;
   vector<vector<T>> a;
@@ -15,10 +15,10 @@ public:
   vector<T> minv;
   vector<bool> used;
   T inf;
-  
+
   hungarian(int _n, int _m) : n(_n), m(_m) {
     assert(n <= m);
-    a = vector < vector < T > > (n, vector<T>(m));
+    a = vector<vector<T> >(n, vector<T>(m));
     u = vector<T>(n + 1);
     v = vector<T>(m + 1);
     pa = vector<int>(n + 1, -1);
@@ -28,7 +28,7 @@ public:
     used = vector<bool>(m + 1);
     inf = numeric_limits<T>::max();
   }
-  
+
   inline void add_row(int i) {
     fill(minv.begin(), minv.end(), inf);
     fill(used.begin(), used.end(), false);
@@ -70,11 +70,11 @@ public:
       j0 = j1;
     } while (j0 != m);
   }
-  
+
   inline T current_score() {
     return -v[m];
   }
-  
+
   inline T solve() {
     for (int i = 0; i < n; i++) {
       add_row(i);

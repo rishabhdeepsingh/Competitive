@@ -2,9 +2,9 @@
 #include "digraph.hpp"
 
 template<typename T>
-vector<int> find_topsort(const digraph<T> &g) {
+vector<int> find_topsort(const digraph<T>& g) {
   vector<int> deg(g.n, 0);
-  for (const auto &edge: g.edges) {
+  for (const auto& edge: g.edges) {
     deg[edge.to]++;
   }
   vector<int> x;
@@ -16,7 +16,7 @@ vector<int> find_topsort(const digraph<T> &g) {
   for (int ptr = 0; ptr < (int) x.size(); ptr++) {
     int i = x[ptr];
     for (int id: g.g[i]) {
-      auto &e = g.edges[id];
+      auto& e = g.edges[id];
       int to = e.to;
       if (--deg[to] == 0) {
         x.push_back(to);

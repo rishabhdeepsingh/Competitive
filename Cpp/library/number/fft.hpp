@@ -13,7 +13,9 @@ struct num {
 
 inline num operator+(num a, num b) { return num(a.x + b.x, a.y + b.y); }
 inline num operator-(num a, num b) { return num(a.x - b.x, a.y - b.y); }
-inline num operator*(num a, num b) { return num(a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x); }
+inline num operator*(num a, num b) {
+  return num(a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x);
+}
 inline num conj(num a) { return num(a.x, -a.y); }
 
 int base = 1;
@@ -215,8 +217,9 @@ vector<int> multiply_mod(const vector<int>& a, const vector<int>& b, int m) {
 
 }  // namespace fft
 
-template <typename T>
-typename enable_if<is_same<typename Modular<T>::Type, int>::value, vector<Modular<T>>>::type operator*(
+template<typename T>
+typename enable_if<is_same<typename Modular<T>::Type, int>::value,
+                   vector<Modular<T>>>::type operator*(
     const vector<Modular<T>>& a,
     const vector<Modular<T>>& b) {
   if (a.empty() || b.empty()) {
@@ -247,8 +250,9 @@ typename enable_if<is_same<typename Modular<T>::Type, int>::value, vector<Modula
   return c;
 }
 
-template <typename T>
-typename enable_if<is_same<typename Modular<T>::Type, int>::value, vector<Modular<T>>>::type& operator*=(
+template<typename T>
+typename enable_if<is_same<typename Modular<T>::Type, int>::value,
+                   vector<Modular<T>>>::type& operator*=(
     vector<Modular<T>>& a,
     const vector<Modular<T>>& b) {
   return a = a * b;

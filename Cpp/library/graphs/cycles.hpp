@@ -1,8 +1,10 @@
 #pragma once
 #include "graph.hpp"
 
-template <typename T>
-vector<vector<int>> find_cycles(const graph<T>& g, int bound_cnt = 1 << 30, int bound_size = 1 << 30) {
+template<typename T>
+vector<vector<int>> find_cycles(const graph<T>& g,
+                                int bound_cnt = 1 << 30,
+                                int bound_size = 1 << 30) {
   vector<int> was(g.n, -1);
   vector<int> st;
   vector<vector<int>> cycles;
@@ -12,12 +14,12 @@ vector<vector<int>> find_cycles(const graph<T>& g, int bound_cnt = 1 << 30, int 
       return;
     }
     was[v] = (int) st.size();
-    for (int id : g.g[v]) {
+    for (int id: g.g[v]) {
       if (id == pe) {
         continue;
       }
       auto& e = g.edges[id];
-      int to = e.from ^e.to ^v;
+      int to = e.from ^ e.to ^ v;
       if (was[to] >= 0) {
         vector<int> cycle(1, id);
         for (int j = was[to]; j < (int) st.size(); j++) {
@@ -50,8 +52,9 @@ vector<vector<int>> find_cycles(const graph<T>& g, int bound_cnt = 1 << 30, int 
   // undigraph: finds cycle basis
 }
 
-template <typename T>
-vector<int> edges_to_vertices(const graph<T>& g, const vector<int>& edge_cycle) {
+template<typename T>
+vector<int> edges_to_vertices(const graph<T>& g,
+                              const vector<int>& edge_cycle) {
   int sz = (int) edge_cycle.size();
   vector<int> vertex_cycle;
   if (sz <= 2) {

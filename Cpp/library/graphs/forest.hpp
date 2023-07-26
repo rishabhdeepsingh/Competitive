@@ -1,9 +1,9 @@
 #pragma once
 #include "graph.hpp"
 
-template <typename T>
+template<typename T>
 class forest : public graph<T> {
-public:
+ public:
   using graph<T>::edges;
   using graph<T>::g;
   using graph<T>::n;

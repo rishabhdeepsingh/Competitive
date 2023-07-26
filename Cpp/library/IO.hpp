@@ -14,30 +14,29 @@ using ld = long double;
 using pii = pair<int, int>;
 using vi = vector<int>;
 
-#define sz(x)   (int)(x).size()
 const ld PI = acos(-1);
 
 template<typename T, typename U>
-inline bool chmax(T &a, U b) { return a < b && (a = b, true); }
+inline bool chmax(T& a, U b) { return a < b && (a = b, true); }
 template<typename T, typename U>
-inline bool chmin(T &a, U b) { return a > b && (a = b, true); }
+inline bool chmin(T& a, U b) { return a > b && (a = b, true); }
 mt19937 rng(chrono::high_resolution_clock::now().time_since_epoch().count());
 template<typename T, typename U>
-std::ostream &operator<<(std::ostream &stream, const pair<T, U> &p) {
+std::ostream& operator<<(std::ostream& stream, const pair<T, U>& p) {
   return stream << p.first << " " << p.second;
 }
 template<typename T1, typename U>
-std::istream &operator>>(std::istream &is, std::pair<T1, U> &p) {
+std::istream& operator>>(std::istream& is, std::pair<T1, U>& p) {
   is >> p.first >> p.second;
   return is;
 }
 template<typename T>
-std::ostream &operator<<(std::ostream &out, const std::vector<T> &vec) {
+std::ostream& operator<<(std::ostream& out, const std::vector<T>& vec) {
   for (auto& x: vec) out << x << ' ';
   return out;
 }
 template<typename T>
-std::istream &operator>>(std::istream &in, std::vector<T> &vec) {
-  for (auto &x: vec) in >> x;
+std::istream& operator>>(std::istream& in, std::vector<T>& vec) {
+  for (auto& x: vec) in >> x;
   return in;
 }

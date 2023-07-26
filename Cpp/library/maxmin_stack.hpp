@@ -1,8 +1,8 @@
 #include "IO.hpp"
 
-template <typename T>
-struct mxn_stack {
-  
+template<typename T>
+struct maxmin_stack {
+
   void push(const T e) {
     if (s.empty()) {
       mx.push(e);
@@ -13,21 +13,21 @@ struct mxn_stack {
     }
     s.push(e);
   }
-  
+
   bool empty() {
     return s.empty();
   }
-  
+
   T top() {
     return s.top();
   }
-  
+
   void pop() {
     mx.pop();
     mn.pop();
     s.pop();
   }
-  
+
   T max() {
     if (s.empty()) return numeric_limits<T>::min();
     return mx.top();
@@ -36,6 +36,6 @@ struct mxn_stack {
     if (s.empty()) return numeric_limits<T>::max();
     return mn.top();
   }
-private:
+ private:
   stack<T> mx, mn, s;
 };

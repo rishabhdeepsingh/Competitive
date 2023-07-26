@@ -1,18 +1,18 @@
 #pragma once
 #include "Mint.hpp"
 
-template <typename T>
+template<typename T>
 class NTT {
-public:
+ public:
   using Type = typename decay<decltype(T::value)>::type;
-  
+
   static Type md;
   static Modular<T> root;
   static int base;
   static int max_base;
   static vector<Modular<T>> roots;
   static vector<int> rev;
-  
+
   static void clear() {
     root = 0;
     base = 0;
@@ -20,7 +20,7 @@ public:
     roots.clear();
     rev.clear();
   }
-  
+
   static void init() {
     md = T::value;
     assert(md >= 3 && md % 2 == 1);
@@ -40,7 +40,7 @@ public:
     rev = {0, 1};
     roots = {0, 1};
   }
-  
+
   static void ensure_base(int nbase) {
     if (md != T::value) {
       clear();
@@ -66,7 +66,7 @@ public:
       base++;
     }
   }
-  
+
   static void fft(vector<Modular<T>>& a) {
     int n = (int) a.size();
     assert((n & (n - 1)) == 0);
@@ -89,8 +89,9 @@ public:
       }
     }
   }
-  
-  static vector<Modular<T>> multiply(vector<Modular<T>> a, vector<Modular<T>> b) {
+
+  static vector<Modular<T>> multiply(vector<Modular<T>> a,
+                                     vector<Modular<T>> b) {
     if (a.empty() || b.empty()) {
       return {};
     }
@@ -115,14 +116,14 @@ public:
   }
 };
 
-template <typename T> typename NTT<T>::Type NTT<T>::md;
-template <typename T> Modular<T> NTT<T>::root;
-template <typename T> int NTT<T>::base;
-template <typename T> int NTT<T>::max_base;
-template <typename T> vector<Modular<T>> NTT<T>::roots;
-template <typename T> vector<int> NTT<T>::rev;
+template<typename T> typename NTT<T>::Type NTT<T>::md;
+template<typename T> Modular<T> NTT<T>::root;
+template<typename T> int NTT<T>::base;
+template<typename T> int NTT<T>::max_base;
+template<typename T> vector<Modular<T>> NTT<T>::roots;
+template<typename T> vector<int> NTT<T>::rev;
 
-template <typename T>
+template<typename T>
 vector<Modular<T>> inverse(const vector<Modular<T>>& a) {
   assert(!a.empty());
   int n = (int) a.size();
@@ -156,7 +157,7 @@ vector<Modular<T>> inverse(const vector<Modular<T>>& a) {
   return b;
 }
 
-template <typename T>
+template<typename T>
 vector<Modular<T>> inverse_old(vector<Modular<T>> a) {
   assert(!a.empty());
   int n = (int) a.size();
@@ -186,8 +187,9 @@ vector<Modular<T>> inverse_old(vector<Modular<T>> a) {
   return a;
 }
 
-template <typename T>
-vector<Modular<T>> operator*(const vector<Modular<T>>& a, const vector<Modular<T>>& b) {
+template<typename T>
+vector<Modular<T>> operator*(const vector<Modular<T>>& a,
+                             const vector<Modular<T>>& b) {
   if (a.empty() || b.empty()) {
     return {};
   }
@@ -203,7 +205,8 @@ vector<Modular<T>> operator*(const vector<Modular<T>>& a, const vector<Modular<T
   return NTT<T>::multiply(a, b);
 }
 
-template <typename T>
-vector<Modular<T>>& operator*=(vector<Modular<T>>& a, const vector<Modular<T>>& b) {
+template<typename T>
+vector<Modular<T>>& operator*=(vector<Modular<T>>& a,
+                               const vector<Modular<T>>& b) {
   return a = a * b;
 }

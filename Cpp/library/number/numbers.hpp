@@ -2,7 +2,7 @@
 
 #include "../IO.hpp"
 
-template <typename T>
+template<typename T>
 T gcd(T a, T b) {
   a = abs(a);
   b = abs(b);
@@ -13,12 +13,12 @@ T gcd(T a, T b) {
   return a;
 }
 
-template <typename T>
+template<typename T>
 T lcm(T a, T b) {
   return a / gcd(a, b) * b;
 }
 
-template <typename T>
+template<typename T>
 T power(const T& a, long long b) {
   if (b == 0) {
     return 1;
@@ -30,7 +30,7 @@ T power(const T& a, long long b) {
     return power(a, b - 1) * a;
   }
 }
-template <typename T, typename U>
+template<typename T, typename U>
 T power(T a, T b, U mod) {
   T res = 1;
   while (b) {
@@ -43,7 +43,7 @@ T power(T a, T b, U mod) {
   return res;
 }
 
-template <typename T>
+template<typename T>
 std::vector<T> powers(T base, int length) {
   std::vector<T> result(length);
   if (length > 0) {

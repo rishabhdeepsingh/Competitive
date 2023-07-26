@@ -1,7 +1,7 @@
 #pragma once
 #include "dfs_forest.hpp"
 
-template <typename T>
+template<typename T>
 vector<int> find_eulerian_path(const graph<T>& g, int& root) {
   // in_deg and out_deg are fake for undigraph!
   vector<int> in_deg(g.n, 0);

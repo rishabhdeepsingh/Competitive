@@ -1,7 +1,7 @@
 #pragma once
 #include "../IO.hpp"
 
-template <typename T>
+template<typename T>
 vector<T>& operator+=(vector<T>& a, const vector<T>& b) {
   if (a.size() < b.size()) {
     a.resize(b.size());
@@ -12,13 +12,13 @@ vector<T>& operator+=(vector<T>& a, const vector<T>& b) {
   return a;
 }
 
-template <typename T>
+template<typename T>
 vector<T> operator+(const vector<T>& a, const vector<T>& b) {
   vector<T> c = a;
   return c += b;
 }
 
-template <typename T>
+template<typename T>
 vector<T>& operator-=(vector<T>& a, const vector<T>& b) {
   if (a.size() < b.size()) {
     a.resize(b.size());
@@ -29,13 +29,13 @@ vector<T>& operator-=(vector<T>& a, const vector<T>& b) {
   return a;
 }
 
-template <typename T>
+template<typename T>
 vector<T> operator-(const vector<T>& a, const vector<T>& b) {
   vector<T> c = a;
   return c -= b;
 }
 
-template <typename T>
+template<typename T>
 vector<T> operator-(const vector<T>& a) {
   vector<T> c = a;
   for (int i = 0; i < (int) c.size(); i++) {
@@ -44,7 +44,7 @@ vector<T> operator-(const vector<T>& a) {
   return c;
 }
 
-template <typename T>
+template<typename T>
 vector<T> operator*(const vector<T>& a, const vector<T>& b) {
   if (a.empty() || b.empty()) {
     return {};
@@ -58,12 +58,12 @@ vector<T> operator*(const vector<T>& a, const vector<T>& b) {
   return c;
 }
 
-template <typename T>
+template<typename T>
 vector<T>& operator*=(vector<T>& a, const vector<T>& b) {
   return a = a * b;
 }
 
-template <typename T>
+template<typename T>
 vector<T> inverse(const vector<T>& a) {
   assert(!a.empty());
   int n = (int) a.size();
@@ -80,7 +80,7 @@ vector<T> inverse(const vector<T>& a) {
   return b;
 }
 
-template <typename T>
+template<typename T>
 vector<T>& operator/=(vector<T>& a, const vector<T>& b) {
   int n = (int) a.size();
   int m = (int) b.size();
@@ -98,13 +98,13 @@ vector<T>& operator/=(vector<T>& a, const vector<T>& b) {
   return a;
 }
 
-template <typename T>
+template<typename T>
 vector<T> operator/(const vector<T>& a, const vector<T>& b) {
   vector<T> c = a;
   return c /= b;
 }
 
-template <typename T>
+template<typename T>
 vector<T>& operator%=(vector<T>& a, const vector<T>& b) {
   int n = (int) a.size();
   int m = (int) b.size();
@@ -118,13 +118,13 @@ vector<T>& operator%=(vector<T>& a, const vector<T>& b) {
   return a;
 }
 
-template <typename T>
+template<typename T>
 vector<T> operator%(const vector<T>& a, const vector<T>& b) {
   vector<T> c = a;
   return c %= b;
 }
 
-template <typename T, typename U>
+template<typename T, typename U>
 vector<T> power(const vector<T>& a, const U& b, const vector<T>& c) {
   assert(b >= 0);
   vector<U> binary;
@@ -143,7 +143,7 @@ vector<T> power(const vector<T>& a, const U& b, const vector<T>& c) {
   return res;
 }
 
-template <typename T>
+template<typename T>
 vector<T> derivative(const vector<T>& a) {
   vector<T> c = a;
   for (int i = 0; i < (int) c.size(); i++) {
@@ -155,7 +155,7 @@ vector<T> derivative(const vector<T>& a) {
   return c;
 }
 
-template <typename T>
+template<typename T>
 vector<T> primitive(const vector<T>& a) {
   vector<T> c = a;
   c.insert(c.begin(), 0);
@@ -165,7 +165,7 @@ vector<T> primitive(const vector<T>& a) {
   return c;
 }
 
-template <typename T>
+template<typename T>
 vector<T> logarithm(const vector<T>& a) {
   assert(!a.empty() && a[0] == 1);
   vector<T> u = primitive(derivative(a) * inverse(a));
@@ -173,7 +173,7 @@ vector<T> logarithm(const vector<T>& a) {
   return u;
 }
 
-template <typename T>
+template<typename T>
 vector<T> exponent(const vector<T>& a) {
   assert(!a.empty() && a[0] == 0);
   int n = (int) a.size();
@@ -193,7 +193,7 @@ vector<T> exponent(const vector<T>& a) {
   return b;
 }
 
-template <typename T>
+template<typename T>
 vector<T> sqrt(const vector<T>& a) {
   assert(!a.empty() && a[0] == 1);
   int n = (int) a.size();
@@ -211,7 +211,7 @@ vector<T> sqrt(const vector<T>& a) {
   return b;
 }
 
-template <typename T>
+template<typename T>
 vector<T> multiply(const vector<vector<T>>& a) {
   if (a.empty()) {
     return {0};
@@ -226,7 +226,7 @@ vector<T> multiply(const vector<vector<T>>& a) {
   return mult(0, (int) a.size() - 1);
 }
 
-template <typename T>
+template<typename T>
 T evaluate(const vector<T>& a, const T& x) {
   T res = 0;
   for (int i = (int) a.size() - 1; i >= 0; i--) {
@@ -235,7 +235,7 @@ T evaluate(const vector<T>& a, const T& x) {
   return res;
 }
 
-template <typename T>
+template<typename T>
 vector<T> evaluate(const vector<T>& a, const vector<T>& x) {
   if (x.empty()) {
     return {};
@@ -258,7 +258,8 @@ vector<T> evaluate(const vector<T>& a, const vector<T>& x) {
   };
   build(0, 0, n - 1);
   vector<T> res(n);
-  function<void(int, int, int, vector<T>)> eval = [&](int v, int l, int r, vector<T> f) {
+  function<void(int, int, int, vector<T>)>
+      eval = [&](int v, int l, int r, vector<T> f) {
     f %= st[v];
     if ((int) f.size() < 150) {
       for (int i = l; i <= r; i++) {
@@ -279,7 +280,7 @@ vector<T> evaluate(const vector<T>& a, const vector<T>& x) {
   return res;
 }
 
-template <typename T>
+template<typename T>
 vector<T> interpolate(const vector<T>& x, const vector<T>& y) {
   if (x.empty()) {
     return {};
@@ -302,7 +303,8 @@ vector<T> interpolate(const vector<T>& x, const vector<T>& y) {
   vector<T> m = st[0];
   vector<T> dm = derivative(m);
   vector<T> val(n);
-  function<void(int, int, int, vector<T>)> eval = [&](int v, int l, int r, vector<T> f) {
+  function<void(int, int, int, vector<T>)>
+      eval = [&](int v, int l, int r, vector<T> f) {
     f %= st[v];
     if ((int) f.size() < 150) {
       for (int i = l; i <= r; i++) {
@@ -335,7 +337,7 @@ vector<T> interpolate(const vector<T>& x, const vector<T>& y) {
 }
 
 // f[i] = 1^i + 2^i + ... + up^i
-template <typename T>
+template<typename T>
 vector<T> faulhaber(const T& up, int n) {
   vector<T> ex(n + 1);
   T e = 1;
@@ -345,7 +347,7 @@ vector<T> faulhaber(const T& up, int n) {
   }
   vector<T> den = ex;
   den.erase(den.begin());
-  for (auto& d : den) {
+  for (auto& d: den) {
     d = -d;
   }
   vector<T> num(n);
@@ -366,7 +368,7 @@ vector<T> faulhaber(const T& up, int n) {
 
 // (x + 1) * (x + 2) * ... * (x + n)
 // (can be optimized with precomputed inverses)
-template <typename T>
+template<typename T>
 vector<T> sequence(int n) {
   if (n == 0) {
     return {1};
@@ -399,15 +401,15 @@ vector<T> sequence(int n) {
   return res;
 }
 
-template <typename T>
+template<typename T>
 class OnlineProduct {
-public:
+ public:
   const vector<T> a;
   vector<T> b;
   vector<T> c;
-  
+
   OnlineProduct(const vector<T>& a_) : a(a_) {}
-  
+
   T add(const T& val) {
     int i = (int) b.size();
     b.push_back(val);

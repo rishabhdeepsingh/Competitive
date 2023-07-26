@@ -1,8 +1,7 @@
 #pragma once
 #include "dfs_undigraph.hpp"
 
-
-template <typename T>
+template<typename T>
 vector<bool> find_cutpoints(dfs_undigraph<T>& g) {
   g.dfs_all();
   vector<bool> cutpoint(g.n, false);
