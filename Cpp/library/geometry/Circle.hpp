@@ -3,13 +3,13 @@
 
 class Circle {
  public:
-  const point center;
-  const PType r;
+  point center;
+  PType r;
 
-  Circle(const point& center, const PType _r) : center(center), r(_r) {}
+  Circle(const point &center, const PType _r) : center(center), r(_r) {}
 };
 
-vector<point> intersect(const Circle& c, const Line& l) {
+vector<point> intersect(const Circle &c, const Line &l) {
   PType dist = distance(l, c.center);
   if (dist > c.r + eps) {
     return vector<point>(0);
@@ -27,7 +27,7 @@ vector<point> intersect(const Circle& c, const Line& l) {
   return result;
 }
 
-vector<point> intersect(const Circle& c, const Circle& d) {
+vector<point> intersect(const Circle &c, const Circle &d) {
   PType dist = distance(c.center, d.center);
   if (dist < eps) {
     return vector<point>(0);
@@ -41,7 +41,7 @@ vector<point> intersect(const Circle& c, const Circle& d) {
   return intersect(c, l);
 }
 
-vector<point> touchingpoints(const Circle& c, const point& p) {
+vector<point> touchingpoints(const Circle &c, const point &p) {
   PType dist = distance(c.center, p);
   if (dist < c.r - eps) {
     return vector<point>(0);

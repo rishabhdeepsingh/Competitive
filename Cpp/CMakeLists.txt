@@ -72,7 +72,7 @@ add_executable(output output/main.cpp ${GLOB})
 add_executable(testrunner testrunner/main.cpp)
 
 # Don't change it
-file(GLOB TASKS "tasks/*.cpp")
+file(GLOB TASKS "tasks/*")
 file(GLOB CONTESTS "contests/*.cpp")
 
 #file(GLOB HEADERS "library/*.hpp")

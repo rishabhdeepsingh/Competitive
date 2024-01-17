@@ -6,7 +6,7 @@ class twosat {
   digraph<int> g;
   int n;
 
-  twosat(int _n) : g(digraph<int>(2 * _n)), n(_n) {}
+  explicit twosat(int _n) : g(digraph<int>(2 * _n)), n(_n) {}
 
   inline void add(int x, int value_x) {
     // (v[x] == value_x)
@@ -29,7 +29,7 @@ class twosat {
     vector<int> res(n);
     for (int i = 0; i < n; i++) {
       if (c[2 * i] == c[2 * i + 1]) {
-        return vector<int>();
+        return {};
       }
       res[i] = (c[2 * i] < c[2 * i + 1]);
     }

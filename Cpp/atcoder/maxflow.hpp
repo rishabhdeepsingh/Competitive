@@ -15,7 +15,7 @@ struct mf_graph {
     assert(0 <= to && to < _n);
     assert(0 <= cap);
     int m = int(pos.size());
-    pos.push_back({from, int(g[from].size())});
+    pos.emplace_back(from, int(g[from].size()));
     int from_id = int(g[from].size());
     int to_id = int(g[to].size());
     if (from == to) to_id++;
@@ -88,8 +88,7 @@ struct mf_graph {
       for (int &i = iter[v]; i < int(g[v].size()); i++) {
         _edge &e = g[v][i];
         if (level_v <= level[e.to] || g[e.to][e.rev].cap == 0) continue;
-        Cap d =
-            self(self, e.to, std::min(up - res, g[e.to][e.rev].cap));
+        Cap d = self(self, e.to, std::min(up - res, g[e.to][e.rev].cap));
         if (d <= 0) continue;
         g[v][i].cap += d;
         g[e.to][e.rev].cap -= d;

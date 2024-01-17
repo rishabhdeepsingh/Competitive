@@ -4,6 +4,9 @@ int32_t main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
+    //assert(freopen("input.txt", "rt", stdin));
+    //assert(freopen("output.txt", "wt", stdout));
+
 	%ClassName% solver;
 	%Input%
 	%Output%

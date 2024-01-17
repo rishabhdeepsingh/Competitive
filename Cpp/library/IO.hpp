@@ -17,9 +17,9 @@ using vi = vector<int>;
 const ld PI = acos(-1);
 
 template<typename T, typename U>
-inline bool chmax(T& a, U b) { return a < b && (a = b, true); }
+[[maybe_unused]] inline bool chmax(T& a, U b) { return a < b && (a = b, true); }
 template<typename T, typename U>
-inline bool chmin(T& a, U b) { return a > b && (a = b, true); }
+[[maybe_unused]] inline bool chmin(T& a, U b) { return a > b && (a = b, true); }
 mt19937 rng(chrono::high_resolution_clock::now().time_since_epoch().count());
 template<typename T, typename U>
 std::ostream& operator<<(std::ostream& stream, const pair<T, U>& p) {

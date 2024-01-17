@@ -5,14 +5,14 @@ bool miller_rabin(unsigned n) {
   if (n < 2) return false;
 
   // Check small primes.
-  for (unsigned p: {2, 3, 5, 7, 11, 13, 17, 19, 23, 29})
+  for (unsigned p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29})
     if (n % p == 0) return n == p;
 
   int r = __builtin_ctz(n - 1);
   unsigned d = (n - 1) >> r;
 
   // https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Testing_against_small_sets_of_bases
-  for (unsigned a: {2, 7, 61}) {
+  for (unsigned a : {2, 7, 61}) {
     unsigned x = power(a % n, d, n);
 
     if (x <= 1 || x == n - 1)
@@ -26,6 +26,28 @@ bool miller_rabin(unsigned n) {
   }
 
   return true;
+}
+// Prime factorizes n in worst case O(sqrt n).
+template<typename T>
+vector<pair<T, int>> prime_factorize(T n) {
+  vector<pair<T, int>> result;
+
+  auto extract = [&](T p) {
+    if (n % p == 0) {
+      result.emplace_back(p, 0);
+      do {
+        n /= p;
+        result.back().second++;
+      } while (n % p == 0);
+    }
+  };
+
+  for (T p = 2; int64_t(p) * p <= n; p += (p & 1) + 1)
+    extract(p);
+
+  if (n > 1) result.emplace_back(n, 1);
+
+  return result;
 }
 
 struct Sieve {
@@ -89,7 +111,7 @@ struct Sieve {
   long long numDivisors(long long x) {
     auto div = primeFactors(x);
     long long ans = 1;
-    for (const auto& p: div) {
+    for (const auto &p : div) {
       ans *= p.second + 1;
     }
     return ans;

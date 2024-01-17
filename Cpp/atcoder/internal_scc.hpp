@@ -12,7 +12,7 @@ struct scc_graph {
  public:
   explicit scc_graph(int n) : _n(n) {}
 
-  int num_vertices() { return _n; }
+  int num_vertices() const { return _n; }
 
   void add_edge(int from, int to) { edges.push_back({from, {to}}); }
 

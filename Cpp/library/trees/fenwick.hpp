@@ -17,8 +17,8 @@ class fenwick {
   int n{};
   int LOGN{};
 
-  explicit fenwick(int _n, T def = T{}) : n(_n), LOGN(log2(_n)) {
-    bit.resize(n, def);
+  explicit fenwick(int _n, T _def = T{}) : n(_n), LOGN(log2(_n)) {
+    bit.resize(n, _def);
   }
 
   explicit fenwick(const vector<T>& arr) : fenwick(arr.size()) {

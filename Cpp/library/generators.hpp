@@ -10,7 +10,7 @@ T rand(T low, T high) {
 }
 
 template<typename T>
-vector<vector<T>> subarrays(const vector<T>& arr) {
+vector<vector<T>> subarrays(const vector<T> &arr) {
   int n = arr.size();
   vector<vector<T>> res;
   for (int i = 0; i < n; ++i) {
@@ -26,7 +26,7 @@ vector<vector<T>> subarrays(const vector<T>& arr) {
 }
 
 template<typename T>
-vector<vector<T>> subsequence(const vector<T>& arr) {
+vector<vector<T>> subsequence(const vector<T> &arr) {
   int n = arr.size();
   unsigned long MAX = 1ul << n;
   vector<vector<T>> res;
@@ -112,8 +112,8 @@ vector<vector<int>> allPermutations(int n, int start = 0) {
 void generate_pallindrome_utils(string res,
                                 int len,
                                 int n,
-                                const vector<char>& chars,
-                                vector<string>& final) {
+                                const vector<char> &chars,
+                                vector<string> &final) {
   if (res.length() == (n + 1) / 2) {
     for (int i = 0; i < (n / 2); ++i) {
       res.push_back(res[n / 2 - i - 1]);
@@ -121,12 +121,12 @@ void generate_pallindrome_utils(string res,
     final.push_back(res);
     return;
   }
-  for (char c: chars) {
+  for (char c : chars) {
     generate_pallindrome_utils(res + c, len + 1, n, chars, final);
   }
 }
 
-vector<string> Pallindromes(int n, vector<char> chars) {
+vector<string> Pallindromes(int n, const vector<char>& chars) {
   vector<string> res;
   generate_pallindrome_utils("", 0, n, chars, res);
   return res;

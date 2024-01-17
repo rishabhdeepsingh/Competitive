@@ -4,7 +4,7 @@ class %ClassName% {
  public:
 
   auto solveOne() {
-
+    return "%ClassName%";
   }
 
   void solve() {
@@ -12,7 +12,8 @@ class %ClassName% {
     cin >> tc;
     for (int t = 1; t <= tc; ++t) {
       auto res = solveOne();
-      cout << "Case #" << t << ": " << res << '\n';
+//      cout << "Case #" << t << ": ";
+      cout << (res) << '\n';
     }
   }
 };

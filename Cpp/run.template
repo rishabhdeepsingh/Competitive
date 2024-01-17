@@ -11,6 +11,36 @@
 #define IN_TEXT "jhelperin.txt"
 #define OUT_TEXT "jhelperout.txt"
 
+namespace Color {
+  enum Code {
+    FG_RED      = 31,
+    FG_GREEN    = 32,
+    FG_YELLOW   = 33,
+    FG_BLUE     = 34,
+    FG_DEFAULT  = 39,
+    BG_RED      = 41,
+    BG_GREEN    = 42,
+    BG_BLUE     = 44,
+    BG_DEFAULT  = 49
+  };
+  class Modifier {
+    Code code;
+   public:
+    Modifier(Code pCode) : code(pCode) {}
+    friend std::ostream&
+    operator<<(std::ostream& os, const Modifier& mod) {
+      return os << "";
+      return os << "\033[" << mod.code << "m";
+    }
+  };
+}
+
+Color::Modifier red(Color::FG_RED);
+Color::Modifier green(Color::FG_GREEN);
+Color::Modifier yellow(Color::FG_YELLOW);
+Color::Modifier blue(Color::FG_BLUE);
+Color::Modifier def(Color::FG_DEFAULT);
+
 namespace jhelper {
 
     struct Test {
@@ -31,11 +61,6 @@ namespace jhelper {
 } // namespace jhelper
 
 int main() {
-    string blue = "\x1B[34m";
-    string red = "\x1B[31m";
-    string green = "\x1B[32m";
-    string yellow = "\x1B[33m";
-    string def = "\033[0m";
     std::vector<jhelper::Test> tests = {
             %Tests%
     };
@@ -111,7 +136,7 @@ int main() {
     std::cout << (test_passed == test_cnt ? green : red) << test_passed << " / " << test_cnt << " passed" << def
               << std::endl;
     if (allOK) {
-        std::cout << green << "All OK" << def << std::endl;
+        std::cout << green << "All OK ✅" << def << std::endl;
     } else {
         std::cout << red << "Some cases failed" << def << std::endl;
     }
