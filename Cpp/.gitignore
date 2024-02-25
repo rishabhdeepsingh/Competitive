@@ -1,3 +1,4 @@
 temp/
 Build/
 **/test*
+**/a.out
