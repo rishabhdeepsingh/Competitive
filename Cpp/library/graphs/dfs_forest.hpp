@@ -17,8 +17,8 @@ class dfs_forest : public forest<T> {
   vector<int> root;
   vector<int> depth; // Depth of the node
 //  vector<int> in;   // In time of the node
-//  vector<int> out; // Out time of the node
-//  vector<int> ft; // Tree flattening
+//    vector<int> out; // Out time of the node
+//    vector<int> ft; // Tree flattening
   vector<T> dist;
   vector<T> max_dist;
   int timer = 0;
@@ -72,9 +72,9 @@ class dfs_forest : public forest<T> {
       int u = que.front();
       que.pop();
 
-      for (int id : g[u]) {
+      for (int id: g[u]) {
         if (id == pe[u]) continue;
-        auto &e = edges[id];
+        auto& e = edges[id];
         int to = e.from ^ e.to ^ u;
 
         if (dis[to] == INF) {
@@ -87,28 +87,16 @@ class dfs_forest : public forest<T> {
     return dis;
   }
 
-  pair<int, T> farthest() {
-    int id = -1;
-    T dis{};
+  pair<int, T> maxi(function<T(int)>&& fun) {
+    int maxI = -1;
+    T maxV{};
     for (int i = 0; i < n; ++i) {
-      if (dis <= dist[i]) {
-        dis = dist[i];
-        id = i;
+      if (maxV < fun(i)) {
+        maxV = fun(i);
+        maxI = i;
       }
     }
-    return {id, dis};
-  }
-
-  pair<int, T> max_size() {
-    int id = 0;
-    T max_size{};
-    for (int i = 0; i < n; ++i) {
-      if (max_size <= sz[i]) {
-        max_size = sz[i];
-        id = i;
-      }
-    }
-    return {id, max_size};
+    return {maxI, maxV};
   }
 
   void dfs(int v, bool clear_order = true) {
@@ -133,7 +121,7 @@ class dfs_forest : public forest<T> {
   }
 
   inline constexpr int to(int id, int v) const {
-    const auto &e = edges[id];
+    const auto& e = edges[id];
     return e.from ^ e.to ^ v;
   }
 
@@ -144,9 +132,9 @@ class dfs_forest : public forest<T> {
     sz[v] = 1;
 //    in[v] = timer;
 //    ft[timer++] = v;
-    for (int id : g[v]) {
+    for (int id: g[v]) {
       if (id == pe[v]) continue;
-      const auto &e = edges[id];
+      const auto& e = edges[id];
       int to = e.from ^ e.to ^ v;
       depth[to] = depth[v] + 1;
       dist[to] = dist[v] + e.cost;
@@ -169,5 +157,4 @@ class dfs_forest : public forest<T> {
     pv[v] = pe[v] = -1;
     do_dfs(v);
   }
-
 };

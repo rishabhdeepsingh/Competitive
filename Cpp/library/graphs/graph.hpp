@@ -1,5 +1,6 @@
 #pragma once
 #include "../IO.hpp"
+
 template<typename T>
 class graph {
  public:

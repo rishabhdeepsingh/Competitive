@@ -1,4 +1,7 @@
 temp/
+build/
 Build/
 **/test*
 **/a.out
+**/.cph
+**/tags
