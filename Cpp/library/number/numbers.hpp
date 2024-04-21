@@ -3,6 +3,19 @@
 #include "../IO.hpp"
 
 template<typename T>
+T extgcd(T a, T b, T &x, T &y) {
+  if (a == 0) {
+    x = 0;
+    y = 1;
+    return b;
+  }
+  T p = b / a;
+  T g = extgcd(b - p * a, a, y, x);
+  x -= p * y;
+  return g;
+}
+
+template<typename T>
 T gcd(T a, T b) {
   a = abs(a);
   b = abs(b);
@@ -41,6 +54,15 @@ T power(T a, T b, U mod) {
     b /= 2;
   }
   return res;
+}
+
+template<unsigned MOD>
+long long modulo(const string &a) {
+  long long ans = 0;
+  for (char c : a) {
+    ans = (10LL * ans + c - '0') % MOD;
+  }
+  return ans;
 }
 
 template<typename T>

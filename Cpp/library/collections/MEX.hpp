@@ -3,7 +3,7 @@
 
 class MEX {
   struct MEXNode {
-    MEXNode* children[2];
+    MEXNode* children[2]{};
     bool is_full = false;
     int cnt = 0;
 
@@ -15,7 +15,7 @@ class MEX {
   };
  private:
 
-  inline MEXNode* nonnull(MEXNode*& n) {
+  static inline MEXNode* nonnull(MEXNode*& n) {
     if (!n) n = new MEXNode();
     return n;
   }

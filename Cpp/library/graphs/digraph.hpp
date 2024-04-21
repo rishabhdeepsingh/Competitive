@@ -18,7 +18,7 @@ class digraph : public graph<T> {
     return id;
   }
 
-  digraph<T> reverse() const {
+  auto reverse() const {
     digraph<T> rev(n);
     for (auto& e: edges) {
       rev.add(e.to, e.from, e.cost);
