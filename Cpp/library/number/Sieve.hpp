@@ -191,19 +191,4 @@ struct Sieve {
     }
     return fac;
   }
-
-  set<long long> divisorsBrute(long long x) {
-    set<long long> res;
-    for (long long i = 1; i * i <= x; i++) {
-      if (x % i == 0) {
-        if ((x / i) == i) {
-          res.insert(i);
-        } else {
-          res.insert(i);
-          res.insert(x / i);
-        }
-      }
-    }
-    return res;
-  }
 };

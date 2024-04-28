@@ -42,6 +42,23 @@ vector<vector<T>> subsequence(const vector<T> &arr) {
   return res;
 }
 
+template<typename U, typename T>
+auto subsetSum(const vector<T> &arr, int l, int r) {
+  int len = r - l + 1;
+  vector<U> res;
+  unsigned long MAX = 1ul << len;
+  for (unsigned long mask = 0; mask < MAX; ++mask) {
+    U sum = 0;
+    for (int i = 0; i < len; ++i) {
+      if ((mask >> i) & 1) {
+        sum += arr[l + i];
+      }
+    }
+    res.push_back(sum);
+  }
+  return res;
+}
+
 template<typename T>
 vector<T> randomVector(int n, T low, T high) {
   vector<T> res(n);

@@ -78,7 +78,7 @@ struct segtree {
   }
 
   template<bool (*f)(S)>
-  int min_left(int r) const {
+  [[nodiscard]] int min_left(int r) const {
     return min_left(r, [](S x) { return f(x); });
   }
   template<class F>
