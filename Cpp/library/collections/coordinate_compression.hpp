@@ -1,10 +1,19 @@
-
 template <class T>
 class CoordicateCompression {
   vector<T> indices;
 
  public:
-  explicit CoordicateCompression(vector<T> v): indices(v) {
+  explicit CoordicateCompression() = default;
+  
+  explicit CoordicateCompression(vector<T> v) : indices(v) {
+    init();
+  }
+
+  void add(T value) {
+    indices.push_back(value);
+  }
+
+  void init() {
     sort(indices.begin(), indices.end());
     indices.erase(unique(indices.begin(), indices.end()), indices.end());
   }
