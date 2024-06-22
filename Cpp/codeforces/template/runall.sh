@@ -8,18 +8,25 @@ fi
 cd $problem
 echo $problem
 
-g++-9 -O2 -DLOCAL -std=c++17 -Wno-used-result -Wshadow -Wall -o sol sol.cpp
-
 infiles=(`ls in*`)
+if [[ -z "$infiles" ]]; then
+    echo "No in files"
+    exit 0
+fi
+
+g++ -O2 -DLOCAL -std=c++17 -Wno-used-result -Wshadow -Wall -DLOCAL -o sol sol.cpp
+
 echo ${infiles[@]}
 
 for file in ${infiles[@]}
 do
-    echo "$file"
+    echo "input for file $file:"
     cat "$file"
     ./sol < $file > out$file
-    echo "Answer for $file"
+    printf "output:\n"
     cat out$file
+    echo ""
 done
 
-echo "Done!!!!"
+echo ""
+echo "All Done!!!!"
