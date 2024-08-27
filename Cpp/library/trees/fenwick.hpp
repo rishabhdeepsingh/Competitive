@@ -9,7 +9,6 @@ Both the operation are O(log(N)).
 Everything is 0-based.
 Thanks to aryanc403 axiom sum(0,i) == arr[i]
 */
-
 template<typename T>
 class fenwick {
  public:

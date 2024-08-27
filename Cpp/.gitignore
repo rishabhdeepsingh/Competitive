@@ -4,4 +4,6 @@ Build/
 **/test*
 **/a.out
 **/.cph
-**/tags
+*/tags
+*.cpp
+tags

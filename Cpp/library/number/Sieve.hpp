@@ -139,7 +139,7 @@ struct Sieve {
     return ans;
   }
 
-  vector<pair<long long, long long>> divisorPair(long long x) {
+  static vector<pair<long long, long long>> divisorPair(long long x) {
     vector<pair<long long, long long>> res;
     for (long long i = 1; i * i <= x; i++) {
       if (x % i == 0) {
@@ -153,7 +153,7 @@ struct Sieve {
     return res;
   }
 
-  vector<long long> divisor(long long x) {
+  static vector<long long> divisor(long long x) {
     vector<long long> res;
     for (long long i = 1; i * i <= x; i++) {
       if (x % i == 0) {
@@ -166,7 +166,7 @@ struct Sieve {
     return res;
   }
 
-  set<long long> divisorSet(long long x) {
+  static set<long long> divisorSet(long long x) {
     set<long long> res;
     for (long long i = 1; i * i <= x; i++) {
       if (x % i == 0) {

@@ -4,6 +4,7 @@
 using namespace std;
 
 using ll = long long;
+using i128 = __int128_t;
 using ld = long double;
 using pii = pair<int, int>;
 using vi = vector<int>;
@@ -38,7 +39,19 @@ std::ostream &operator<<(std::ostream &out, std::vector<T> &vec) {
   return out;
 }
 
-int main(int argc, char const *argv[]) {
+auto solve() {
   
+}
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(NULL);
+
+  int tc{1};
+  cin >> tc;
+  for (int t = 0; t < tc; ++t) {
+    auto res = solve();
+    cout << (res) << '\n';
+  }
   return 0;
 }
