@@ -7,8 +7,7 @@ using namespace std;
 #define sim template <typename T
 #define ris return *this
 #define dor > debug &operator<<
-#define eni(x) \
-  sim > typename enable_if<sizeof dud<T>(0) x 1, debug &>::type operator<<(T i)
+#define eni(x) sim > typename enable_if<sizeof dud<T>(0) x 1, debug &>::type operator<<(T i)
 sim > struct rge {
   T b, e;
 };
@@ -23,9 +22,7 @@ struct debug {
     ris;
   }
   eni(==) { ris << rang((i).begin(), (i).end()); }
-  sim, typename U dor(pair<U, T> d) {
-    ris << "(" << d.first << ", " << d.second << ")";
-  }
+  sim, typename U dor(pair<U, T> d) { ris << "(" << d.first << ", " << d.second << ")"; }
   sim dor(rge<T> d) {
     *this << "[";
     for (auto it = d.b; it != d.e; ++it) *this << ", " + 2 * (it == d.b) << *it;
@@ -85,7 +82,6 @@ int main() {
   cin.tie(NULL);
 
   int tc{1};
-  cin >> tc;
   for (int t = 0; t < tc; ++t) {
     auto res = solve();
     cout << (res) << '\n';

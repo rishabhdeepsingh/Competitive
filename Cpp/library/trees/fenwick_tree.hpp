@@ -9,36 +9,37 @@ Both the operation are O(log(N)).
 Everything is 0-based.
 Thanks to aryanc403 axiom sum(0,i) == arr[i]
 */
-template<typename T>
-class fenwick {
+template <typename T>
+class FenwickTree {
  public:
   vector<T> bit;
   int n{};
   int LOGN{};
 
-  explicit fenwick(int _n, T _def = T{}) : n(_n), LOGN(log2(_n)) {
+  explicit FenwickTree(int _n, T _def = T{}) : n(_n), LOGN(log2(_n)) {
     bit.resize(n, _def);
   }
 
-  explicit fenwick(const vector<T>& arr) : fenwick(arr.size()) {
+  explicit FenwickTree(const vector<T>& arr) : FenwickTree(arr.size()) {
     for (size_t i = 0; i < arr.size(); ++i) {
-      update(i, arr[i]);
+      Modify(i, arr[i]);
     }
   }
 
-  void update(int idx, T delta) {
+  void Modify(int idx, T delta) {
+    assert(0 <= idx && idx < n);
     while (idx < n) {
       bit[idx] += delta;
-      idx |= (idx + 1);
+      idx |= idx + 1;
     }
   }
 
-  void update(int l, int r, T delta) {
-    update(l, delta);
-    update(r + 1, -delta);
+  void Modify(int l, int r, T delta) {
+    Modify(l, delta);
+    Modify(r + 1, -delta);
   }
 
-  T query(int idx) {
+  T Query(int idx) {
     T res{};
     while (idx >= 0) {
       res += bit[idx];
@@ -47,14 +48,14 @@ class fenwick {
     return res;
   }
 
-  T query(int l, int r) {
-    return query(r) - (l > 0 ? query(l - 1) : T{});
+  T Query(int l, int r) {
+    return Query(r) - (l > 0 ? Query(l - 1) : T{});
   }
 
-  bool set(int p, T val) {
-    T curr = query(p);
+  bool Set(int p, T val) {
+    T curr = Query(p);
     if (val == curr) return false;
-    update(p, val - curr);
+    Modify(p, val - curr);
     return true;
   }
 
