@@ -15,45 +15,21 @@ bool miller_rabin(unsigned n) {
   for (unsigned a : {2, 7, 61}) {
     unsigned x = power(a % n, d, n);
 
-    if (x <= 1 || x == n - 1)
-      continue;
+    if (x <= 1 || x == n - 1) continue;
 
     for (int i = 0; i < r - 1 && x != n - 1; i++)
       x = unsigned(uint64_t(x) * x % n);
 
-    if (x != n - 1)
-      return false;
+    if (x != n - 1) return false;
   }
 
   return true;
 }
-// Prime factorizes n in worst case O(sqrt n).
-template<typename T>
-vector<pair<T, int>> prime_factorize(T n) {
-  vector<pair<T, int>> result;
-
-  auto extract = [&](T p) {
-    if (n % p == 0) {
-      result.emplace_back(p, 0);
-      do {
-        n /= p;
-        result.back().second++;
-      } while (n % p == 0);
-    }
-  };
-
-  for (T p = 2; int64_t(p) * p <= n; p += (p & 1) + 1)
-    extract(p);
-
-  if (n > 1) result.emplace_back(n, 1);
-
-  return result;
-}
 
 struct Sieve {
   int maxn;
+
  public:
-  using MapType = unordered_map<long long, long long>;
   std::vector<long long> spf;
   std::vector<long long> primes;
   std::vector<long long> mobius;
@@ -71,8 +47,9 @@ struct Sieve {
         primes.push_back(i);
         spf[i] = i;
       }
-      for (long long j = 0; j < (int) primes.size() && (i * primes[j]) < maxn
-          && primes[j] <= spf[i]; ++j) {
+      for (long long j = 0; j < (int)primes.size() && (i * primes[j]) < maxn &&
+                            primes[j] <= spf[i];
+           ++j) {
         is_prime[i * primes[j]] = false;
         spf[i * primes[j]] = primes[j];
       }
@@ -98,23 +75,22 @@ struct Sieve {
     return *it;
   }
 
-  bool isPrime(long long num) {
-    if (num < maxn) {
-      return is_prime[num];
-    }
-    for (long long div = 2; div * div <= num; ++div) {
-      if (num % div == 0) return false;
-    }
-    return true;
-  }
+  // Determines whether n is prime in worst case O(sqrt n / log n). Requires
+  // having run `sieve` up to at least sqrt(n).
+  // If we've run `sieve` up to at least n, takes O(1) time.
+  bool isPrime(int64_t n) {
+    int64_t sieve_max = int64_t(spf.size()) - 1;
+    assert(1 <= n && n <= sieve_max * sieve_max);
 
-  long long numDivisors(long long x) {
-    auto div = primeFactors(x);
-    long long ans = 1;
-    for (const auto &p : div) {
-      ans *= p.second + 1;
+    if (n <= sieve_max) return is_prime[n];
+
+    for (int64_t p : primes) {
+      if (p * p > n) break;
+
+      if (n % p == 0) return false;
     }
-    return ans;
+
+    return true;
   }
 
   long long countDivisors(long long n) {
@@ -132,63 +108,53 @@ struct Sieve {
 
     if (is_prime[n])
       ans = ans * 2;
-    else if (is_prime[sqrt(n)] && (long long) sqrt(n) == sqrt(n))
+    else if (is_prime[sqrt(n)] && (long long)sqrt(n) == sqrt(n))
       ans = ans * 3;
     else if (n != 1)
       ans = ans * 4;
     return ans;
   }
 
-  static vector<pair<long long, long long>> divisorPair(long long x) {
-    vector<pair<long long, long long>> res;
-    for (long long i = 1; i * i <= x; i++) {
-      if (x % i == 0) {
-        if (x / i == i) {
-          res.emplace_back(i, i);
-        } else {
-          res.emplace_back(i, x / i);
-        }
-      }
-    }
-    return res;
-  }
+  // Prime factorizes n in worst case O(sqrt n / log n). Requires having run
+  // `sieve` up to at least sqrt(n).
+  // If we've run `sieve` up to at least n, takes O(log n) time.
+  template <typename T>
+  vector<pair<T, int>> primeFactorize(T n) {
+    int64_t sieve_max = int64_t(spf.size()) - 1;
+    assert(1 <= n && n <= sieve_max * sieve_max);
+    vector<pair<T, int>> result;
 
-  static vector<long long> divisor(long long x) {
-    vector<long long> res;
-    for (long long i = 1; i * i <= x; i++) {
-      if (x % i == 0) {
-        res.push_back(i);
-        if ((x / i) != i) {
-          res.push_back(x / i);
-        }
-      }
-    }
-    return res;
-  }
+    if (n <= sieve_max) {
+      while (n != 1) {
+        int p = spf[n];
+        int exponent = 0;
 
-  static set<long long> divisorSet(long long x) {
-    set<long long> res;
-    for (long long i = 1; i * i <= x; i++) {
-      if (x % i == 0) {
-        res.insert(i);
-        res.insert(x / i);
-      }
-    }
-    return res;
-  }
+        do {
+          n /= p;
+          exponent++;
+        } while (n % p == 0);
 
-  MapType primeFactors(long long x) {
-    MapType fac;
-    while (x > 1) {
-      auto pf = spf[x];
-      if (pf == 1) break;
-      long long cnt = 0;
-      while (x % pf == 0) {
-        cnt++;
-        x /= pf;
+        result.emplace_back(p, exponent);
       }
-      fac[pf] = cnt;
+
+      return result;
     }
-    return fac;
+
+    for (int p : primes) {
+      if (int64_t(p) * p > n) break;
+
+      if (n % p == 0) {
+        result.emplace_back(p, 0);
+
+        do {
+          n /= p;
+          result.back().second++;
+        } while (n % p == 0);
+      }
+    }
+
+    if (n > 1) result.emplace_back(n, 1);
+
+    return result;
   }
 };
