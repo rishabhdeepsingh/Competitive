@@ -100,7 +100,7 @@ int main() {
 
         std::clock_t start = std::clock();
         %ClassName% solver;
-        %SolverCall%
+        solver.solve();
         std::clock_t finish = std::clock();
 
         std::cin.rdbuf(cinbuf);//reset to standard input again

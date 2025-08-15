@@ -1,3 +1,5 @@
+#include "../IO.hpp"
+
 template <class T>
 class CoordicateCompression {
   vector<T> indices;

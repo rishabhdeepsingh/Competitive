@@ -1,3 +1,4 @@
+#pragma once
 #include "../IO.hpp"
 
 template<typename _Tp, typename dummy = void>

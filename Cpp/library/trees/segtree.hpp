@@ -4,7 +4,7 @@
 class segtree {
  public:
   struct node {
-    // don'fun forget to set default value (used for leaves)
+    // don't forget to set default value (used for leaves)
     // not necessarily neutral element!
     int mn = 0;
     int mx = 0;

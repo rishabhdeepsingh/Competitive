@@ -10,6 +10,6 @@ int32_t main() {
 	%ClassName% solver;
 	%Input%
 	%Output%
-	%SolverCall%
+	solver.solve();
 	return 0;
 }

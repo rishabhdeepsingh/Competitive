@@ -21,9 +21,9 @@ class hungarian {
     a = vector<vector<T> >(n, vector<T>(m));
     u = vector<T>(n + 1);
     v = vector<T>(m + 1);
-    pa = vector<int>(n + 1, -1);
-    pb = vector<int>(m + 1, -1);
-    way = vector<int>(m, -1);
+    pa = vector(n + 1, -1);
+    pb = vector(m + 1, -1);
+    way = vector(m, -1);
     minv = vector<T>(m);
     used = vector<bool>(m + 1);
     inf = numeric_limits<T>::max();
