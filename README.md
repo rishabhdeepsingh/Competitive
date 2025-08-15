@@ -8,13 +8,7 @@ Fast Input and output Class for Competitive Coding.
 [Chrome](https://chrome.google.com/webstore/detail/competitive-companion/cjnmckjndlpiamhfimnnjmnckgghkjbl) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/competitive-companion/)
 
 ## [C++](https://github.com/rishabhdeepsingh/Competitive/tree/master/Cpp)
-Install [Jhelper](https://github.com/AlexeyDmitriev/JHelper) plugin and import the Cpp project in Clion
-
-## [Java](https://github.com/rishabhdeepsingh/Competitive/tree/master/Java)
-Install [CHelper](https://github.com/EgorKulikov/idea-chelper) plugin and import the Java Project in Intellij Idea
-
-## [Kotlin](https://github.com/rishabhdeepsingh/Competitive/tree/master/Kotlin)
-Create a new Project and use the template file.
+Install [Jhelper2.0](https://github.com/rishabhdeepsingh/JHelper2.0) plugin and import the Cpp project in Clion
 
 # Bash testing for C++
 In ubuntu we can use the following code to check the time
