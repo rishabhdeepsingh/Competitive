@@ -67,17 +67,18 @@ file(GLOB HEADERS library/string/Z.hpp
         library/tensor.hpp
         library/testlib/testlib.h
         atcoder/*.hpp
-        )
+)
 add_executable(output output/main.cpp ${GLOB})
 add_executable(testrunner testrunner/main.cpp)
 
 # Don't change it
-file(GLOB TASKS "tasks/*")
+file(GLOB TASKS "tasks/**.cpp")
 file(GLOB CONTESTS "contests/*.cpp")
 
 #file(GLOB HEADERS "library/*.hpp")
 
 add_executable(test ${TASKS} ${HEADERS})
+#SET_TARGET_PROPERTIES(test PROPERTIES LINKER_LANGUAGE CXX)
 
 add_definitions(-DLOCAL)
 add_definitions(-Wno-unused-result)
