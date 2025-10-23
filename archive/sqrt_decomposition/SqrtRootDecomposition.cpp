@@ -42,8 +42,8 @@ public:
     ans -= val * (2 * cnt[val] - 1);
     cnt[val]--;
   }
-  
-  void solve(std::istream& cin, std::ostream& cout) {
+
+  void solve() {
     int n, q;
     cin >> n >> q;
     nsqrt = sqrt(n);
@@ -76,12 +76,10 @@ public:
 };
 
 int32_t main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-	DPowerfulArray solver;
-	std::istream& in(std::cin);
-	std::ostream& out(std::cout);
-	solver.solve(in, out);
-	return 0;
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
+  std::cout.tie(nullptr);
+  DPowerfulArray solver;
+  solver.solve();
+  return 0;
 }
