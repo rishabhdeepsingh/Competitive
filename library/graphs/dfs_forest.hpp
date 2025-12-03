@@ -15,13 +15,9 @@ class dfs_forest : public forest<T> {
   vector<int> end;
   vector<int64_t> sz;
   vector<int> root;
-  vector<int> depth; // Depth of the node
-//  vector<int> in;   // In time of the node
-//    vector<int> out; // Out time of the node
-//    vector<int> ft; // Tree flattening
+  vector<int> depth;  // Depth of the node
   vector<T> dist;
   vector<T> max_dist;
-  int timer = 0;
 
   explicit dfs_forest(int _n) : forest<T>(_n) {
     init();
@@ -38,14 +34,10 @@ class dfs_forest : public forest<T> {
     depth = vector<int>(n, -1);
     dist = vector<T>(n, T{});
     max_dist = vector<T>(n, T{});
-//    in = vector<int>(n, -1);
-//    out = vector<int>(n, -1);
-//    ft = vector<int>(2 * n, -1);
     timer = 0;
   }
 
   void clear() {
-    timer = 0;
     pv.clear();
     pe.clear();
     order.clear();
@@ -55,48 +47,6 @@ class dfs_forest : public forest<T> {
     root.clear();
     depth.clear();
     dist.clear();
-//    ft.clear();
-//    in.clear();
-//    out.clear();
-  }
-
-  vector<T> bfs(int s) {
-    T INF = std::numeric_limits<T>::max();
-    vector<T> dis(n, INF);
-    std::queue<T> que;
-
-    dis[s] = 0;
-    que.push(s);
-
-    while (!que.empty()) {
-      int u = que.front();
-      que.pop();
-
-      for (int id: g[u]) {
-        if (id == pe[u]) continue;
-        auto& e = edges[id];
-        int to = e.from ^ e.to ^ u;
-
-        if (dis[to] == INF) {
-          dis[to] = dis[u] + 1;
-          que.push(to);
-        }
-      }
-    }
-
-    return dis;
-  }
-
-  pair<int, T> maxi(function<T(int)>&& fun) {
-    int maxI = -1;
-    T maxV{};
-    for (int i = 0; i < n; ++i) {
-      if (maxV < fun(i)) {
-        maxV = fun(i);
-        maxI = i;
-      }
-    }
-    return {maxI, maxV};
   }
 
   void dfs(int v, bool clear_order = true) {
@@ -130,8 +80,6 @@ class dfs_forest : public forest<T> {
     pos[v] = (int) order.size();
     order.push_back(v);
     sz[v] = 1;
-//    in[v] = timer;
-//    ft[timer++] = v;
     for (int id: g[v]) {
       if (id == pe[v]) continue;
       const auto& e = edges[id];
@@ -145,9 +93,7 @@ class dfs_forest : public forest<T> {
       max_dist[v] = max(max_dist[v], max_dist[to] + 1);
       sz[v] += sz[to];
     }
-    end[v] = (int) order.size() - 1;
-//    out[v] = timer;
-//    ft[timer++] = v;
+    end[v] = (int)order.size() - 1;
   }
 
   void do_dfs_from(int v) {

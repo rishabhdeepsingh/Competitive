@@ -1,5 +1,16 @@
 #include "../IO.hpp"
 
+template <typename T, typename U>
+vector<T> cumsum(const vector<U>& A, int off = 1) {
+  int N = A.size();
+  vc<T> B(N + 1);
+  for (int i = 0; i < N; ++i) {
+    B[i + 1] = B[i] + A[i];
+  }
+  if (off == 0) B.erase(B.begin());
+  return B;
+}
+
 template<typename X>
 struct Monoid_Add {
   using value_type = X;

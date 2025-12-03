@@ -1,5 +1,4 @@
 #pragma once
-#include "../library/IO.hpp"
 #include "../atcoder/internal_bit.hpp"
 #include "../atcoder/modint.hpp"
 
